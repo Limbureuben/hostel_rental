@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.house-card {
+  width: 300px;
+  margin: 10px;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+mat-card {
+  margin-top: 20px;
+}
