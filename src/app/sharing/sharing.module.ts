@@ -13,13 +13,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     UserHomeComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,

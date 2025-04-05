@@ -1,22 +1,21 @@
 .card-group-custom {
   display: flex;
-  gap: 40px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   padding: 20px;
+  gap: 20px;
 }
 
 .custom-card {
-  width: 100%;
-  max-width: 300px;
+  width: calc(25% - 15px); /* 4 cards per row, accounting for gap */
   border-radius: 4px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
   background-color: #ffffff;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 350px; /* Reduced height of the card */
 }
 
 .custom-card:hover {
@@ -25,7 +24,7 @@
 }
 
 .custom-card img {
-  height: 180px;
+  height: 150px; /* Reduced height of the image */
   object-fit: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -33,6 +32,10 @@
 
 c-card-body {
   padding: 16px;
+  flex-grow: 1; /* Ensures the body takes up remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 h5[cCardTitle] {
@@ -44,6 +47,11 @@ h5[cCardTitle] {
 p[cCardText] {
   color: #555;
   font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px; /* Ensure space between the text and the button */
 }
 
 c-card-footer {
@@ -52,10 +60,23 @@ c-card-footer {
   font-size: 0.85rem;
   color: #888;
   border-top: 1px solid #eee;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .custom-card {
-    max-width: 100%;
+    width: calc(33.333% - 15px); /* 3 per row on medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .custom-card {
+    width: calc(50% - 15px); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .custom-card {
+    width: 100%; /* 1 per row on phones */
   }
 }
