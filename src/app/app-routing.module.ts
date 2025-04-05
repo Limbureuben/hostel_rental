@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeaderComponent } from './sharing/header/header.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user-home', pathMatch: 'full'}
+  { path: '', redirectTo: '/user-home', pathMatch: 'full'},
+  {
+    path: 'app',
+    component: HeaderComponent,
+    loadChildren: () =>
+      import('./sharing/sharing.module').then((m)=>m.SharingModule)
+  }
 ];
 
 @NgModule({
