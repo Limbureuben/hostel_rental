@@ -1,19 +1,40 @@
-<mat-toolbar color="primary">
-  <span>{{ title }}</span>
-</mat-toolbar>
+<c-card-group class="mb-4 card-group-custom">
+  <c-card class="custom-card">
+    <img cCardImg="top" src="assets/images/image1.jpeg" alt="Angular">
+    <c-card-body>
+      <h5 cCardTitle>Card Title</h5>
+      <p cCardText>
+        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+      </p>
+    </c-card-body>
+    <c-card-footer>
+      <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+    </c-card-footer>
+  </c-card>
 
-<div class="container">
-  <div *ngFor="let house of houses" class="house-card">
-    <mat-card>
-      <img mat-card-image [src]="house.image" alt="{{ house.name }}">
-      <mat-card-title>{{ house.name }}</mat-card-title>
-      <mat-card-subtitle>{{ house.location }}</mat-card-subtitle>
-      <mat-card-content>
-        <p>{{ house.price }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>View Details</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div>
+  <c-card class="custom-card">
+    <img cCardImg="top" src="assets/images/image2.jpeg" alt="Angular">
+    <c-card-body>
+      <h5 cCardTitle>Card Title</h5>
+      <p cCardText>
+        This card has supporting text below as a natural lead-in to additional content.
+      </p>
+    </c-card-body>
+    <c-card-footer>
+      <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+    </c-card-footer>
+  </c-card>
+
+  <c-card class="custom-card">
+    <img cCardImg="top" src="assets/images/image3.jpeg" alt="Angular">
+    <c-card-body>
+      <h5 cCardTitle>Card Title</h5>
+      <p cCardText>
+        This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.
+      </p>
+    </c-card-body>
+    <c-card-footer>
+      <small class="text-medium-emphasis">Last updated 3 mins ago</small>
+    </c-card-footer>
+  </c-card>
+</c-card-group>

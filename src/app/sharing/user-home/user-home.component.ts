@@ -14,19 +14,19 @@ export class UserHomeComponent {
       name: 'Modern Apartment',
       location: 'New York, USA',
       price: '$2000/month',
-      image: 'assets/images/house1.jpg'
+      image: 'assets/images/image1.jpeg'
     },
     {
       name: 'Luxury Villa',
       location: 'Los Angeles, USA',
       price: '$5000/month',
-      image: 'assets/images/house2.jpg'
+      image: 'assets/images/image2.jpeg'
     },
     {
       name: 'Cozy Cottage',
       location: 'Austin, USA',
       price: '$1500/month',
-      image: 'assets/images/house3.jpg'
+      image: 'assets/images/image3.jpeg'
     }
   ];
 
