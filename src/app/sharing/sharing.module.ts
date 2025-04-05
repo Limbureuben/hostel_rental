@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SharingRoutingModule } from './sharing-routing.module';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { UserHomeComponent } from './user-home/user-home.component';
   ],
   imports: [
     CommonModule,
-    SharingRoutingModule
+    SharingRoutingModule,
+    MatToolbarModule,
+    MatCardModule,
   ]
 })
 export class SharingModule { }

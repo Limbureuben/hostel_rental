@@ -13,6 +13,8 @@ import { SharingModule } from './sharing/sharing.module';
 import { TenantModule } from './tenant/tenant.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { GraphQLModule } from './graphql.module';
     MatButtonModule,
     MatInputModule,
     HttpClientModule,
-    GraphQLModule
+    GraphQLModule,
+    MatToolbarModule,
+    MatCardModule,
   ],
   providers: [
     provideClientHydration(withEventReplay())
