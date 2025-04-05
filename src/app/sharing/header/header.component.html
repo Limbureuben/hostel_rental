@@ -1,8 +1,14 @@
 <mat-toolbar class="auth-toolbar">
   <span class="toolbar-title">HOUSE RENTAL SYSTEM</span>
   <span class="spacer"></span>
-  <div class="auth-buttons">
-    <button mat-raised-button color="primary" class="btn-lg">Login</button>
-    <button mat-raised-button color="accent" class="btn-lg">Register</button>
+  <!-- Profile Icon with dropdown menu -->
+  <div class="auth-profile">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon> <!-- Profile Icon -->
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login">Login</button>
+      <button mat-menu-item routerLink="/register">Register</button>
+    </mat-menu>
   </div>
 </mat-toolbar>

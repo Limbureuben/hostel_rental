@@ -19,6 +19,7 @@ import { ButtonModule } from '@coreui/angular';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatCardModule,
     ButtonModule,
-    MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatMenuModule,
+
   ],
   providers: [
     provideClientHydration(withEventReplay())

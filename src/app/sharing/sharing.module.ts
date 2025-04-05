@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatMenuModule,
 
   ]
 })
