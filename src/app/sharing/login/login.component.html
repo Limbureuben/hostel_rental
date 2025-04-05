@@ -1,0 +1,32 @@
+<div class="register-background">
+  <div class="register-overlay">
+    <div class="register-container">
+      <p class="country-name">House Rental system</p>
+
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-label>Username</mat-label>
+          <input matInput  placeholder="Enter your username" type="text" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" type="password" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput placeholder="Confirm your password" type="password" required>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-raised-button color="primary" class="register-btn">Register</button>
+        </div>
+      </form>
+
+      <div class="login-link">
+        <p>Already have an account? <a routerLink="/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,3 +6,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button.mat-raised-button {
   border-radius: 0 !important;  // Remove border-radius to avoid rounded corners
 }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+mat-card {
+  margin: 20px;
+}
