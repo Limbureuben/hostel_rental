@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { ButtonModule } from '@coreui/angular';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,11 @@ import { MatCardModule } from '@angular/material/card';
     GraphQLModule,
     MatToolbarModule,
     MatCardModule,
+    ButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [
     provideClientHydration(withEventReplay())

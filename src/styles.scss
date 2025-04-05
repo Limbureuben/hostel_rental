@@ -2,3 +2,7 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button.mat-raised-button {
+  border-radius: 0 !important;  // Remove border-radius to avoid rounded corners
+}

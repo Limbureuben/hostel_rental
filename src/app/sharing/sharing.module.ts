@@ -6,12 +6,18 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CardModule } from '@coreui/angular';
+import { CardModule, ButtonModule } from '@coreui/angular';
+import { LoginComponent } from './login/login.component';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
-    UserHomeComponent
+    UserHomeComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +25,13 @@ import { CardModule } from '@coreui/angular';
     MatToolbarModule,
     MatCardModule,
     MatButtonModule,
-    CardModule
+    CardModule,
+    ButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+
   ]
 })
 export class SharingModule { }
