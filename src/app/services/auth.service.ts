@@ -6,7 +6,7 @@ import { REGISTER_USER } from '../graphql';
 export interface RegisterData {
   username: string,
   password: string,
-  confirmpassword: string
+  confirmPassword: string
   role: string
 }
 
