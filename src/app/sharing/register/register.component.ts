@@ -37,13 +37,9 @@ export class RegisterComponent implements OnInit{
       })
   }
 
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      const formData = this.registerForm.value;
-      console.log('Form Data:', formData);
-      // Send formData to your GraphQL mutation or backend API
-    } else {
-      console.log('Form is invalid');
+  onSubmit() {
+    if(this.registerForm.valid) {
+      
     }
   }
 
