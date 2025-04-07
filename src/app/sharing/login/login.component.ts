@@ -57,12 +57,32 @@ export class LoginComponent implements OnInit{
     this.loginservice.loginUser(loginData).subscribe({
       next: (result) => {
         const response = result.data.loginUser;
+
+        if (response.success) {
+          this.toastr.success('Login successful', 'Success', {positionClass: 'toast-top-right'});
+          // localStorage.setItem('token', response.token)
+          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('role', response.role);
+
+          if (response.user.isStaff) {
+            this.router.navigate(['/landload-dashboard']);
+          } else if (response.user.isSuperuser) {
+            this.router.navigate(['/admin-dashboard']);
+          } else {
+            this.router.navigate(['/tenant-dashboard']);
+          }
+        } else {
+          this.toastr.error(response.message || 'Login failed', 'Error', {
+            positionClass: 'toast-top-right'
+          });
+        }
+      },
+      error: (err) => {
+        this.toastr.error('Something went wrong. Please try again.', 'Error', {
+          positionClass: 'toast-top-right'
+        });
       }
     })
-
-
-
-
   }
 
   goBack(): void {
