@@ -24,6 +24,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,10 @@ import { ToastrModule } from 'ngx-toastr';
     MatMenuModule,
     MatOptionModule,
     MatSelectModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000
+    }),
   ],
   providers: [
     provideClientHydration(withEventReplay())

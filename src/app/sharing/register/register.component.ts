@@ -84,14 +84,12 @@ export class RegisterComponent implements OnInit{
 
     this.registerservice.registerUser(registrationData).subscribe({
       next: (result) => {
+        const response = result.data?.registerUser;
 
-        if (!result.data?.registerUser?.output) {
+        if (!response) {
           this.toastr.error('Unexpected response from server', 'Error');
           return;
         }
-
-        const response = result.data.registerUser.output;
-        const user = response?.user;
 
         if (response.success) {
           this.toastr.success(response.message, 'Success', { positionClass: 'toast-top-right' });
@@ -100,14 +98,12 @@ export class RegisterComponent implements OnInit{
           Object.keys(this.registerForm.controls).forEach(key => {
             this.registerForm.controls[key].setErrors(null);
           });
-          console.log("Navigating to login...");
+
           this.router.navigate(['/login']).then(success => {
-            if (!success) {
-              console.error("Navigation failed!");
-            }
+            if (!success) console.error("Navigation failed!");
           });
-        }
-        else {
+
+        } else {
           this.toastr.error(response.message || 'Registration failed', 'Error');
         }
       },
@@ -120,6 +116,4 @@ export class RegisterComponent implements OnInit{
   goBack(): void {
     this.router.navigate(['/'])
   }
-
-
 }
