@@ -207,32 +207,23 @@ app-footer {
 
 
 
-
-/* Force white background for the dropdown */
 .mat-select-panel {
-  background-color: #fff !important;
-  color: #000 !important;
+  background-color: white !important;
+  color: black !important;
+  z-index: 10001 !important;
 }
 
-/* Style the options inside the dropdown */
 .mat-option {
-  color: #000 !important;
-  background-color: #fff !important;
+  background-color: white !important;
+  color: black !important;
 }
 
-/* Style the hovered/active options */
 .mat-option:hover,
 .mat-option.mat-active {
   background-color: #f0f0f0 !important;
-  color: #000 !important;
+  color: black !important;
 }
 
-/* Style selected item in the input field */
 .mat-select-value {
-  color: #000 !important;
-}
-
-/* Ensure the form field doesn't apply low opacity */
-mat-form-field {
-  opacity: 1 !important;
+  color: black !important;
 }

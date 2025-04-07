@@ -17,3 +17,9 @@ body {
 mat-card {
   margin: 20px;
 }
+
+/* Ensure Material overlays appear above everything */
+.cdk-overlay-container {
+  z-index: 10000 !important;
+  position: relative; /* Ensure it's stackable */
+}
