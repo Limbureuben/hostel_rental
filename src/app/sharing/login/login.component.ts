@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, LoginData } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login',
@@ -47,6 +48,19 @@ export class LoginComponent implements OnInit{
       });
       return;
     }
+
+    const loginData: LoginData = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
+    };
+
+    this.loginservice.loginUser(loginData).subscribe({
+      next: (response) => {
+        
+      }
+    })
+
+
 
 
   }
