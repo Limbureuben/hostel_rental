@@ -107,11 +107,15 @@ export class RegisterComponent implements OnInit{
             }
           });
         }
+        else {
+          this.toastr.error(response.message || 'Registration failed', 'Error');
+        }
+      },
+      error: (err) => {
+        this.toastr.error('Something went wrong. Please try again.', 'Error');
       }
-    })
+    });
   }
-
-
 
   goBack(): void {
     this.router.navigate(['/'])
