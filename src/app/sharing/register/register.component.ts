@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,18 +20,37 @@ import { Router } from '@angular/router';
     ])
   ]
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
+
+  registerForm!: FormGroup;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
-  onSubmit() {
-    console.log('form submitted');
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      role: ['user', Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
+      console.log('Form Data:', formData);
+      // Send formData to your GraphQL mutation or backend API
+    } else {
+      console.log('Form is invalid');
+    }
   }
 
   goBack(): void {
     this.router.navigate(['/'])
   }
+
 
 }

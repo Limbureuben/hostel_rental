@@ -16,6 +16,8 @@ import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './footer/footer.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { FooterComponent } from './footer/footer.component';
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
+    MatOptionModule,
+    MatSelectModule,
 
   ]
 })

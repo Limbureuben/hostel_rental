@@ -3,29 +3,29 @@
     <div class="register-container" @rotateFade>
       <p class="country-name">HOUSE RENTAL SYSTEM</p>
 
-      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <form (ngSubmit)="onSubmit()">
         <!-- Username Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="Enter your username" type="text" name="username" [(ngModel)]="formData.username" required>
+          <input matInput placeholder="Enter your username" type="text" name="username" required>
         </mat-form-field>
 
         <!-- Password Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter your password" type="password" name="password" [(ngModel)]="formData.password" required>
+          <input matInput placeholder="Enter your password" type="password" name="password"  required>
         </mat-form-field>
 
         <!-- Confirm Password Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Confirm Password</mat-label>
-          <input matInput placeholder="Confirm your password" type="password" name="confirmPassword" [(ngModel)]="formData.confirmPassword" required>
+          <input matInput placeholder="Confirm your password" type="password" name="confirmPassword" required>
         </mat-form-field>
 
         <!-- Role Selection Dropdown -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Select Role</mat-label>
-          <mat-select name="role" [(ngModel)]="formData.role" required>
+          <mat-select formControlName="role" required>
             <mat-option value="user">User</mat-option>
             <mat-option value="staff">Staff</mat-option>
           </mat-select>

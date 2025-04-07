@@ -20,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
-
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [
     provideClientHydration(withEventReplay())
