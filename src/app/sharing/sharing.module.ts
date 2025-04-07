@@ -19,7 +19,6 @@ import { FooterComponent } from './footer/footer.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -45,7 +44,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule,
     MatOptionModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000
