@@ -3,7 +3,7 @@
     <div class="register-container" @rotateFade>
       <p class="country-name">HOUSE RENTAL SYSTEM</p>
 
-      <form (ngSubmit)="onSubmit()">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Username Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Username</mat-label>
@@ -26,8 +26,8 @@
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Select Role</mat-label>
           <mat-select formControlName="role" required>
-            <mat-option value="user">Landload</mat-option>
-            <mat-option value="staff">Tenant</mat-option>
+            <mat-option value="user">Tenant</mat-option>
+            <mat-option value="staff">Landload</mat-option>
           </mat-select>
         </mat-form-field>
 
