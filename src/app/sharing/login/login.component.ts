@@ -2,6 +2,8 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -25,22 +27,23 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loginservice: AuthService,
+    private toastr: ToastrService,
+
   ) {}
 
   ngOnInit(): void {
-    // Initialize the form group with validation
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-    });
+      this.loginForm = this.fb.group({
+        username: ['',Validators.required],
+        password: ['', Validators.required]
+      })
   }
 
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      const loginData = this.loginForm.value;
-      console.log('Login Data:', loginData);
-      // Perform login logic here, like sending the data to an API
+  onSubmit() {
+    if(!this.loginForm.valid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
   }
 
