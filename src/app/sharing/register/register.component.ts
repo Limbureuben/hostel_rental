@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit{
   }
 
   onSubmit() {
-    if(this.registerForm.valid) {
+    if(!this.registerForm.valid) {
       this.registerForm.markAllAsTouched();
       this.toastr.error('Enter valid values', 'Validation Error', { positionClass: 'toast-top-right' });
       return;

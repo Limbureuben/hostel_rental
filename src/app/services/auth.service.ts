@@ -20,11 +20,15 @@ export class AuthService {
     private apollo: Apollo
   ) { }
 
-  registerUser(userdata: RegisterData): Observable<any> {
+  registerUser(userData: RegisterData): Observable<any> {
     return this.apollo.mutate({
       mutation: REGISTER_USER,
       variables: {
-        userdata
+        username: userData.username,
+        password: userData.password,
+        confirmPassword: userData.confirmPassword,
+        role: userData.role,
+
       }
     })
 
