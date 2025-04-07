@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,8 @@ export class RegisterComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private registerservice: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class RegisterComponent implements OnInit{
 
   onSubmit() {
     if(this.registerForm.valid) {
-      
+      this.registerservice.registerUser()
     }
   }
 
