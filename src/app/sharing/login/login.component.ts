@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, LoginData } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -42,9 +42,13 @@ export class LoginComponent implements OnInit{
 
   onSubmit() {
     if(!this.loginForm.valid) {
-      this.loginForm.markAllAsTouched();
+      this.toastr.error('Please enter valid credentials', 'Error', {
+        positionClass: 'toast-top-right'
+      });
       return;
     }
+
+
   }
 
   goBack(): void {
