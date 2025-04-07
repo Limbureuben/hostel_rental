@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatMenuModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration(withEventReplay())

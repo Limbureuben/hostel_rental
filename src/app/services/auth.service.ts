@@ -1,17 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { Observable } from 'rxjs';
+import { REGISTER_USER } from '../graphql';
+
+export interface RegisterData {
+  username: string,
+  password: string,
+  confirmpassword: string
+  role: string
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor(
     private apollo: Apollo
   ) { }
 
-  registerUser() {
-    
+  registerUser(userdata: RegisterData): Observable<any> {
+    return this.apollo.mutate({
+      mutation: REGISTER_USER,
+      variables: {
+        userdata
+      }
+    })
+
   }
 
 }
