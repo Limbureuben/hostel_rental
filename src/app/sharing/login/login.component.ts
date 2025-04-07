@@ -64,10 +64,10 @@ export class LoginComponent implements OnInit{
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('role', response.role);
 
-          if (response.user.isStaff) {
-            this.router.navigate(['/landload-dashboard']);
-          } else if (response.user.isSuperuser) {
+          if (response.user.isSuperuser) {
             this.router.navigate(['/admin-dashboard']);
+          } else if (response.user.isStaff) {
+            this.router.navigate(['/landload-dashboard']);
           } else {
             this.router.navigate(['/tenant-dashboard']);
           }

@@ -3,7 +3,7 @@
     <div class="register-container" @rotateFade>
       <p class="country-name">HOUSE RENTAL SYSTEM</p>
 
-      <form (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Username</mat-label>
           <input matInput  placeholder="Enter your username" formControlName="username" type="text" required>
