@@ -24,3 +24,19 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+export const LOGIN_USER = gql`
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
+      message
+      role
+      success
+      user {
+        id
+        isStaff
+        isSuperuser
+        username
+      }
+    }
+  }
+`;
