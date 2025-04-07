@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit{
     };
 
     this.loginservice.loginUser(loginData).subscribe({
-      next: (response) => {
-        
+      next: (result) => {
+        const response = result.data.loginUser;
       }
     })
 
