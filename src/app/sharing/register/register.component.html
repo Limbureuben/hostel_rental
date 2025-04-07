@@ -3,22 +3,35 @@
     <div class="register-container" @rotateFade>
       <p class="country-name">HOUSE RENTAL SYSTEM</p>
 
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <!-- Username Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Username</mat-label>
-          <input matInput  placeholder="Enter your username" type="text" required>
+          <input matInput placeholder="Enter your username" type="text" name="username" [(ngModel)]="formData.username" required>
         </mat-form-field>
 
+        <!-- Password Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter your password" type="password" required>
+          <input matInput placeholder="Enter your password" type="password" name="password" [(ngModel)]="formData.password" required>
         </mat-form-field>
 
+        <!-- Confirm Password Field -->
         <mat-form-field appearance="outline" class="full-width custom-input">
           <mat-label>Confirm Password</mat-label>
-          <input matInput placeholder="Confirm your password" type="password" required>
+          <input matInput placeholder="Confirm your password" type="password" name="confirmPassword" [(ngModel)]="formData.confirmPassword" required>
         </mat-form-field>
 
+        <!-- Role Selection Dropdown -->
+        <mat-form-field appearance="outline" class="full-width custom-input">
+          <mat-label>Select Role</mat-label>
+          <mat-select name="role" [(ngModel)]="formData.role" required>
+            <mat-option value="user">User</mat-option>
+            <mat-option value="staff">Staff</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Submit Button -->
         <div class="actions">
           <button mat-raised-button color="primary" class="register-btn">Register</button>
         </div>
@@ -31,7 +44,10 @@
   </div>
 </div>
 
+<!-- Back Button -->
 <button mat-fab color="accent" class="back-button" (click)="goBack()">
   <mat-icon>arrow_back</mat-icon>
 </button>
+
+<!-- Footer -->
 <app-footer></app-footer>
