@@ -10,9 +10,10 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit {
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+
   ngOnInit(): void {
-    // Check if we're in a browser environment
-    if (typeof window !== 'undefined') {
+    if (isPlatformBrowser(this.platformId)) {
       // Dynamically import Leaflet only in the browser
       import('leaflet').then(L => {
         const map = L.map('map').setView([51.505, -0.09], 13);
