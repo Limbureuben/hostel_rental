@@ -11,13 +11,14 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   animations: [
-    trigger('rotateFade', [
+    trigger('slideBounce', [
       transition(':enter', [
-        style({ opacity: 0, transform: 'rotateY(90deg)' }),
-        animate('500ms ease-out', style({ opacity: 1, transform: 'rotateY(0deg)' }))
+        style({ transform: 'translateY(-100%)', opacity: 0 }),
+        animate('600ms cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+          style({ transform: 'translateY(0)', opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('300ms ease-in', style({ opacity: 0, transform: 'rotateY(90deg)' }))
+        animate('300ms ease-in', style({ transform: 'translateY(-100%)', opacity: 0 }))
       ])
     ])
   ]
