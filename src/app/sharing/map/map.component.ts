@@ -20,15 +20,19 @@ export class MapComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      // Delay code execution to ensure everything is initialized after page load
       setTimeout(async () => {
+        // Import leaflet only in the browser
         const LModule = await import('leaflet');
         this.L = LModule;
-        // Check if window is available before using it
+
+        // Set the global window.L (only in browser)
         if (isPlatformBrowser(this.platformId)) {
           (window as any).L = LModule;
         }
 
-        await import('leaflet-routing-machine'); // this needs window.L to be set first
+        // Import leaflet-routing-machine after setting window.L
+        await import('leaflet-routing-machine');
 
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -65,8 +69,7 @@ export class MapComponent implements AfterViewInit {
   }
 
   async searchAndRoute(query: string): Promise<void> {
-    const searchQuery = encodeURIComponent(query); // Ensure query is properly encoded
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}&addressdetails=1&limit=5`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
 
     try {
       const response = await fetch(url);
@@ -76,24 +79,23 @@ export class MapComponent implements AfterViewInit {
         const toLat = parseFloat(data[0].lat);
         const toLng = parseFloat(data[0].lon);
 
-        // Add a marker with custom icon based on category
-        const locationType = data[0].type; // e.g., "park", "hospital"
-        let customIcon;
-
-        if (locationType === 'hospital') {
-          customIcon = L.icon({ iconUrl: 'hospital-icon.png', iconSize: [32, 32] });
-        } else if (locationType === 'park') {
-          customIcon = L.icon({ iconUrl: 'park-icon.png', iconSize: [32, 32] });
-        } else {
-          customIcon = L.icon({ iconUrl: 'default-icon.png', iconSize: [32, 32] });
+        // Clear any previous routes
+        if (this.currentRoute) {
+          this.map.removeControl(this.currentRoute);
         }
 
-        this.L.marker([toLat, toLng], { icon: customIcon }).addTo(this.map)
-          .bindPopup(`${data[0].display_name}`)
-          .openPopup();
-
-        // Route to the destination
-        this.routeToDestination(toLat, toLng);
+        // Use leaflet-routing-machine to create a route
+        this.currentRoute = this.L.Routing.control({
+          waypoints: [
+            this.L.latLng(this.fromLat, this.fromLng),
+            this.L.latLng(toLat, toLng)
+          ],
+          routeWhileDragging: false,
+          show: false,
+          addWaypoints: false,
+          draggableWaypoints: false,
+          fitSelectedRoutes: true
+        }).addTo(this.map);
       } else {
         alert('No results found.');
       }
@@ -101,28 +103,7 @@ export class MapComponent implements AfterViewInit {
       console.error('Error fetching or routing:', err);
     }
   }
-
-  routeToDestination(toLat: number, toLng: number): void {
-    // Remove any existing route
-    if (this.currentRoute) {
-      this.map.removeControl(this.currentRoute);
-    }
-
-    // Create and add the new route
-    this.currentRoute = this.L.Routing.control({
-      waypoints: [
-        this.L.latLng(this.fromLat, this.fromLng),
-        this.L.latLng(toLat, toLng)
-      ],
-      routeWhileDragging: false,
-      show: false,
-      addWaypoints: false,
-      draggableWaypoints: false,
-      fitSelectedRoutes: true
-    }).addTo(this.map);
-  }
 }
-
 
 
 
