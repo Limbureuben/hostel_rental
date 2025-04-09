@@ -19,6 +19,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
+import { MapComponent } from './map/map.component';
+import { MapDisplayComponent } from './map-display/map-display.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     HeaderComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    MapComponent,
+    MapDisplayComponent
   ],
   imports: [
     CommonModule,
