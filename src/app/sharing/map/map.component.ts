@@ -8,43 +8,49 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  private map: any;
+  private L: any;
+  private fromLat: number = 0;
+  private fromLng: number = 0;
+  private routingControl: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Load Leaflet only in the browser
       import('leaflet').then(async (L) => {
-        if (!navigator.geolocation) {
-          alert('Geolocation is not supported by your browser');
-          return;
-        }
+        this.L = L;
 
         navigator.geolocation.getCurrentPosition(async (position) => {
-          const userLat = position.coords.latitude;
-          const userLng = position.coords.longitude;
+          this.fromLat = position.coords.latitude;
+          this.fromLng = position.coords.longitude;
 
-          const map = L.map('map').setView([userLat, userLng], 13);
+          this.map = L.map('map').setView([this.fromLat, this.fromLng], 13);
 
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
-          }).addTo(map);
+          }).addTo(this.map);
 
-          L.marker([userLat, userLng])
-            .addTo(map)
+          L.marker([this.fromLat, this.fromLng])
+            .addTo(this.map)
             .bindPopup('You are here')
             .openPopup();
 
-          // Perform search + route to destination
-          this.searchAndRoute(map, userLat, userLng, 'hospital');
-        }, () => {
-          alert('Unable to retrieve your location');
+          // Set up search box listener
+          const searchBox = document.getElementById('search-box') as HTMLInputElement;
+          if (searchBox) {
+            searchBox.addEventListener('keydown', (event) => {
+              if (event.key === 'Enter' && searchBox.value.trim() !== '') {
+                this.searchAndRoute(searchBox.value.trim());
+              }
+            });
+          }
         });
       });
     }
   }
 
-  async searchAndRoute(map: any, fromLat: number, fromLng: number, query: string): Promise<void> {
+  async searchAndRoute(query: string): Promise<void> {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
 
     try {
@@ -56,20 +62,24 @@ export class MapComponent implements OnInit {
         const toLng = parseFloat(data[0].lon);
         const toName = data[0].display_name;
 
-        const L = await import('leaflet');
-        const Routing = await import('leaflet-routing-machine');
-
-        L.marker([toLat, toLng]).addTo(map)
+        this.L.marker([toLat, toLng]).addTo(this.map)
           .bindPopup(toName)
           .openPopup();
 
-        Routing.default.control({
+        const Routing = await import('leaflet-routing-machine');
+
+        // Remove previous route if it exists
+        if (this.routingControl) {
+          this.map.removeControl(this.routingControl);
+        }
+
+        this.routingControl = Routing.default.control({
           waypoints: [
-            L.latLng(fromLat, fromLng),
-            L.latLng(toLat, toLng)
+            this.L.latLng(this.fromLat, this.fromLng),
+            this.L.latLng(toLat, toLng)
           ],
           routeWhileDragging: false
-        }).addTo(map);
+        }).addTo(this.map);
       } else {
         alert('No results found.');
       }
