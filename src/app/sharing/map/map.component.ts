@@ -23,7 +23,10 @@ export class MapComponent implements AfterViewInit {
       setTimeout(async () => {
         const LModule = await import('leaflet');
         this.L = LModule;
-        (window as any).L = LModule;
+        // Check if window is available before using it
+        if (isPlatformBrowser(this.platformId)) {
+          (window as any).L = LModule;
+        }
 
         await import('leaflet-routing-machine'); // this needs window.L to be set first
 
