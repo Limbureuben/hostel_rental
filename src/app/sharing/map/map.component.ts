@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -14,54 +13,60 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Dynamically import Leaflet only in the browser
       import('leaflet').then(L => {
-        const map = L.map('map').setView([51.505, -0.09], 13);
+        navigator.geolocation.getCurrentPosition((position) => {
+          const userLat = position.coords.latitude;
+          const userLng = position.coords.longitude;
 
-        // Add OpenStreetMap tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+          const map = L.map('map').setView([userLat, userLng], 13);
 
-        // Create a marker for demonstration
-        L.marker([51.5, -0.09]).addTo(map)
-          .bindPopup('A marker')
-          .openPopup();
-      }).catch(err => {
-        console.error("Error loading Leaflet:", err);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+          }).addTo(map);
+
+          const userMarker = L.marker([userLat, userLng])
+            .addTo(map)
+            .bindPopup('You are here')
+            .openPopup();
+
+          // Perform search and routing
+          this.searchAndRoute(map, userLat, userLng, 'hospital');
+        });
       });
     }
   }
 
-  // Define searchService method
-  searchService(map: any, query: string): void {
-    // Query for services using OpenStreetMap's Nominatim API
-    const queryUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
 
-    fetch(queryUrl)
+  searchAndRoute(map: any, fromLat: number, fromLng: number, query: string): void {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
+
+    fetch(url)
       .then(response => response.json())
-      .then(data => {
-        // Clear existing markers on the map
-        map.eachLayer(layer => {
-          if (layer instanceof L.Marker) {
-            map.removeLayer(layer);
-          }
-        });
+      .then(async data => {
+        if (data.length > 0) {
+          const toLat = parseFloat(data[0].lat);
+          const toLng = parseFloat(data[0].lon);
+          const toName = data[0].display_name;
 
-        // If there are results, add them to the map
-        if (data && data.length > 0) {
-          data.forEach(item => {
-            const lat = item.lat;
-            const lon = item.lon;
+          // Marker for the destination
+          const L = (await import('leaflet')).default;
+          L.marker([toLat, toLng]).addTo(map)
+            .bindPopup(toName)
+            .openPopup();
 
-            L.marker([lat, lon]).addTo(map)
-              .bindPopup(item.display_name)
-              .openPopup();
-          });
+          // Routing
+          const { default: Routing } = await import('leaflet-routing-machine');
+          Routing.control({
+            waypoints: [
+              L.latLng(fromLat, fromLng),
+              L.latLng(toLat, toLng)
+            ],
+            routeWhileDragging: false
+          }).addTo(map);
         } else {
-          alert('No results found!');
+          alert('No results found.');
         }
-      })
-      .catch(err => console.error('Error fetching search results:', err));
+      });
   }
+
 }
