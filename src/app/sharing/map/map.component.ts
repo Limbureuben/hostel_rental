@@ -23,24 +23,31 @@ export class MapComponent implements AfterViewInit {
         this.L = LModule;
         (window as any).L = LModule;
 
-        await import('leaflet-routing-machine'); // this needs window.L to be set first
+        await import('leaflet-routing-machine');
 
         navigator.geolocation.getCurrentPosition(
           (position) => {
             this.fromLat = position.coords.latitude;
             this.fromLng = position.coords.longitude;
 
+            console.log('User location:', this.fromLat, this.fromLng);
+            console.log('Location accuracy:', position.coords.accuracy, 'meters');
+
+            // Initialize map
             this.map = this.L.map('map').setView([this.fromLat, this.fromLng], 13);
 
+            // Add tile layer
             this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               attribution: '&copy; OpenStreetMap contributors'
             }).addTo(this.map);
 
-            this.L.marker([this.fromLat, this.fromLng])
+            // Add marker at user's location
+            const userMarker = this.L.marker([this.fromLat, this.fromLng])
               .addTo(this.map)
               .bindPopup('You are here')
               .openPopup();
 
+            // Listen for search input
             const searchBox = document.getElementById('search-box') as HTMLInputElement;
             if (searchBox) {
               searchBox.addEventListener('keydown', (event) => {
@@ -52,12 +59,18 @@ export class MapComponent implements AfterViewInit {
           },
           (error) => {
             console.error('Geolocation error:', error);
-            alert('Location access denied or failed.');
+            alert('Failed to access your location. Please check browser permissions or use HTTPS.');
+          },
+          {
+            enableHighAccuracy: true,     // ✅ Request best possible location
+            timeout: 10000,               // ⏳ Wait up to 10 seconds
+            maximumAge: 0                 // 📦 Don't use a cached location
           }
         );
       });
     }
   }
+
 
   async searchAndRoute(query: string): Promise<void> {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
