@@ -15,13 +15,35 @@ export class MapComponent implements OnInit {
       import('leaflet').then(L => {
         const map = L.map('map').setView([51.505, -0.09], 13);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors'
+        // Add Mapbox tile layer
+        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=YOUR_MAPBOX_ACCESS_TOKEN', {
+          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          tileSize: 512,
+          zoomOffset: -1
         }).addTo(map);
 
-        L.marker([51.5, -0.09]).addTo(map)
-          .bindPopup('A marker')
-          .openPopup();
+        // Add a geocoder control
+        const geocoder = L.Control.geocoder({
+          query: 'hospital',
+          provider: new L.Control.Geocoder.Nominatim()
+        }).addTo(map);
+
+        // Example search for hospitals using Mapbox Geocoding API
+        const queryUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?access_token=YOUR_MAPBOX_ACCESS_TOKEN`;
+
+        fetch(queryUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.features.length > 0) {
+              data.features.forEach(item => {
+                const lat = item.geometry.coordinates[1];
+                const lon = item.geometry.coordinates[0];
+                L.marker([lat, lon]).addTo(map)
+                  .bindPopup(item.place_name)
+                  .openPopup();
+              });
+            }
+          });
       });
     }
   }
