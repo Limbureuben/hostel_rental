@@ -13,40 +13,64 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       import('leaflet').then(L => {
+        // Initialize the map
         const map = L.map('map').setView([51.505, -0.09], 13);
 
-        // Add Mapbox tile layer
-        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=YOUR_MAPBOX_ACCESS_TOKEN', {
-          attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          tileSize: 512,
-          zoomOffset: -1
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Add a geocoder control
-        const geocoder = L.Control.geocoder({
-          query: 'hospital',
-          provider: new L.Control.Geocoder.Nominatim()
-        }).addTo(map);
+        // Create a marker for demonstration
+        L.marker([51.5, -0.09]).addTo(map)
+          .bindPopup('A marker')
+          .openPopup();
 
-        // Example search for hospitals using Mapbox Geocoding API
-        const queryUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?access_token=YOUR_MAPBOX_ACCESS_TOKEN`;
+        // Search functionality
+        const searchBox = document.getElementById('search-box') as HTMLInputElement;
 
-        fetch(queryUrl)
-          .then(response => response.json())
-          .then(data => {
-            if (data && data.features.length > 0) {
-              data.features.forEach(item => {
-                const lat = item.geometry.coordinates[1];
-                const lon = item.geometry.coordinates[0];
-                L.marker([lat, lon]).addTo(map)
-                  .bindPopup(item.place_name)
-                  .openPopup();
-              });
-            }
-          });
+        // Listen for the input in the search box
+        searchBox.addEventListener('input', (event) => {
+          const query = searchBox.value.trim();
+
+          if (query.length > 0) {
+            this.searchService(map, query);  // Call the searchService method here
+          }
+        });
       });
     }
   }
 
+  // Define searchService method
+  searchService(map: any, query: string): void {
+    // Query for services using OpenStreetMap's Nominatim API
+    const queryUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
+
+    fetch(queryUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Clear existing markers on the map
+        map.eachLayer(layer => {
+          if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+          }
+        });
+
+        // If there are results, add them to the map
+        if (data && data.length > 0) {
+          data.forEach(item => {
+            const lat = item.lat;
+            const lon = item.lon;
+
+            L.marker([lat, lon]).addTo(map)
+              .bindPopup(item.display_name)
+              .openPopup();
+          });
+        } else {
+          alert('No results found!');
+        }
+      })
+      .catch(err => console.error('Error fetching search results:', err));
+  }
 
 }
