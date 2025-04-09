@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-map',
@@ -66,30 +68,26 @@ export class MapComponent implements AfterViewInit {
         const toLat = parseFloat(data[0].lat);
         const toLng = parseFloat(data[0].lon);
 
-        // 👇 Skip marker for destination and only draw the route
-        const LRouting = await import('leaflet-routing-machine'); // Ensure this is imported
+        // ✅ Ensure leaflet-routing-machine is imported to extend L
+        await import('leaflet-routing-machine');
 
-        // Optional: Clear existing route if any
+        // ✅ Clear existing route if any
         if (this.currentRoute) {
           this.map.removeControl(this.currentRoute);
         }
 
-        // Ensure LRouting.control is available
-        if (LRouting && LRouting.control) {
-          this.currentRoute = LRouting.control({
-            waypoints: [
-              this.L.latLng(this.fromLat, this.fromLng),
-              this.L.latLng(toLat, toLng)
-            ],
-            routeWhileDragging: false,
-            show: false,
-            addWaypoints: false,
-            draggableWaypoints: false,
-            fitSelectedRoutes: true
-          }).addTo(this.map);
-        } else {
-          console.error('Leaflet Routing Machine is not properly initialized.');
-        }
+        // ✅ Use L.Routing (not LRouting)
+        this.currentRoute = this.L.Routing.control({
+          waypoints: [
+            this.L.latLng(this.fromLat, this.fromLng),
+            this.L.latLng(toLat, toLng)
+          ],
+          routeWhileDragging: false,
+          show: false,
+          addWaypoints: false,
+          draggableWaypoints: false,
+          fitSelectedRoutes: true
+        }).addTo(this.map);
       } else {
         alert('No results found.');
       }
@@ -97,4 +95,5 @@ export class MapComponent implements AfterViewInit {
       console.error('Error fetching or routing:', err);
     }
   }
+
 }
