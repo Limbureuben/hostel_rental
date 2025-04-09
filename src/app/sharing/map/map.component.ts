@@ -21,10 +21,15 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       import('leaflet').then(async (L) => {
+        // ✅ Assign leaflet to window
+        (window as any).L = L;
         this.L = L;
+        
+        await import('leaflet-routing-machine');
 
+        // Continue normal map logic
         navigator.geolocation.getCurrentPosition(
-          async (position) => {
+          (position) => {
             this.fromLat = position.coords.latitude;
             this.fromLng = position.coords.longitude;
 
