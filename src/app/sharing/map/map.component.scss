@@ -1,42 +1,21 @@
-/* Container for the search box to center it */
 .search-container {
-  position: absolute;
-  top: 20px;  /* Distance from top */
-  left: 50%;
-  transform: translateX(-50%);  /* Center the search box horizontally */
-  z-index: 1000;  /* Make sure it's above the map */
-  width: 80%;  /* You can adjust the width of the box */
-  max-width: 500px;  /* Maximum width to prevent stretching */
   padding: 10px;
-  box-sizing: border-box;
+  background: white;
+  z-index: 1000;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 }
 
-/* Styling for the search box */
 .search-box {
-  width: 100%;  /* Make it take full width of the container */
-  padding: 12px 20px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   font-size: 16px;
-  border: 2px solid #4CAF50;  /* Green border */
-  border-radius: 25px;  /* Rounded corners */
-  background-color: #f9f9f9;  /* Light background */
-  transition: all 0.3s ease;  /* Smooth transition for focus state */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
-}
-
-/* Styling for when the search box is focused */
-.search-box:focus {
-  border-color: #4CAF50;  /* Green border on focus */
-  outline: none;  /* Remove default outline */
-  box-shadow: 0 0 8px rgba(0, 128, 0, 0.4);  /* Glow effect */
-}
-
-/* Placeholder styling */
-.search-box::placeholder {
-  color: #888;  /* Light gray placeholder */
-  font-style: italic;  /* Italicized text */
-}
-
-/* Add a subtle hover effect on the search box */
-.search-box:hover {
-  border-color: #45a049;  /* Slightly darker green */
 }
