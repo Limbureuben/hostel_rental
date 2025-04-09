@@ -88,11 +88,13 @@ export class MapComponent implements AfterViewInit {
     try {
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);  // Log the data to see what is returned
       this.suggestions = data.map((result: any) => result.display_name); // Extract location names
     } catch (err) {
       console.error('Error fetching suggestions:', err);
     }
   }
+
 
   // When a suggestion is selected or enter is pressed
   async searchAndRoute(query: string): Promise<void> {
