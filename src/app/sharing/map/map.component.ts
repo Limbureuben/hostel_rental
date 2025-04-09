@@ -11,10 +11,10 @@ import * as L from 'leaflet';
 export class MapComponent implements OnInit {
 
   ngOnInit(): void {
-    // Ensure this only runs in the browser, not SSR
+    // Check if we're in a browser environment
     if (typeof window !== 'undefined') {
+      // Dynamically import Leaflet only in the browser
       import('leaflet').then(L => {
-        // Initialize the map
         const map = L.map('map').setView([51.505, -0.09], 13);
 
         // Add OpenStreetMap tile layer
@@ -26,18 +26,8 @@ export class MapComponent implements OnInit {
         L.marker([51.5, -0.09]).addTo(map)
           .bindPopup('A marker')
           .openPopup();
-
-        // Search functionality
-        const searchBox = document.getElementById('search-box') as HTMLInputElement;
-
-        // Listen for the input in the search box
-        searchBox.addEventListener('input', (event) => {
-          const query = searchBox.value.trim();
-
-          if (query.length > 0) {
-            this.searchService(map, query);  // Call the searchService method here
-          }
-        });
+      }).catch(err => {
+        console.error("Error loading Leaflet:", err);
       });
     }
   }
