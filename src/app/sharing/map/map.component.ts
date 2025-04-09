@@ -11,6 +11,7 @@ import * as L from 'leaflet';
 export class MapComponent implements OnInit {
 
   ngOnInit(): void {
+    // Ensure this only runs in the browser, not SSR
     if (typeof window !== 'undefined') {
       import('leaflet').then(L => {
         // Initialize the map
@@ -72,5 +73,4 @@ export class MapComponent implements OnInit {
       })
       .catch(err => console.error('Error fetching search results:', err));
   }
-
 }
