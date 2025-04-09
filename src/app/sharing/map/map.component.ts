@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import * as L from 'leaflet';
-import 'leaflet-routing-machine';
 
 @Component({
   selector: 'app-map',
@@ -20,26 +18,25 @@ export class MapComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      import('leaflet').then(async (L) => {
-        // ✅ Assign leaflet to window
-        (window as any).L = L;
-        this.L = L;
-        
-        await import('leaflet-routing-machine');
+      setTimeout(async () => {
+        const LModule = await import('leaflet');
+        this.L = LModule;
+        (window as any).L = LModule;
 
-        // Continue normal map logic
+        await import('leaflet-routing-machine'); // this needs window.L to be set first
+
         navigator.geolocation.getCurrentPosition(
           (position) => {
             this.fromLat = position.coords.latitude;
             this.fromLng = position.coords.longitude;
 
-            this.map = L.map('map').setView([this.fromLat, this.fromLng], 13);
+            this.map = this.L.map('map').setView([this.fromLat, this.fromLng], 13);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               attribution: '&copy; OpenStreetMap contributors'
             }).addTo(this.map);
 
-            L.marker([this.fromLat, this.fromLng])
+            this.L.marker([this.fromLat, this.fromLng])
               .addTo(this.map)
               .bindPopup('You are here')
               .openPopup();
@@ -55,7 +52,7 @@ export class MapComponent implements AfterViewInit {
           },
           (error) => {
             console.error('Geolocation error:', error);
-            alert('Location access denied or failed. Please allow location access.');
+            alert('Location access denied or failed.');
           }
         );
       });
@@ -73,15 +70,12 @@ export class MapComponent implements AfterViewInit {
         const toLat = parseFloat(data[0].lat);
         const toLng = parseFloat(data[0].lon);
 
-        // ✅ Ensure leaflet-routing-machine is imported to extend L
-        await import('leaflet-routing-machine');
-
-        // ✅ Clear existing route if any
+        // Clear existing route if any
         if (this.currentRoute) {
           this.map.removeControl(this.currentRoute);
         }
 
-        // ✅ Use L.Routing (not LRouting)
+        // Create new route
         this.currentRoute = this.L.Routing.control({
           waypoints: [
             this.L.latLng(this.fromLat, this.fromLng),
@@ -100,5 +94,4 @@ export class MapComponent implements AfterViewInit {
       console.error('Error fetching or routing:', err);
     }
   }
-
 }
