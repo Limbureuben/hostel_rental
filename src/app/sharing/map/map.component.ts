@@ -13,6 +13,7 @@ export class MapComponent implements AfterViewInit {
   fromLat: number = 0;
   fromLng: number = 0;
   currentRoute: any = null;
+  suggestions: string[] = []; // Store suggestion results
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -50,6 +51,15 @@ export class MapComponent implements AfterViewInit {
             // Listen for search input
             const searchBox = document.getElementById('search-box') as HTMLInputElement;
             if (searchBox) {
+              searchBox.addEventListener('input', (event) => {
+                if (searchBox.value.trim() !== '') {
+                  this.getSuggestions(searchBox.value.trim());
+                } else {
+                  this.suggestions = []; // Clear suggestions if input is empty
+                }
+              });
+
+              // Listen for selection of a suggestion
               searchBox.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter' && searchBox.value.trim() !== '') {
                   this.searchAndRoute(searchBox.value.trim());
@@ -71,35 +81,30 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
-  async searchAndRoute(query: string): Promise<void> {
-    const types = [
-      'hospital', 'water_source', 'electricity_source', 'school', 'university',
-      'port', 'district', 'supermarket', 'mall', 'park'
-    ];
-
-    // Construct the Overpass API query with the specified types
-    const overpassQuery = `
-      [out:json];
-      (
-        node["amenity"="${query}"](around:10000, ${this.fromLat}, ${this.fromLng});
-        way["amenity"="${query}"](around:10000, ${this.fromLat}, ${this.fromLng});
-        relation["amenity"="${query}"](around:10000, ${this.fromLat}, ${this.fromLng});
-      );
-      out body;
-    `;
+  // Fetch suggestions from Nominatim API
+  async getSuggestions(query: string): Promise<void> {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
 
     try {
-      const response = await fetch('https://overpass-api.de/api/interpreter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `data=${encodeURIComponent(overpassQuery)}`
-      });
+      const response = await fetch(url);
+      const data = await response.json();
+      this.suggestions = data.map((result: any) => result.display_name); // Extract location names
+    } catch (err) {
+      console.error('Error fetching suggestions:', err);
+    }
+  }
+
+  // When a suggestion is selected or enter is pressed
+  async searchAndRoute(query: string): Promise<void> {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${query}&addressdetails=1`;
+
+    try {
+      const response = await fetch(url);
       const data = await response.json();
 
-      if (data.elements.length > 0) {
-        // If we have results, use the first result to plot the location
-        const toLat = data.elements[0].lat || (data.elements[0].center && data.elements[0].center.lat);
-        const toLng = data.elements[0].lon || (data.elements[0].center && data.elements[0].center.lon);
+      if (data.length > 0) {
+        const toLat = parseFloat(data[0].lat);
+        const toLng = parseFloat(data[0].lon);
 
         // Clear existing route if any
         if (this.currentRoute) {
@@ -130,6 +135,7 @@ export class MapComponent implements AfterViewInit {
     }
   }
 }
+
 
 
 
