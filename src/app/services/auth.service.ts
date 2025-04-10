@@ -7,7 +7,6 @@ export interface RegisterData {
   username: string,
   password: string,
   confirmPassword: string
-  role: string
 }
 
 export interface LoginData {
@@ -32,7 +31,6 @@ export class AuthService {
         username: userData.username,
         password: userData.password,
         confirmPassword: userData.confirmPassword,
-        role: userData.role,
 
       }
     })

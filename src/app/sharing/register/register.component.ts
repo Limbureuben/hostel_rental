@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit{
         username: ['', Validators.required],
         password: ['', [Validators.required, this.passwordStrengthValidator]],
         confirmPassword: ['', Validators.required],
-        role: ['', Validators.required]
       }, { validators: this.passwordsMatchValidator });
   }
 
@@ -77,8 +76,7 @@ export class RegisterComponent implements OnInit{
     const registrationData: RegisterData = {
       username: this.registerForm.value.username,
       password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
-      role: this.registerForm.value.role
+      confirmPassword: this.registerForm.value.confirmPassword
     };
 
     console.log("Sending Registration Data:", registrationData);

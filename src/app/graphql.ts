@@ -6,19 +6,18 @@ export const REGISTER_USER = gql`
     $username: String!
     $password: String!
     $confirmPassword: String!
-    $role: String!
   ) {
     registerUser(
       username: $username
       password: $password
       confirmPassword: $confirmPassword
-      role: $role
     ) {
       message
       success
       user {
         id
         isStaff
+        isSuperuser
         username
       }
     }
