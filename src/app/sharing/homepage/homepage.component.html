@@ -1,6 +1,6 @@
 <header class="header">
   <div class="logo">
-    <img src="assets/images/logo.png" alt="Logo">
+    <img src="assets/images/house.png" alt="Logo">
   </div>
 
   <button class="menu-toggle" (click)="toggleMenu()">☰</button>
@@ -10,7 +10,7 @@
   </div>
 
   <nav [class.active]="menuOpen" class="nav-buttons">
-    <button class="create-account" (click)="navigateToCreateAccount()">Sign up</button>
+    <button class="create-account">Sign up</button>
   </nav>
 </header>
 
@@ -20,19 +20,15 @@
     and select Book open space to book an area for activity according to the price of an area at Kinondoni Municipal Thanks
   </p>
   <div class="cards-wrapper">
-    <mat-card class="card" (click)="openPopup()">
-      <img src="assets/images/location.png" alt="Open Space" class="icon">
+    <mat-card class="card">
+      <img src="assets/images/house.png" alt="Open Space" class="icon">
       <mat-card-content>
         <p>Report illegal use of open space</p>
       </mat-card-content>
     </mat-card>
-    <mat-card class="card" (click)="OPenBookDasboard()">
-      <img src="assets/images/openspaceimage.png" alt="Book Open Space" class="icon">
+    <mat-card class="card">
+      <img src="assets/images/people.png" alt="Book Open Space" class="icon">
       <mat-card-title>Book Open Space</mat-card-title>
-    </mat-card>
-    <mat-card class="card" (click)="openReportHistoryDialog()">
-      <img src="assets/images/seo-report.png" alt="Book Open Space" class="icon">
-      <mat-card-title>Reports History</mat-card-title>
     </mat-card>
   </div>
 </div>
