@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { TenantRoutingModule } from './tenant-routing.module';
 import { TenantDashboardComponent } from './tenant-dashboard/tenant-dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { TenantDashboardComponent } from './tenant-dashboard/tenant-dashboard.co
   ],
   imports: [
     CommonModule,
-    TenantRoutingModule
+    TenantRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class TenantModule { }
