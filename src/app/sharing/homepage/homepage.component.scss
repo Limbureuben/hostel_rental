@@ -62,14 +62,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: auto; /* Set to auto for flexibility based on content */
+  height: 500px; /* Set to auto for flexibility based on content */
   background-color: white;
-  padding: 30px 80px;
+
 }
 
 .cards-wrapper {
   display: flex;
-  gap: 100px;
+  gap: 50px;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
   justify-content: center; /* Center the cards */
 }
