@@ -6,6 +6,17 @@ import { TenantDashboardComponent } from './tenant-dashboard/tenant-dashboard.co
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { TenantHeaderComponent } from './tenant-header/tenant-header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { CardModule, ButtonModule } from '@coreui/angular';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 @NgModule({
@@ -17,7 +28,22 @@ import { TenantHeaderComponent } from './tenant-header/tenant-header.component';
     CommonModule,
     TenantRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule,
+    CardModule,
+    ButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatMenuModule,
+    MatOptionModule,
+    MatSelectModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000
+    }),
+
   ]
 })
 export class TenantModule { }
