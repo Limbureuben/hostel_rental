@@ -65,12 +65,10 @@ export class LoginComponent implements OnInit{
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('role', response.role);
 
-          if (response.user.isSuperuser) {
+          if (response.user.isStaff) {
             this.router.navigate(['/admin-dashboard']);
-          } else if (response.user.isStaff) {
-            this.router.navigate(['/homepage']);
           } else {
-            this.router.navigate(['/tenant-dashboard']);
+            this.router.navigate(['/homepage']);
           }
         } else {
           this.toastr.error(response.message || 'Login failed', 'Error', {
