@@ -30,6 +30,7 @@ export const LOGIN_USER = gql`
       message
       role
       success
+      token
       user {
         id
         isStaff
