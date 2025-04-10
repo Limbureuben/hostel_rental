@@ -1,0 +1,15 @@
+<mat-toolbar class="auth-toolbar">
+  <span class="toolbar-title">HOUSE RENTAL SYSTEM AND SOCIAL SERVICES</span>
+  <span class="spacer"></span>
+  <!-- Profile Icon with dropdown menu -->
+  <div class="auth-profile">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon> <!-- Profile Icon -->
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login">Login</button>
+      <button mat-menu-item routerLink="/register">Register</button>
+      <button mat-menu-item routerLink="/map">Social Service</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

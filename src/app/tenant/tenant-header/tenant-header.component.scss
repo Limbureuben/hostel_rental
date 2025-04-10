@@ -1,0 +1,84 @@
+/* Basic styling for the mat-toolbar */
+.auth-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px; /* Adjust padding as needed */
+  background: linear-gradient(90deg, #fc6736, #ffa24c); /* Custom gradient background */
+}
+
+/* Title styling */
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Spacer between title and buttons */
+.spacer {
+  flex-grow: 1;
+}
+
+/* Button container styling */
+.auth-buttons {
+  display: flex;
+  gap: 10px; /* Adjust gap between buttons */
+}
+
+/* Responsive button styling */
+.auth-buttons button {
+  font-size: 14px; /* Adjust font size */
+  padding: 8px 16px; /* Adjust padding */
+}
+
+/* Media query for devices with smaller screens */
+@media (max-width: 768px) {
+  .toolbar-title {
+    font-size: 1.2rem; /* Smaller title for tablets */
+  }
+
+  .auth-buttons button {
+    font-size: 12px; /* Smaller font size for buttons on tablets */
+    padding: 6px 12px; /* Smaller padding */
+  }
+
+  .auth-toolbar {
+    padding: 0 10px; /* Adjust toolbar padding for smaller screens */
+  }
+}
+
+/* Media query for very small devices (phones) */
+@media (max-width: 480px) {
+  .toolbar-title {
+    font-size: 1rem; /* Smaller title for phones */
+  }
+
+  .auth-buttons button {
+    font-size: 12px; /* Smaller font size for buttons on small screens */
+    padding: 5px 10px; /* Smaller padding */
+  }
+
+  .auth-toolbar {
+    flex-direction: column; /* Stack the title and buttons vertically */
+    text-align: center;
+    padding: 10px; /* Adjust padding for phones */
+  }
+
+  .auth-buttons {
+    gap: 5px; /* Reduce gap between buttons */
+  }
+
+  .spacer {
+    display: none; /* Remove spacer on small screens */
+  }
+}
+
+.auth-profile {
+  display: flex;
+  align-items: center;
+}
+
+.auth-profile mat-icon {
+  font-size: 24px; /* Adjust the icon size */
+  color: white;
+}
