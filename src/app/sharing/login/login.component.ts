@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit{
           if (response.user.isSuperuser) {
             this.router.navigate(['/admin-dashboard']);
           } else if (response.user.isStaff) {
-            this.router.navigate(['/landload-dashboard']);
+            this.router.navigate(['/homepage']);
           } else {
             this.router.navigate(['/tenant-dashboard']);
           }
