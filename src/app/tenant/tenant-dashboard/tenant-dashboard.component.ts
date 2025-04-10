@@ -33,4 +33,8 @@ export class TenantDashboardComponent {
     // Navigate to manage payments page
     this.router.navigate(['/manage-payments']);
   }
+
+  goBack() {
+    this.router.navigate(['/homepage']);
+  }
 }

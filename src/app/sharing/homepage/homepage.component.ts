@@ -17,6 +17,10 @@ export class HomepageComponent {
 
   }
 
+  TenantNavigation() {
+    this.router.navigate(['/tenant-dashboard'])
+  }
+
   goBack() {
     this.router.navigate(['/login'])
   }
