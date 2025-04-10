@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { MapComponent } from './map/map.component';
 import { MapDisplayComponent } from './map-display/map-display.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MapDisplayComponent } from './map-display/map-display.component';
     RegisterComponent,
     FooterComponent,
     MapComponent,
-    MapDisplayComponent
+    MapDisplayComponent,
+    HomepageComponent
   ],
   imports: [
     CommonModule,
