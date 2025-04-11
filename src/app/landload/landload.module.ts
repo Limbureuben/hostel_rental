@@ -25,6 +25,7 @@ import { HouseHistoryComponent } from './house-history/house-history.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -55,6 +56,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatPaginatorModule,
     MatGridListModule,
     MatTableModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000

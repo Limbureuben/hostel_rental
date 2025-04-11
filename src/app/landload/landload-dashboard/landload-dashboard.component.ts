@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HouseFormComponent } from '../house-form/house-form.component';
+import { HouseHistoryComponent } from '../house-history/house-history.component';
 
 @Component({
   selector: 'app-landload-dashboard',
@@ -27,8 +28,11 @@ export class LandloadDashboardComponent {
   }
 
   onViewRoomHistory() {
-    // Navigate to room history page
-    this.router.navigate(['/room-history']);
+    this.dialog.open(HouseHistoryComponent, {
+      width: '1200px',
+      height: '500px',
+      disableClose: false
+    });
   }
 
   onViewServices() {
