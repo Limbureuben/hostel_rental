@@ -1,4 +1,4 @@
-<form class="form-container" enctype="multipart/form-data">
+<form class="form-container" enctype="multipart/form-data" *ngIf="isVisible" [@formAnimation]>
 
     <!-- Close Button (Top Right) -->
     <button mat-icon-button class="close-button" (click)="dialogRef.close()">
