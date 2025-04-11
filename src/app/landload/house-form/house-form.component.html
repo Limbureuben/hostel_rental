@@ -1,1 +1,49 @@
-<p>house-form works!</p>
+<form  class="form-container" enctype="multipart/form-data">
+  <mat-card>
+    <mat-card-title>Submit New House</mat-card-title>
+    <mat-card-content>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>House Type</mat-label>
+        <input matInput  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Number of Rooms</mat-label>
+        <input matInput type="number"  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Price per Month</mat-label>
+        <input matInput type="number"  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput  required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Availability Date</mat-label>
+        <input matInput [matDatepicker]="picker"  required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contact</mat-label>
+        <input matInput  required>
+      </mat-form-field>
+
+      <div class="full-width">
+        <label for="image">Image</label>
+        <input type="file" id="image" >
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" >Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
