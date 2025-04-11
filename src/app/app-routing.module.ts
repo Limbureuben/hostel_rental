@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './sharing/header/header.component';
 import { FooterComponent } from '@coreui/angular';
 import { TenantHeaderComponent } from './tenant/tenant-header/tenant-header.component';
+import { LandloadHeaderComponent } from './landload/landload-header/landload-header.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user-home', pathMatch: 'full'},
@@ -23,6 +24,12 @@ const routes: Routes = [
     component: TenantHeaderComponent,
     loadChildren: () =>
       import('./sharing/sharing.module').then((m) =>m.SharingModule)
+  },
+  {
+    path: 'app',
+    component: LandloadHeaderComponent,
+    loadChildren: () =>
+      import('./landload/landload.module').then((m) =>m.LandloadModule)
   }
 ];
 
