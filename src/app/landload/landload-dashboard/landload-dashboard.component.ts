@@ -18,8 +18,11 @@ export class LandloadDashboardComponent {
 
   onUploadRoom() {
     this.dialog.open(HouseFormComponent, {
-      width: '600px', // adjust width as needed
-      disableClose: true, // optional: disable clicking outside to close
+      width: '900px', // 90% of the viewport width
+      maxWidth: 'none', // allow it to go wider than default max (default is 80vw)
+      panelClass: 'custom-dialog-container', // for additional styling
+      disableClose: true,
+      // Removed invalid properties
     });
   }
 

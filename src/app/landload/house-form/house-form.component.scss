@@ -1,6 +1,6 @@
 .form-container {
-  max-width: 900px;
-  margin: 50px auto 0;
+  width: 900px;
+  margin: 20px auto 0;
   position: relative;
 }
 
@@ -61,4 +61,12 @@
   justify-content: flex-start;
   padding-bottom: 20px;
   padding-left: 16px;
+}
+
+::ng-deep .custom-dialog-container .mat-dialog-container {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: none !important;
+  border-radius: 12px;
+  padding: 0 !important;
 }
