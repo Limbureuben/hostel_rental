@@ -1,0 +1,17 @@
+<mat-toolbar class="auth-toolbar">
+  <span class="toolbar-title">HOUSE RENTAL AND MAP SYSTEM</span>
+  <span class="spacer"></span>
+  <!-- Profile Icon with dropdown menu -->
+  <div class="auth-profile">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon> <!-- Profile Icon -->
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/login">Dashboard</button>
+      <button mat-menu-item routerLink="/register">Services</button>
+      <button mat-menu-item routerLink="/map">Upload Room</button>
+      <button mat-menu-item routerLink="/map">History</button>
+      <button mat-menu-item routerLink="/map">Profile</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
