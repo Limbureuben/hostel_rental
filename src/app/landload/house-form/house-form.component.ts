@@ -26,8 +26,10 @@ export class HouseFormComponent {
 
   ViewHouseHistory() {
     this.dialog.open(HouseHistoryComponent, {
-
-    })
+      width: '1200px',
+        height: '500px',
+        disableClose: false
+    });
   }
 
 }
