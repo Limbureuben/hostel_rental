@@ -1,9 +1,11 @@
 <form class="form-container" enctype="multipart/form-data">
   <mat-card>
-    <mat-card-title>Submit New House</mat-card-title>
+
+    <mat-card-title class="form-title">Submit New House</mat-card-title>
+
     <mat-card-content>
 
-      <!-- Row 1: House Type + Number of Rooms -->
+      <!-- Row 1 -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>House Type</mat-label>
@@ -16,7 +18,7 @@
         </mat-form-field>
       </div>
 
-      <!-- Row 2: Price + Location -->
+      <!-- Row 2 -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Price per Month</mat-label>
@@ -29,7 +31,7 @@
         </mat-form-field>
       </div>
 
-      <!-- Row 3: Date + Contact -->
+      <!-- Row 3 -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Availability Date</mat-label>
@@ -44,17 +46,15 @@
         </mat-form-field>
       </div>
 
-      <!-- Row 4: Image Upload -->
-      <div class="form-row">
-        <div class="full-width">
-          <label for="image">Image</label>
-          <input type="file" id="image">
-        </div>
+      <!-- Image Upload -->
+      <div class="form-row image-upload-row">
+        <label for="image" class="image-label">House Image</label>
+        <input type="file" id="image" class="image-input">
       </div>
 
     </mat-card-content>
 
-    <mat-card-actions>
+    <mat-card-actions class="submit-action">
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
