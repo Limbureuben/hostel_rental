@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Optional } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-house-form',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './house-form.component.scss'
 })
 export class HouseFormComponent {
+
+  constructor(@Optional() public dialogRef: MatDialogRef<HouseFormComponent>) {}
 
 }

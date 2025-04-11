@@ -1,6 +1,12 @@
 <form class="form-container" enctype="multipart/form-data">
   <mat-card>
 
+    <!-- Close Button (Top Right) -->
+    <button mat-icon-button class="close-button" (click)="dialogRef.close()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <!-- Title -->
     <mat-card-title class="form-title">Submit New House</mat-card-title>
 
     <mat-card-content>
@@ -54,6 +60,7 @@
 
     </mat-card-content>
 
+    <!-- Submit Button -->
     <mat-card-actions class="submit-action">
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
