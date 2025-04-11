@@ -23,13 +23,5 @@ export class HouseFormComponent {
 
   constructor(@Optional() public dialogRef: MatDialogRef<HouseFormComponent>) {}
 
-  isVisible = false;  // Controls the visibility of the form
 
-  openForm() {
-    this.isVisible = true;
-  }
-
-  closeForm() {
-    this.isVisible = false;
-  }
 }
