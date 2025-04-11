@@ -1,21 +1,22 @@
-.form-container {
-  width: 90%;
-  max-width: 900px;
-  margin: 20px auto 0;
-  position: relative;
-  padding: 16px;
-}
-
 // .form-container {
-//   position: fixed;
-//   z-index: 1000; /* higher than backdrop */
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   background: white;
-//   border-radius: 8px;
-//   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+//   width: 90%;
+//   max-width: 900px;
+//   margin: 20px auto 0;
+//   position: relative;
+//   padding: 16px;
 // }
+
+.form-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 1001; /* Must be higher than .popup-overlay */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
 .form-title {
   text-align: center;
