@@ -6,6 +6,17 @@
   padding: 16px;
 }
 
+// .form-container {
+//   position: fixed;
+//   z-index: 1000; /* higher than backdrop */
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   background: white;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+// }
+
 .form-title {
   text-align: center;
   font-size: 24px;
@@ -195,4 +206,14 @@
 
 .submit-action button {
   width: 200px; /* Set the desired width for the button */
+}
+
+.form-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
+  z-index: 999; /* make sure it's under the form */
 }
