@@ -12,6 +12,7 @@ import { HouseHistoryComponent } from '../house-history/house-history.component'
 })
 export class LandloadDashboardComponent {
 
+
   constructor(
     private router: Router,
     private dialog: MatDialog
@@ -26,6 +27,7 @@ export class LandloadDashboardComponent {
       // Removed invalid properties
     });
   }
+
 
   onViewRoomHistory() {
     this.dialog.open(HouseHistoryComponent, {
