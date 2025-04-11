@@ -1,22 +1,45 @@
-.form-container {
-  width: 90%;
-  max-width: 900px;
-  margin: 20px auto 0;
-  position: relative;
-  padding: 16px;
+// .form-container {
+//   width: 90%;
+//   max-width: 900px;
+//   margin: 20px auto 0;
+//   position: relative;
+//   padding: 16px;
+// }
+
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-// .form-container {
-//   background: white;
-//   border-radius: 8px;
-//   padding: 20px;
-//   z-index: 1001; /* Must be higher than .popup-overlay */
-//   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-//   max-width: 900px;
-//   width: 90%;
-//   max-height: 90vh;
-//   overflow-y: auto;
-// }
+/* Semi-transparent black background */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+/* Form should sit on top of overlay */
+.form-container {
+  position: relative;
+  z-index: 9999;
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 900px;
+}
 
 .form-title {
   text-align: center;
@@ -209,15 +232,4 @@
   width: 200px; /* Set the desired width for the button */
 }
 
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* dark semi-transparent backdrop */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Make sure it's higher than any background card */
-}
+
