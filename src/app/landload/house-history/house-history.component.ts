@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-house-history',
@@ -17,8 +18,17 @@ export class HouseHistoryComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(
+    public dialogRef: MatDialogRef<HouseHistoryComponent>,
+    private dialog: MatDialog
+  ) {}
 
+
+  closeReportHouseDialog() {
+    this.dialogRef.close();
   }
 
+
+
 }
+
