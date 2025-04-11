@@ -208,12 +208,15 @@
   width: 200px; /* Set the desired width for the button */
 }
 
-.form-backdrop {
+.popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4); /* semi-transparent dark overlay */
-  z-index: 999; /* make sure it's under the form */
+  background-color: rgba(0, 0, 0, 0.5); /* dark semi-transparent backdrop */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Make sure it's higher than any background card */
 }
