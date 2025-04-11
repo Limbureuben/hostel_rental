@@ -18,7 +18,11 @@ export class HomepageComponent {
   }
 
   TenantNavigation() {
-    this.router.navigate(['/tenant-dashboard'])
+    this.router.navigate(['/landload-dashboard']);
+  }
+
+  LandloadNavigation() {
+    this.router.navigate(['/tenant-dashboard']);
   }
 
   goBack() {
