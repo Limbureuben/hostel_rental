@@ -67,9 +67,5 @@ loadHouse() {
     this.dialogRef.close();
   }
 
-
-
-
-
 }
 

@@ -22,6 +22,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HouseHistoryComponent } from './house-history/house-history.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -49,6 +52,9 @@ import { HouseHistoryComponent } from './house-history/house-history.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatTableModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000
