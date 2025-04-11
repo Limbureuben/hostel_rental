@@ -1,7 +1,9 @@
 .form-container {
-  width: 900px;
+  width: 90%;
+  max-width: 900px;
   margin: 20px auto 0;
   position: relative;
+  padding: 16px;
 }
 
 .form-title {
@@ -14,9 +16,31 @@
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #999;
+  top: 16px;
+  right: 16px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  z-index: 10;
+}
+
+.close-button:hover {
+  background: transparent !important;
+}
+
+.close-button mat-icon {
+  color: #444;
+  font-size: 28px;
+}
+
+/* Shared horizontal spacing for consistent alignment */
+.form-row,
+.image-upload-row,
+.submit-action {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .form-row {
@@ -36,9 +60,11 @@
 }
 
 .image-upload-row {
+  display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .image-label {
@@ -46,6 +72,103 @@
   margin-bottom: 8px;
   font-size: 16px;
   color: #555;
+}
+
+.image-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #f8f8f8;
+}
+
+.submit-action {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+}
+
+/* Ensure gap between image field and submit button */
+.form-row .half-width {
+  flex: 1 1 48%;
+  min-width: 200px;
+}
+
+.image-upload-row,
+.submit-wrapper {
+  display: flex;
+  flex: 1 1 48%; /* Ensures both the image input and submit button are aligned side by side */
+  gap: 16px; /* Adds gap between image field and submit button */
+}
+
+/* To prevent the input from overflowing */
+.image-input {
+  width: 100%; /* Ensures image input takes up full width of container */
+}
+
+.submit-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Centers the button vertically with the image field */
+}
+
+.submit-action {
+  justify-content: flex-start;
+  padding-bottom: 20px;
+  padding-left: 16px;
+}
+
+/* Responsive media queries */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .half-width {
+    width: 100%;
+  }
+
+  .image-upload-row {
+    width: 100%;
+  }
+
+  .submit-wrapper {
+    width: 100%; /* Stacks the fields on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 20px;
+  }
+
+  .close-button mat-icon {
+    font-size: 24px;
+  }
+
+  .form-container {
+    padding: 8px;
+  }
+
+  .form-row,
+  .image-upload-row,
+  .submit-action {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.image-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555;
+  display: block;
 }
 
 .image-input {
@@ -57,16 +180,19 @@
   background: #f8f8f8;
 }
 
-.submit-action {
-  justify-content: flex-start;
-  padding-bottom: 20px;
-  padding-left: 16px;
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-::ng-deep .custom-dialog-container .mat-dialog-container {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(10px);
-  box-shadow: none !important;
-  border-radius: 12px;
-  padding: 0 !important;
+.submit-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.submit-action button {
+  width: 200px; /* Set the desired width for the button */
 }

@@ -1,5 +1,4 @@
 <form class="form-container" enctype="multipart/form-data">
-  <mat-card>
 
     <!-- Close Button (Top Right) -->
     <button mat-icon-button class="close-button" (click)="dialogRef.close()">
@@ -52,17 +51,21 @@
         </mat-form-field>
       </div>
 
-      <!-- Image Upload -->
-      <div class="form-row image-upload-row">
-        <label for="image" class="image-label">House Image</label>
-        <input type="file" id="image" class="image-input">
+      <!-- Row 4: Image Upload + Submit Button -->
+    <!-- Row 4: Image Upload + Submit Button -->
+      <div class="form-row">
+        <!-- Image Upload -->
+        <div class="half-width">
+          <label for="image" class="image-label">House Image</label>
+          <input type="file" id="image" class="image-input">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="half-width submit-wrapper">
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
       </div>
 
     </mat-card-content>
 
-    <!-- Submit Button -->
-    <mat-card-actions class="submit-action">
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
 </form>
