@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { HouseHistoryComponent } from './house-history/house-history.component';
 
 
 
@@ -28,7 +29,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   declarations: [
     LandloadDashboardComponent,
     LandloadHeaderComponent,
-    HouseFormComponent
+    HouseFormComponent,
+    HouseHistoryComponent
   ],
   imports: [
     CommonModule,
