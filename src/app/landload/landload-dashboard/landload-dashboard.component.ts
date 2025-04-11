@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { HouseFormComponent } from '../house-form/house-form.component';
 
 @Component({
   selector: 'app-landload-dashboard',
@@ -10,12 +12,15 @@ import { Router } from '@angular/router';
 export class LandloadDashboardComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   onUploadRoom() {
-    // Navigate to upload room page (create this page separately)
-    this.router.navigate(['/upload-room']);
+    this.dialog.open(HouseFormComponent, {
+      width: '600px', // adjust width as needed
+      disableClose: true, // optional: disable clicking outside to close
+    });
   }
 
   onViewRoomHistory() {
