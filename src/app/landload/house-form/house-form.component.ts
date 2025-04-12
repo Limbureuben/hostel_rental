@@ -72,7 +72,7 @@ export class HouseFormComponent implements OnInit{
 
     this.landhouseservice.AddHouse(formData).subscribe({
       next:() => {
-        this.toast.success('House submitted successfully!', 'Success');
+        this.toast.success('House details sent successfully!', 'Success');
         this.HouseData.reset();
         this.selectedImage = null;
         this.dialogRef?.close();
