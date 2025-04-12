@@ -1,24 +1,56 @@
-/* tenant-house-list.component.scss */
 .house-card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .house-card {
-  max-width: 100%;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow: hidden;
 
-mat-card-title {
-  font-size: 20px;
-  font-weight: bold;
-}
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
 
-mat-card-image {
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
+  mat-card-header {
+    background-color: #f5f5f5;
+    padding: 8px 16px;
+  }
+
+  mat-card-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  mat-card-subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+
+  mat-card-image {
+    height: 180px;
+    object-fit: cover;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  mat-card-content {
+    padding: 12px 16px;
+
+    .house-details p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    strong {
+      color: #333;
+    }
+  }
 }
