@@ -1,7 +1,18 @@
-<img [src]="data.image" alt="House Image" class="dialog-img" />
+<div class="dialog-container">
+  <!-- Close Button (top-right corner, outside image) -->
+  <button class="close-btn" mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
 
-<h2>{{ data.house_type | titlecase }}</h2>
-<p><strong>Phone:</strong> {{ data.contact }}</p>
-<p><strong>Available:</strong> {{ data.availability_date | date }}</p>
-<p><strong>Price:</strong> TZS {{ data.price_per_month }}</p>
-<p><strong>Location:</strong> {{ data.location }}</p>
+  <!-- House Image -->
+  <img [src]="data.image" alt="House Image" class="dialog-img" />
+
+  <!-- Details Section -->
+  <div class="dialog-details">
+    <h2>{{ data.house_type | titlecase }}</h2>
+    <p><strong>Phone:</strong> {{ data.contact }}</p>
+    <p><strong>Available:</strong> {{ data.availability_date | date }}</p>
+    <p><strong>Price:</strong> TZS {{ data.price_per_month }}</p>
+    <p><strong>Location:</strong> {{ data.location }}</p>
+  </div>
+</div>
