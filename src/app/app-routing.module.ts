@@ -21,15 +21,15 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    component: TenantHeaderComponent,
-    loadChildren: () =>
-      import('./sharing/sharing.module').then((m) =>m.SharingModule)
-  },
-  {
-    path: 'app',
     component: LandloadHeaderComponent,
     loadChildren: () =>
       import('./landload/landload.module').then((m) =>m.LandloadModule)
+  },
+  {
+    path: 'app',
+    component: TenantHeaderComponent,
+    loadChildren:()=>
+      import('./tenant/tenant.module').then((m) =>m.TenantModule)
   }
 ];
 
