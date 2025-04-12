@@ -55,14 +55,20 @@ export class HouseFormComponent implements OnInit{
       return;
     }
 
+
+
     const formData = new FormData();
+
+    const rawDate = this.HouseData.get('availability_date')?.value;
+    const formattedDate = this.formatDate(rawDate);
+
     formData.append('house_type', this.HouseData.get('house_type')?.value);
     formData.append('number_of_rooms', this.HouseData.get('number_of_rooms')?.value);
     formData.append('price_per_month', this.HouseData.get('price_per_month')?.value);
     formData.append('location', this.HouseData.get('location')?.value);
-    formData.append('availability_date', this.HouseData.get('availability_date')?.value);
+    formData.append('availability_date', formattedDate); // <-- formatted
     formData.append('contact', this.HouseData.get('contact')?.value);
-    formData.append('image', this.selectedImage);
+    formData.append('image', this.selectedImage!);
 
     this.landhouseservice.AddHouse(formData).subscribe({
       next:() => {
@@ -76,16 +82,13 @@ export class HouseFormComponent implements OnInit{
     })
   }
 
-
-
-
-
-
-
-
-
-
-
+  private formatDate(date: any): string {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = (`0${d.getMonth() + 1}`).slice(-2);
+    const day = (`0${d.getDate()}`).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
 
   ViewHouseHistory() {
     this.dialog.open(HouseHistoryComponent, {
