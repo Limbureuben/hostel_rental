@@ -64,7 +64,9 @@ export class HouseFormComponent implements OnInit{
     formData.append('contact', this.HouseData.get('contact')?.value);
     formData.append('image', this.selectedImage);
 
-    this.landhouseservice
+    this.landhouseservice.AddHouse(formData).subscribe({
+      
+    })
 
 
 
