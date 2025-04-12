@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -8,13 +8,22 @@ import { Router } from '@angular/router';
   templateUrl: './tenant-dashboard.component.html',
   styleUrl: './tenant-dashboard.component.scss'
 })
-export class TenantDashboardComponent {
+export class TenantDashboardComponent implements OnInit{
+  houses: any[] = [];
 
   constructor(
     private router: Router
   ) {}
 
-  
+  ngOnInit(): void {
+      this.loadhouse();
+  }
+
+  loadhouse() {
+    
+  }
+
+
   goBack() {
     this.router.navigate(['/homepage']);
   }
