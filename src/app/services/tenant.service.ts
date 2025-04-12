@@ -13,6 +13,6 @@ export class TenantService {
   ) { }
 
   getAllHouse() {
-    return this.http.get<any[]>(`${this.baseUrl}/houses/`);
+    return this.http.get<any[]>(`${this.baseUrl}/api/houses/`);
   }
 }
