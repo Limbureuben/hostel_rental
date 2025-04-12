@@ -48,7 +48,7 @@ export class TenantDashboardComponent implements OnInit{
 
     openDialog(house: any): void {
       this.dialog.open(TenantListComponent, {
-        width: '400px',
+       
         data: house
       });
   }
