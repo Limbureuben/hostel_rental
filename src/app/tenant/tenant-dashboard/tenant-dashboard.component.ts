@@ -15,6 +15,7 @@ import { TenantListComponent } from '../tenant-list/tenant-list.component';
 })
 export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
+  paginatedHouses: any[] = [];
 
   constructor(
     private router: Router,
@@ -48,7 +49,7 @@ export class TenantDashboardComponent implements OnInit{
 
     openDialog(house: any): void {
       this.dialog.open(TenantListComponent, {
-       
+
         data: house
       });
   }

@@ -3,6 +3,7 @@
   <c-card *ngFor="let house of houses" class="custom-card">
     <c-card-body>
       <h5 cCardTitle>{{ house.house_type | titlecase }}</h5>
+      <p cCardText><strong>Phone:</strong> {{ house.contact }}</p>
       <p cCardText><strong>Available:</strong> {{ house.availability_date | date }}</p>
       <p cCardText><strong>Price:</strong> TZS {{ house.price_per_month }}</p>
       <p cCardText><strong>Location:</strong> {{ house.location }}</p>
@@ -13,3 +14,9 @@
     </c-card-body>
   </c-card>
 </c-card-group>
+
+<div class="paginator-container">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
