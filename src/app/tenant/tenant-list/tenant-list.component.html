@@ -1,1 +1,7 @@
-<p>tenant-list works!</p>
+<img [src]="data.image" alt="House Image" class="dialog-img" />
+
+<h2>{{ data.house_type | titlecase }}</h2>
+<p><strong>Phone:</strong> {{ data.contact }}</p>
+<p><strong>Available:</strong> {{ data.availability_date | date }}</p>
+<p><strong>Price:</strong> TZS {{ data.price_per_month }}</p>
+<p><strong>Location:</strong> {{ data.location }}</p>
