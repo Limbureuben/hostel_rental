@@ -1,125 +1,24 @@
-
-
-
-// .landlord-dashboard {
-//   display: grid;
-//   grid-template-columns: repeat(2, 1fr);
-//   gap: 1.5rem;
-//   max-width: 1000px; // or 900px depending on your preference
-//   margin: 2rem auto;
-//   padding: 1rem;
-// }
-
-// .card {
-//   border-radius: 4px;
-//   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-//   transition: transform 0.2s ease, box-shadow 0.2s ease;
-//   background: white;
-
-//   &:hover {
-//     transform: translateY(-5px);
-//     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-//   }
-
-//   mat-card-header {
-//     padding-bottom: 0;
-//   }
-
-//   mat-card-title {
-//     font-size: 1.2rem;
-//     font-weight: 600;
-//     color: #3f51b5;
-//   }
-
-//   mat-card-content {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 1rem;
-//     padding-top: 0.5rem;
-//   }
-
-//   button {
-//     align-self: flex-start;
-//     font-weight: 500;
-//     text-transform: none;
-//     background-color: #3f51b5;
-//     color: white;
-
-//     &:hover {
-//       background-color: #303f9f;
-//     }
-//   }
-// }
-
-
-.landlord-dashboard {
+/* tenant-house-list.component.scss */
+.house-card-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
-.card {
-  border-radius: 4px;
-  overflow: hidden; // ensures rounded corners apply to children
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: white;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-  }
-
-  mat-card-header {
-    background-color: #fc6736;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    padding: 1rem;
-  }
-
-  mat-card-title {
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-  }
-
-  mat-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
-  }
-
-  button {
-    align-self: flex-start;
-    font-weight: 500;
-    text-transform: none;
-    background-color: #3f51b5;
-    color: white;
-
-    &:hover {
-      background-color: #303f9f;
-    }
-  }
+.house-card {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.back-button {
-  position: fixed;
-  bottom: 520px;  /* Adjust position to place the button at the bottom of the page */
-  left: 20px;    /* Adjust position to place it towards the left */
-  z-index: 999;  /* Ensure it stays above other elements */
-  background-color: transparent;  /* No background */
-  box-shadow: none;  /* No shadow */
-  border: none;  /* No border */
-  font-size: 34px;  /* Increase the font size for better visibility */
-  font-weight: bold;  /* Make the icon bold */
-  color: #333;  /* Set a color to the icon */
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+mat-card-image {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
 }

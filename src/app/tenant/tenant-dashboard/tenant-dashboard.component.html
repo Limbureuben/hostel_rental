@@ -1,45 +1,18 @@
-<app-tenant-header></app-tenant-header>
-<div class="landlord-dashboard">
-  <mat-card class="card">
+<!-- tenant-house-list.component.html -->
+<div class="house-card-container">
+  <mat-card *ngFor="let house of houses" class="house-card">
     <mat-card-header>
-      <mat-card-title>Upload Room</mat-card-title>
+      <mat-card-title>{{ house.house_type | titlecase }}</mat-card-title>
+      <mat-card-subtitle>{{ house.location }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-      <p>Upload a new room to the system.</p>
-      <button mat-button color="primary" (click)="onUploadRoom()">Upload</button>
-    </mat-card-content>
-  </mat-card>
 
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>View Room History</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>View the history of rooms you've added.</p>
-      <button mat-button color="primary" (click)="onViewRoomHistory()">View History</button>
-    </mat-card-content>
-  </mat-card>
+    <img mat-card-image [src]="house.image" alt="House Image" />
 
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>View Services</mat-card-title>
-    </mat-card-header>
     <mat-card-content>
-      <p>View the available services for your rooms.</p>
-      <button mat-button color="primary" (click)="onViewServices()">View Services</button>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>Manage Payments</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Manage payments for your rooms.</p>
-      <button mat-button color="primary" (click)="onManagePayments()">Manage Payments</button>
+      <p><strong>Rooms:</strong> {{ house.number_of_rooms }}</p>
+      <p><strong>Price/Month:</strong> TZS {{ house.price_per_month }}</p>
+      <p><strong>Available From:</strong> {{ house.availability_date }}</p>
+      <p><strong>Contact:</strong> {{ house.contact }}</p>
     </mat-card-content>
   </mat-card>
 </div>
-<button mat-fab color="accent" class="back-button" (click)="goBack()">
-  <mat-icon>arrow_back</mat-icon>
-</button>
