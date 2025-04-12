@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { TenantService } from '../../services/tenant.service';
 import { error } from 'console';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { TenantListComponent } from '../tenant-list/tenant-list.component';
 
 
 @Component({
@@ -17,7 +19,8 @@ export class TenantDashboardComponent implements OnInit{
   constructor(
     private router: Router,
     private tenantservice: TenantService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +44,12 @@ export class TenantDashboardComponent implements OnInit{
   }
 
   NavigateToLogin() {
-    
+  }
+
+    openDialog(house: any): void {
+      this.dialog.open(TenantListComponent, {
+        width: '400px',
+        data: house
+      });
   }
 }
