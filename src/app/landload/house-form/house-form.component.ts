@@ -26,7 +26,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HouseFormComponent implements OnInit{
   HouseData!: FormGroup;
-  selectedImage!: File;
+  selectedImage!: File | null;
 
   constructor(
     @Optional() public dialogRef: MatDialogRef<HouseFormComponent>,
@@ -72,12 +72,14 @@ export class HouseFormComponent implements OnInit{
 
     this.landhouseservice.AddHouse(formData).subscribe({
       next:() => {
-        alert('House submitted successfully!');
+        this.toast.success('House submitted successfully!', 'Success');
         this.HouseData.reset();
+        this.selectedImage = null;
+        this.dialogRef?.close();
       },
       error: (err) => {
         console.error('Submission failed', err);
-        alert('Failed to submit house');
+        this.toast.error('Failed to submit house', 'Error');
       }
     })
   }
