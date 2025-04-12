@@ -101,10 +101,49 @@ button {
   }
 }
 
+/* Paginator Container */
 .paginator-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
   margin-top: 20px;
+  font-family: 'Arial', sans-serif;
 }
+
+/* Paginator Buttons */
+.paginator-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.paginator-btn:hover {
+  background-color: #0056b3;
+}
+
+.paginator-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Paginator Info */
+.paginator-info {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .paginator-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
