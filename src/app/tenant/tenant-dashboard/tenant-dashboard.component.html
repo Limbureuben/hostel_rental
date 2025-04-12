@@ -16,7 +16,8 @@
 </c-card-group>
 
 <div class="paginator-container">
-  <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  <button class="paginator-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <span class="paginator-info">Page {{ currentPage }} of {{ totalPages }}</span>
+  <button class="paginator-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
 </div>
+
