@@ -9,15 +9,9 @@
       <p cCardText><strong>Location:</strong> {{ house.location }}</p>
       <div class="button-group">
         <button mat-raised-button color="accent" (click)="openDialog(house)">View</button>
-        <button mat-raised-button color="primary" (click)="NavigateToLogin()">Book</button>
+
       </div>
     </c-card-body>
   </c-card>
 </c-card-group>
-
-<div class="paginator-container">
-  <button class="paginator-btn" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-  <span class="paginator-info">Page {{ currentPage }} of {{ totalPages }}</span>
-  <button class="paginator-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-</div>
 

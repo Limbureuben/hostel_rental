@@ -15,11 +15,10 @@ import { TenantListComponent } from '../tenant-list/tenant-list.component';
 })
 export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
-  paginatedHouses: any[] = [];
 
-  currentPage = 1;
-  pageSize = 8; // number of cards per page
-  totalPages = 0;
+  currentPage: number = 1;
+  totalPages: number = 1;
+  itemsPerPage: number = 8;
 
   constructor(
     private router: Router,
@@ -37,6 +36,7 @@ export class TenantDashboardComponent implements OnInit{
     this.tenantservice.getAllHouse().subscribe({
       next:(data) => {
         this.houses = data;
+        this.totalPages = Math.ceil(this.houses.length / this.itemsPerPage); // Calculate total pages
         this.updatePagination();
       },
       error: (err) => {
@@ -60,23 +60,26 @@ export class TenantDashboardComponent implements OnInit{
       });
   }
 
-  updatePagination() {
-    this.totalPages = Math.ceil(this.houses.length / this.pageSize);
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.paginatedHouses = this.houses.slice(startIndex, endIndex);
+  get paginatedHouses() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.houses.slice(startIndex, endIndex); // Slice the houses array to get the current page data
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePagination();
-    }
+  updatePagination() {
+    this.totalPages = Math.ceil(this.houses.length / this.itemsPerPage);
   }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
+      this.updatePagination();
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
       this.updatePagination();
     }
   }

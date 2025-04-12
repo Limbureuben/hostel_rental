@@ -50,3 +50,35 @@
   background-color: #f2f2f2;
   color: #000;
 }
+
+/* Book Button Container */
+.dialog-book-btn {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Book Button Styling */
+.dialog-book-btn button {
+  font-size: 1rem;
+  font-weight: 500;
+  width: 90%;
+  padding: 12px;
+  background-color: #4CAF50; /* Green background */
+  color: #fff; /* White text */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button Hover Effect */
+.dialog-book-btn button:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: translateY(-2px); /* Subtle upward movement */
+}
+
+.dialog-book-btn button:active {
+  background-color: #388e3c; /* Even darker green when pressed */
+  transform: translateY(0); /* Reset movement on click */
+}
