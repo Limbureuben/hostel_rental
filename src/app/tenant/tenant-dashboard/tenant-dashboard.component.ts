@@ -30,12 +30,14 @@ export class TenantDashboardComponent implements OnInit{
 
   ngOnInit(): void {
       this.loadhouse();
+
   }
 
   loadhouse() {
     this.tenantservice.getAllHouse().subscribe({
       next:(data) => {
         this.houses = data;
+        this.updatePagination();
       },
       error: (err) => {
         this.toastr.error('Failed to fetch houses', 'Error');
@@ -56,5 +58,26 @@ export class TenantDashboardComponent implements OnInit{
 
         data: house
       });
+  }
+
+  updatePagination() {
+    this.totalPages = Math.ceil(this.houses.length / this.pageSize);
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedHouses = this.houses.slice(startIndex, endIndex);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePagination();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePagination();
+    }
   }
 }
