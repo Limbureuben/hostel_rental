@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Optional } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-house-form',
@@ -22,9 +22,13 @@ import { FormControl } from '@angular/forms';
   ]
 })
 export class HouseFormComponent {
-  HouseData!: FormControl
+  HouseData!: FormGroup
 
-  constructor(@Optional() public dialogRef: MatDialogRef<HouseFormComponent>, private dialog: MatDialog) {}
+  constructor(
+    @Optional() public dialogRef: MatDialogRef<HouseFormComponent>,
+    private dialog: MatDialog,
+    private fb: FormBuilder
+  ) {}
 
 
   Submit() {
