@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LandlordService } from '../../services/landlord.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-house-form',
@@ -65,11 +66,15 @@ export class HouseFormComponent implements OnInit{
     formData.append('image', this.selectedImage);
 
     this.landhouseservice.AddHouse(formData).subscribe({
-      
+      next:() => {
+        alert('House submitted successfully!');
+        this.HouseData.reset();
+      },
+      error: (err) => {
+        console.error('Submission failed', err);
+        alert('Failed to submit house');
+      }
     })
-
-
-
   }
 
 
