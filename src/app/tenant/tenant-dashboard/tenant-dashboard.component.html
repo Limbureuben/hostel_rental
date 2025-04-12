@@ -9,10 +9,12 @@
     <img mat-card-image [src]="house.image" alt="House Image" />
 
     <mat-card-content>
-      <p><strong>Rooms:</strong> {{ house.number_of_rooms }}</p>
-      <p><strong>Price/Month:</strong> TZS {{ house.price_per_month }}</p>
-      <p><strong>Available From:</strong> {{ house.availability_date }}</p>
-      <p><strong>Contact:</strong> {{ house.contact }}</p>
+      <div class="house-details">
+        <p><strong>Rooms:</strong> {{ house.number_of_rooms }}</p>
+        <p><strong>Price/Month:</strong> TZS {{ house.price_per_month }}</p>
+        <p><strong>Available:</strong> {{ house.availability_date }}</p>
+        <p><strong>Contact:</strong> {{ house.contact }}</p>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
