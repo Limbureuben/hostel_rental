@@ -17,6 +17,10 @@ export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
   paginatedHouses: any[] = [];
 
+  currentPage = 1;
+  pageSize = 8; // number of cards per page
+  totalPages = 0;
+
   constructor(
     private router: Router,
     private tenantservice: TenantService,
