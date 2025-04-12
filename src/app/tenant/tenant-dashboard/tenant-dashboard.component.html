@@ -1,20 +1,17 @@
-<!-- tenant-house-list.component.html -->
-<div class="house-card-container">
-  <mat-card *ngFor="let house of houses" class="house-card">
-    <mat-card-header>
-      <mat-card-title>{{ house.house_type | titlecase }}</mat-card-title>
-      <mat-card-subtitle>{{ house.location }}</mat-card-subtitle>
-    </mat-card-header>
+<app-header></app-header>
 
-    <img mat-card-image [src]="house.image" alt="House Image" />
+<c-card-group class="mb-4 card-group-custom">
+  <c-card *ngFor="let house of houses" class="custom-card">
+    <img cCardImg="top" [src]="house.image" alt="House Image" />
+    <c-card-body>
+      <h5 cCardTitle>{{ house.house_type | titlecase }}</h5>
+      <p cCardText><strong>Phone:</strong> {{ house.contact }}</p>
+      <p cCardText><strong>Email:</strong> {{ house.email || 'Not Provided' }}</p>
+      <p cCardText><strong>Available from:</strong> {{ house.availability_date | date }}</p>
+      <p cCardText><strong>Location:</strong> {{ house.location }}</p>
+      <button mat-raised-button color="primary" (click)="NavigateToLogin()">Book Now</button>
+    </c-card-body>
+  </c-card>
+</c-card-group>
 
-    <mat-card-content>
-      <div class="house-details">
-        <p><strong>Rooms:</strong> {{ house.number_of_rooms }}</p>
-        <p><strong>Price/Month:</strong> TZS {{ house.price_per_month }}</p>
-        <p><strong>Available:</strong> {{ house.availability_date }}</p>
-        <p><strong>Contact:</strong> {{ house.contact }}</p>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+<app-footer></app-footer>
