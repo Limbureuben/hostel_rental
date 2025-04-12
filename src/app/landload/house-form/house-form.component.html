@@ -21,7 +21,7 @@
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Number of Rooms</mat-label>
-          <input matInput type="number" required>
+          <input matInput type="number" formControlName="number_of_rooms" required>
         </mat-form-field>
       </div>
 
@@ -29,12 +29,12 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Price per Month</mat-label>
-          <input matInput type="number" required>
+          <input matInput type="number" formControlName="price_per_month" required>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Location</mat-label>
-          <input matInput required>
+          <input matInput formControlName="location" required>
         </mat-form-field>
       </div>
 
@@ -42,14 +42,14 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Availability Date</mat-label>
-          <input matInput [matDatepicker]="picker" required>
+          <input matInput [matDatepicker]="picker" formControlName="availability_date" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>Contact</mat-label>
-          <input matInput required>
+          <input matInput formControlName="contact" required>
         </mat-form-field>
       </div>
 
@@ -59,7 +59,7 @@
         <!-- Image Upload -->
         <div class="half-width">
           <label for="image" class="image-label">House Image</label>
-          <input type="file" id="image" class="image-input">
+          <input type="file" id="image" formControlName="image" class="image-input">
         </div>
 
         <!-- Submit Button -->

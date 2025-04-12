@@ -1,8 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Optional } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LandlordService } from '../../services/landlord.service';
 
 @Component({
   selector: 'app-house-form',
@@ -21,17 +22,38 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
     ])
   ]
 })
-export class HouseFormComponent {
-  HouseData!: FormGroup
+export class HouseFormComponent implements OnInit{
+  HouseData!: FormGroup;
+  selectedImage!: File;
 
   constructor(
     @Optional() public dialogRef: MatDialogRef<HouseFormComponent>,
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private landhouseservice: LandlordService
   ) {}
 
+  ngOnInit() {
+    this.HouseData = this.fb.group({
+      house_type: ['', Validators.required],
+      number_of_rooms: ['', Validators.required],
+      price_per_month: ['', Validators.required],
+      location: ['', Validators.required],
+      availability_date: ['', Validators.required],
+      contact: ['', Validators.required],
+      image: [null, Validators.required]
+    });
+  }
+
+  onImageSelected(event: any) {
+    this.selectedImage = event.target.files[0];
+  }
 
   Submit() {
+    if (this.HouseData.invalid || !this.selectedImage) {
+      alert('Please fill all fields and select an image');
+      return;
+    }
 
   }
 
