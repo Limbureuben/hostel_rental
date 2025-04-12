@@ -1,4 +1,4 @@
-<form class="form-container" [formControl]="" (onSubmit)="Submit()" enctype="multipart/form-data" [@formAnimation]>
+<form class="form-container" [formGroup]="HouseData" (onSubmit)="Submit()" enctype="multipart/form-data" [@formAnimation]>
 
     <!-- Close Button (Top Right) -->
     <button mat-icon-button class="close-button" (click)="dialogRef.close()">
@@ -11,7 +11,12 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>House Type</mat-label>
-          <input matInput required>
+          <mat-select formControlName="house_type" required>
+            <mat-option value="apartment">Apartment</mat-option>
+            <mat-option value="bedsitter">Bedsitter</mat-option>
+            <mat-option value="single_room">Single Room</mat-option>
+            <mat-option value="bungalow">Bungalow</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">

@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, Optional } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-house-form',
@@ -21,8 +22,25 @@ import { HouseHistoryComponent } from '../house-history/house-history.component'
   ]
 })
 export class HouseFormComponent {
+  HouseData!: FormControl
 
   constructor(@Optional() public dialogRef: MatDialogRef<HouseFormComponent>, private dialog: MatDialog) {}
+
+
+  Submit() {
+
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   ViewHouseHistory() {
     this.dialog.open(HouseHistoryComponent, {
