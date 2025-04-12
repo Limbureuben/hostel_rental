@@ -41,8 +41,7 @@ export class HouseFormComponent implements OnInit{
       price_per_month: ['', Validators.required],
       location: ['', Validators.required],
       availability_date: ['', Validators.required],
-      contact: ['', Validators.required],
-      image: [null, Validators.required]
+      contact: ['', Validators.required]
     });
   }
 
