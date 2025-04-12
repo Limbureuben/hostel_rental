@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TenantService } from '../../services/tenant.service';
+import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +15,9 @@ export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private tenantservice: TenantService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -20,7 +25,14 @@ export class TenantDashboardComponent implements OnInit{
   }
 
   loadhouse() {
-    
+    this.tenantservice.getAllHouse().subscribe({
+      next:(data) => {
+        this.houses = data;
+      },
+      error: (err) => {
+        this.toastr.error('Failed to fetch houses', 'Error');
+      }
+    })
   }
 
 
