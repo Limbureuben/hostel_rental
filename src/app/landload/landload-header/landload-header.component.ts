@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HouseFormComponent } from '../house-form/house-form.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { HouseHistoryComponent } from '../house-history/house-history.component';
 
 @Component({
   selector: 'app-landload-header',
@@ -24,6 +25,15 @@ export class LandloadHeaderComponent {
         disableClose: true,
         // Removed invalid properties
       });
+    }
+
+
+    onViewRoomHistory() {
+      this.dialog.open(HouseHistoryComponent, {
+            width: '1200px',
+            height: '500px',
+            disableClose: false
+          });
     }
 
 }
