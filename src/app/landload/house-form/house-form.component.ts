@@ -5,6 +5,7 @@ import { HouseHistoryComponent } from '../house-history/house-history.component'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LandlordService } from '../../services/landlord.service';
 import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-house-form',
@@ -31,7 +32,8 @@ export class HouseFormComponent implements OnInit{
     @Optional() public dialogRef: MatDialogRef<HouseFormComponent>,
     private dialog: MatDialog,
     private fb: FormBuilder,
-    private landhouseservice: LandlordService
+    private landhouseservice: LandlordService,
+    private toast: ToastrService
   ) {}
 
   ngOnInit() {
@@ -51,11 +53,9 @@ export class HouseFormComponent implements OnInit{
 
   Submit() {
     if (this.HouseData.invalid || !this.selectedImage) {
-      alert('Please fill all fields and select an image');
+      this.toast.warning('Please fill all fields and select an image', 'Validation Warning');
       return;
     }
-
-
 
     const formData = new FormData();
 
@@ -97,5 +97,4 @@ export class HouseFormComponent implements OnInit{
         disableClose: false
     });
   }
-
 }
