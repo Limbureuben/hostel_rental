@@ -55,6 +55,19 @@ export class HouseFormComponent implements OnInit{
       return;
     }
 
+    const formData = new FormData();
+    formData.append('house_type', this.HouseData.get('house_type')?.value);
+    formData.append('number_of_rooms', this.HouseData.get('number_of_rooms')?.value);
+    formData.append('price_per_month', this.HouseData.get('price_per_month')?.value);
+    formData.append('location', this.HouseData.get('location')?.value);
+    formData.append('availability_date', this.HouseData.get('availability_date')?.value);
+    formData.append('contact', this.HouseData.get('contact')?.value);
+    formData.append('image', this.selectedImage);
+
+    this.landhouseservice
+
+
+
   }
 
 
