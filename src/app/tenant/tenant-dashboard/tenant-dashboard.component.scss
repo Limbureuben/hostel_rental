@@ -1,141 +1,172 @@
-// .house-card-container {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-//   gap: 1rem;
-//   padding: 1rem;
+// .card-group-custom {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   padding: 20px;
+//   gap: 20px;
 // }
 
-// .house-card {
-//   transition: transform 0.3s ease, box-shadow 0.3s ease;
-//   max-height: 450px;
+// .custom-card {
+//   width: calc(25% - 15px); /* 4 cards per row, accounting for gap */
+//   border-radius: 4px;
+//   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+//   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+//   background-color: #ffffff;
 //   display: flex;
 //   flex-direction: column;
 //   justify-content: space-between;
-//   border-radius: 12px;
-//   overflow: hidden;
+//   height: 350px; /* Reduced height of the card */
+// }
 
-//   &:hover {
-//     transform: translateY(-5px);
-//     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-//   }
+// .custom-card:hover {
+//   transform: translateY(-5px);
+//   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+// }
 
-//   mat-card-header {
-//     background-color: #f5f5f5;
-//     padding: 8px 16px;
-//   }
+// .custom-card img {
+//   height: 150px; /* Reduced height of the image */
+//   object-fit: cover;
+//   border-top-left-radius: 12px;
+//   border-top-right-radius: 12px;
+// }
 
-//   mat-card-title {
-//     font-size: 18px;
-//     font-weight: 600;
-//   }
+// c-card-body {
+//   padding: 16px;
+//   flex-grow: 1; /* Ensures the body takes up remaining space */
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+// }
 
-//   mat-card-subtitle {
-//     font-size: 14px;
-//     color: #666;
-//   }
+// h5[cCardTitle] {
+//   font-size: 1.2rem;
+//   color: #2c3e50;
+//   margin-bottom: 10px;
+// }
 
-//   mat-card-image {
-//     height: 180px;
-//     object-fit: cover;
-//     border-top: 1px solid #eee;
-//     border-bottom: 1px solid #eee;
-//   }
+// p[cCardText] {
+//   color: #555;
+//   font-size: 0.95rem;
+//   margin-bottom: 10px;
+// }
 
-//   mat-card-content {
-//     padding: 12px 16px;
+// button {
+//   margin-top: 10px; /* Ensure space between the text and the button */
+// }
 
-//     .house-details p {
-//       margin: 4px 0;
-//       font-size: 14px;
-//     }
+// c-card-footer {
+//   background-color: transparent;
+//   padding: 12px 16px;
+//   font-size: 0.85rem;
+//   color: #888;
+//   border-top: 1px solid #eee;
+//   text-align: center;
+// }
 
-//     strong {
-//       color: #333;
-//     }
+// @media (max-width: 1200px) {
+//   .custom-card {
+//     width: calc(33.333% - 15px); /* 3 per row on medium screens */
 //   }
 // }
 
+// @media (max-width: 900px) {
+//   .custom-card {
+//     width: calc(50% - 15px); /* 2 per row on tablets */
+//   }
+// }
+
+// @media (max-width: 600px) {
+//   .custom-card {
+//     width: 100%; /* 1 per row on phones */
+//   }
+// }
 
 .card-group-custom {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 20px;
   gap: 20px;
 }
 
 .custom-card {
-  width: calc(25% - 15px); /* 4 cards per row, accounting for gap */
-  border-radius: 4px;
+  width: calc(25% - 15px); /* 4 per row */
+  border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 350px; /* Reduced height of the card */
+  padding: 16px;
+  min-height: 300px;
 }
 
 .custom-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.custom-card img {
-  height: 150px; /* Reduced height of the image */
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 c-card-body {
-  padding: 16px;
-  flex-grow: 1; /* Ensures the body takes up remaining space */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
 
 h5[cCardTitle] {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: #2c3e50;
-  margin-bottom: 10px;
-}
-
-p[cCardText] {
-  color: #555;
-  font-size: 0.95rem;
-  margin-bottom: 10px;
-}
-
-button {
-  margin-top: 10px; /* Ensure space between the text and the button */
-}
-
-c-card-footer {
-  background-color: transparent;
-  padding: 12px 16px;
-  font-size: 0.85rem;
-  color: #888;
-  border-top: 1px solid #eee;
+  margin-bottom: 12px;
   text-align: center;
 }
 
+p[cCardText] {
+  font-size: 0.95rem;
+  margin: 6px 0;
+  color: #555;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Dialog Image Style */
+.dialog-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+/* Responsive Layout */
 @media (max-width: 1200px) {
   .custom-card {
-    width: calc(33.333% - 15px); /* 3 per row on medium screens */
+    width: calc(33.33% - 15px); /* 3 per row */
   }
 }
 
 @media (max-width: 900px) {
   .custom-card {
-    width: calc(50% - 15px); /* 2 per row on tablets */
+    width: calc(50% - 15px); /* 2 per row */
   }
 }
 
 @media (max-width: 600px) {
   .custom-card {
-    width: 100%; /* 1 per row on phones */
+    width: 100%; /* 1 per row */
   }
 }
+
 
