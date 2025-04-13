@@ -1,5 +1,3 @@
-<app-admin-header></app-admin-header>
-
 <div class="admin-table-container">
   <table mat-table [dataSource]="houses" class="mat-elevation-z8">
 
@@ -31,7 +29,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let house">
-        <button mat-raised-button color="primary" (click)="openDialog(house)">View</button>
+
       </td>
     </ng-container>
 

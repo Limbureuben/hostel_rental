@@ -6,12 +6,14 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AvailableHouseComponent } from './available-house/available-house.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     AdminDashboardComponent,
-    AvailableHouseComponent
+    AvailableHouseComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './sharing/header/header.component';
-import { FooterComponent } from '@coreui/angular';
+import { FooterComponent, SidebarComponent } from '@coreui/angular';
 import { TenantHeaderComponent } from './tenant/tenant-header/tenant-header.component';
 import { LandloadHeaderComponent } from './landload/landload-header/landload-header.component';
 
@@ -30,6 +30,12 @@ const routes: Routes = [
     component: TenantHeaderComponent,
     loadChildren:()=>
       import('./tenant/tenant.module').then((m) =>m.TenantModule)
+  },
+  {
+    path: 'app',
+    component: SidebarComponent,
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) =>m.AdminModule)
   }
 ];
 
