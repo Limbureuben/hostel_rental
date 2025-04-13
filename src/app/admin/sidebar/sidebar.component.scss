@@ -12,7 +12,6 @@ mat-sidenav-container {
 
 mat-sidenav {
   margin: 16px;
-  margin-top: 24px; /* 👈 Top margin added for space */
   width: 220px;
   background: #c0590f;
   color: white;
@@ -28,17 +27,18 @@ mat-sidenav {
   width: 100%;
   justify-content: flex-start;
   text-align: left;
-  padding: 30px 0px 30px 0px; /* left-right & bottom padding */
+  padding: 20px 20px; /* top-bottom: 14px, left-right: 20px */
   color: white;
   font-weight: 500;
   font-size: 17px;
   display: flex;
   align-items: center;
-  gap: 0px;
-  margin-bottom: 28px; /* 👈 More spacing between links */
+  gap: 12px; /* 👈 Space between icon and text */
+  margin-bottom: 12px; /* 👈 Reduced space between links */
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
+
 
 .menu-button:hover {
   background-color: rgba(255, 255, 255, 0.15);

@@ -11,6 +11,8 @@ table {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 /* Header Row */
@@ -21,7 +23,7 @@ table {
 
 .mat-header-cell {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   padding: 16px;
   border-right: 1px solid #f38e6c;
@@ -37,7 +39,7 @@ table {
 }
 
 .mat-row:hover {
-  background-color: #fdf1ed;
+  background-color: #fff5f2;
 }
 
 /* Cell Styling */
@@ -46,19 +48,34 @@ table {
   padding: 14px 16px;
   color: #444;
   border-bottom: 1px solid #eee;
+  vertical-align: middle;
 }
 
-/* View Button */
-button.mat-raised-button {
-  background-color: #fc6736 !important;
-  color: white !important;
-  font-weight: 500;
-  font-size: 0.85rem;
+/* Action Buttons */
+.action-button {
+  margin-right: 8px;
+  min-width: 70px;
   padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
 
-button.mat-raised-button:hover {
-  background-color: #e0582f !important;
+.action-button.view {
+  background-color: #1976d2 !important;
+  color: white !important;
+}
+
+.action-button.view:hover {
+  background-color: #155a9a !important;
+}
+
+.action-button.book {
+  background-color: #43a047 !important;
+  color: white !important;
+}
+
+.action-button.book:hover {
+  background-color: #2e7d32 !important;
 }
