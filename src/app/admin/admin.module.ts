@@ -7,6 +7,10 @@ import { AvailableHouseComponent } from './available-house/available-house.compo
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -20,6 +24,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AdminRoutingModule,
     MatTableModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatDividerModule,
   ]
 })
 export class AdminModule { }
