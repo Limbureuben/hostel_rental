@@ -1,0 +1,54 @@
+.admin-table-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Table Container Styling */
+table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* Header Styling */
+.mat-header-row {
+  background-color: #fc6736;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-header-cell {
+  padding: 16px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+/* Row Styling */
+.mat-row {
+  transition: background-color 0.3s;
+}
+
+.mat-row:hover {
+  background-color: #f1f1f1;
+}
+
+/* Cell Styling */
+.mat-cell {
+  padding: 14px;
+  font-size: 0.95rem;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* View Button */
+button.mat-raised-button {
+  font-weight: 500;
+  background-color: #fc6736 !important;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button:hover {
+  background-color: #e65a2e !important;
+}

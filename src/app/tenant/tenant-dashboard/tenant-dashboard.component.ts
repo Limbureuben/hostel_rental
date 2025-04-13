@@ -39,7 +39,6 @@ export class TenantDashboardComponent implements OnInit{
     })
   }
 
-
   goBack() {
     this.router.navigate(['/homepage']);
   }
