@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000

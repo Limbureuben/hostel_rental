@@ -18,6 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { TenantListComponent } from './tenant-list/tenant-list.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TenantOrderComponent } from './tenant-order/tenant-order.component';
 
 
 
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     TenantDashboardComponent,
     TenantHeaderComponent,
-    TenantListComponent
+    TenantListComponent,
+    TenantOrderComponent
   ],
   imports: [
     CommonModule,
