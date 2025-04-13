@@ -4,10 +4,15 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AvailableHouseComponent } from './available-house/available-house.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-
 const routes: Routes = [
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'available-house', component: AvailableHouseComponent }
+  {
+    path: 'admin',
+    component: SidebarComponent,
+    children: [
+      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'available-house', component: AdminDashboardComponent }
+    ]
+  }
 ];
 
 @NgModule({
