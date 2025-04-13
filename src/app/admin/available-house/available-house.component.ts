@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AvailableHouseComponent implements OnInit{
   houses: any[] = [];
+  displayedColumns: string[] = ['house_type', 'availability_date', 'price_per_month', 'location', 'actions'];
 
   constructor(
     private router: Router,

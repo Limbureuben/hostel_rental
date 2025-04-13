@@ -1,54 +1,64 @@
 .admin-table-container {
-  padding: 20px;
-  background-color: #f9f9f9;
+  padding: 24px;
+  background-color: #f4f4f4;
+  min-height: 100vh;
 }
 
-/* Table Container Styling */
+/* Table Base Styling */
 table {
   width: 100%;
-  border-radius: 8px;
+  background-color: white;
+  border-radius: 12px;
   overflow: hidden;
-  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Header Styling */
+/* Header Row */
 .mat-header-row {
   background-color: #fc6736;
   color: white;
-  font-weight: bold;
 }
 
 .mat-header-cell {
-  padding: 16px;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   text-transform: uppercase;
+  padding: 16px;
+  border-right: 1px solid #f38e6c;
 }
 
-/* Row Styling */
+.mat-header-cell:last-child {
+  border-right: none;
+}
+
+/* Body Rows */
 .mat-row {
-  transition: background-color 0.3s;
+  transition: background-color 0.25s ease;
 }
 
 .mat-row:hover {
-  background-color: #f1f1f1;
+  background-color: #fdf1ed;
 }
 
 /* Cell Styling */
 .mat-cell {
-  padding: 14px;
   font-size: 0.95rem;
-  color: #333;
-  border-bottom: 1px solid #e0e0e0;
+  padding: 14px 16px;
+  color: #444;
+  border-bottom: 1px solid #eee;
 }
 
 /* View Button */
 button.mat-raised-button {
-  font-weight: 500;
   background-color: #fc6736 !important;
-  color: #fff;
-  transition: background-color 0.3s ease;
+  color: white !important;
+  font-weight: 500;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
 }
 
 button.mat-raised-button:hover {
-  background-color: #e65a2e !important;
+  background-color: #e0582f !important;
 }
