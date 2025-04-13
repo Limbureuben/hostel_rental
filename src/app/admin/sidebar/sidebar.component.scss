@@ -1,41 +1,56 @@
 mat-toolbar {
   background: #004a9f;
   color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 0 24px;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
 }
 
 mat-sidenav {
   margin: 16px;
-  width: 200px;
-  background: #002b5c;
+  margin-top: 24px; /* 👈 Top margin added for space */
+  width: 220px;
+  background: #c0590f;
   color: white;
-  border-radius: 10px;
-  padding: 0; /* Remove padding so we can control layout better */
+  border-radius: 4px;
+  padding: 50px 0; /* Add space inside */
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .menu-button {
   width: 100%;
   justify-content: flex-start;
   text-align: left;
-  padding: 12px 16px;
-  border-radius: 0;
+  padding: 30px 0px 30px 0px; /* left-right & bottom padding */
   color: white;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  margin-bottom: 28px; /* 👈 More spacing between links */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .menu-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 mat-icon {
-  margin-right: 12px;
+  color: white;
+  font-size: 30px;
 }
 
 mat-divider {
-  margin: 12px 0;
+  margin: 20px 0;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -44,15 +59,18 @@ mat-divider {
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   font-size: 2rem;
   color: lightgray;
 }
 
-mat-sidenav-container {
-  height: calc(100vh - 65px);
+.menu-button:hover mat-icon {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
+.menu-button.active {
+  background-color: rgba(255, 255, 255, 0.25);
 }
