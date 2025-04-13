@@ -16,10 +16,6 @@ import { TenantListComponent } from '../tenant-list/tenant-list.component';
 export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
 
-  currentPage: number = 1;
-  totalPages: number = 1;
-  itemsPerPage: number = 8;
-
   constructor(
     private router: Router,
     private tenantservice: TenantService,
@@ -36,8 +32,6 @@ export class TenantDashboardComponent implements OnInit{
     this.tenantservice.getAllHouse().subscribe({
       next:(data) => {
         this.houses = data;
-        this.totalPages = Math.ceil(this.houses.length / this.itemsPerPage); // Calculate total pages
-        this.updatePagination();
       },
       error: (err) => {
         this.toastr.error('Failed to fetch houses', 'Error');
@@ -60,27 +54,8 @@ export class TenantDashboardComponent implements OnInit{
       });
   }
 
-  get paginatedHouses() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.houses.slice(startIndex, endIndex); // Slice the houses array to get the current page data
-  }
 
-  updatePagination() {
-    this.totalPages = Math.ceil(this.houses.length / this.itemsPerPage);
-  }
 
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePagination();
-    }
-  }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePagination();
-    }
-  }
+
 }

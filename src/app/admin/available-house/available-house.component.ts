@@ -34,5 +34,4 @@ export class AvailableHouseComponent implements OnInit{
       }
     })
   }
-
 }
