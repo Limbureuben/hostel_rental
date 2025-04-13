@@ -7,8 +7,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'available-house', component: AvailableHouseComponent },
-  { path: 'sidebar', component: SidebarComponent  }
+  { path: 'available-house', component: AvailableHouseComponent }
 ];
 
 @NgModule({

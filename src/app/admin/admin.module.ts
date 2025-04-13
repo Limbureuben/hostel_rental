@@ -12,6 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -29,7 +34,12 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class AdminModule { }

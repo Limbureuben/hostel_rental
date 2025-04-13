@@ -30,6 +30,12 @@ const routes: Routes = [
     component: TenantHeaderComponent,
     loadChildren:()=>
       import('./tenant/tenant.module').then((m) =>m.TenantModule)
+  },
+  {
+    path: 'app',
+    component: SidebarComponent,
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) =>m.AdminModule)
   }
 ];
 
