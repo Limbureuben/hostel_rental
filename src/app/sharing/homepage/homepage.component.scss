@@ -222,3 +222,16 @@ h2 {
   font-weight: bold;  /* Make the icon bold */
   color: #333;  /* Set a color to the icon */
 }
+
+.logout-button {
+  position: fixed;
+  bottom: 460px;
+  right: 30px;
+  z-index: 1000;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 34px;
+}

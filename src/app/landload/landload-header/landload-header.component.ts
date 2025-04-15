@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
 import { LandloadProfileComponent } from '../landload-profile/landload-profile.component';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-landload-header',
@@ -15,7 +17,8 @@ export class LandloadHeaderComponent {
 
   constructor(
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   onUploadRoom() {
@@ -44,7 +47,9 @@ export class LandloadHeaderComponent {
       });
    }
 
-   NavigateToLogout() {
-    
-   }
+   NavigateToLogout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.toastr.success('Logout success', 'Success');
+  }
 }

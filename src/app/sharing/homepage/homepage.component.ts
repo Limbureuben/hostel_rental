@@ -28,4 +28,8 @@ export class HomepageComponent {
   goBack() {
     this.router.navigate(['/login'])
   }
+
+  logout() {
+    
+  }
 }
