@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit{
       });
       return;
     }
-
     const loginData: LoginData = {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
@@ -62,6 +61,7 @@ export class LoginComponent implements OnInit{
         if (response.success) {
           this.toastr.success('Login successful', 'Success', {positionClass: 'toast-top-right'});
           // localStorage.setItem('token', response.token)
+          localStorage.setItem('token', response.token);
           localStorage.setItem('user', JSON.stringify(response.user));
           localStorage.setItem('role', response.role);
 
