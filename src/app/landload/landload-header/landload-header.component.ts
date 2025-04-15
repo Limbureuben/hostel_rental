@@ -43,4 +43,8 @@ export class LandloadHeaderComponent {
         disableClose: false,
       });
    }
+
+   NavigateToLogout() {
+    
+   }
 }

@@ -24,7 +24,6 @@ import { ToastrService } from 'ngx-toastr';
       ])
     ]),
 
-    // Table Row Animation
     trigger('rowAnimation', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(-10px)' }),
