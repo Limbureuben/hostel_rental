@@ -50,4 +50,9 @@ export class LandlordService {
     console.log('User ID:', userId); // Check if the userId is correct
     return this.http.get<any[]>(`${this.apiUrl}?user=${userId}`); // Token will automatically be added via the interceptor
   }
+
+  getProfile(): Observable<any> {
+    return this.http.get('http://localhost:8000/api/profile/');
+  }
+
 }

@@ -7,11 +7,12 @@
       <mat-icon>account_circle</mat-icon> <!-- Profile Icon -->
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/login">Dashboard</button>
+      <button mat-menu-item (click)="NavigateToTenant()">Dashboard</button>
       <button mat-menu-item routerLink="/register">Services</button>
       <button mat-menu-item routerLink="/map">Upload Room</button>
       <button mat-menu-item routerLink="/map">History</button>
       <button mat-menu-item routerLink="/map">Profile</button>
+      <button mat-menu-item routerLink="/map">Logout</button>
     </mat-menu>
   </div>
 </mat-toolbar>

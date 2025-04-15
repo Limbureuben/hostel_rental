@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LandloadProfileComponent } from './landload-profile/landload-profile.component';
 
 
 
@@ -34,7 +35,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     LandloadDashboardComponent,
     LandloadHeaderComponent,
     HouseFormComponent,
-    HouseHistoryComponent
+    HouseHistoryComponent,
+    LandloadProfileComponent
   ],
   imports: [
     CommonModule,
