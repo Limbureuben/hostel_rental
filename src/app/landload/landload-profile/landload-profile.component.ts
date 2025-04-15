@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { LandlordService } from '../../services/landlord.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-landload-profile',
@@ -13,6 +13,7 @@ export class LandloadProfileComponent {
 
   constructor(
     private userService: LandlordService,
+    private dialogRef: MatDialogRef<LandloadProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   ngOnInit(): void {
