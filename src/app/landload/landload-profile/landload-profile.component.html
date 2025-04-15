@@ -5,6 +5,7 @@
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Phone:</strong> {{ user.phone || 'Not provided' }}</p>
     <p><strong>Date Joined:</strong> {{ user.date_joined | date:'medium' }}</p>
+    <p><strong>Total Houses Uploaded:</strong> {{ houseCount }}</p>
   </div>
   <div class="dialog-actions">
     <button mat-raised-button color="primary" (click)="closeDialog()">Close</button>

@@ -10,12 +10,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class LandloadProfileComponent {
   user: any;
+  houseCount: number = 0;
 
   constructor(
     private userService: LandlordService,
     private dialogRef: MatDialogRef<LandloadProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
   ngOnInit(): void {
     this.userService.getProfile().subscribe({
       next: (data) => {
@@ -23,6 +25,15 @@ export class LandloadProfileComponent {
       },
       error: (err) => {
         console.error('Profile fetch error:', err);
+      }
+    });
+
+    this.userService.getMyHouse().subscribe({
+      next: (houses) => {
+        this.houseCount = houses.length;
+      },
+      error: (err) => {
+        console.error('House fetch error:', err);
       }
     });
   }
