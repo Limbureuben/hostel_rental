@@ -7,7 +7,7 @@ import { LandloadHeaderComponent } from './landload/landload-header/landload-hea
 import { CustomerSidebarComponent } from './admin/customer-sidebar/customer-sidebar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user-home', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
   {
     path: 'app',
     component: HeaderComponent,
