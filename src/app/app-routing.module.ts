@@ -4,6 +4,7 @@ import { HeaderComponent } from './sharing/header/header.component';
 import { FooterComponent, SidebarComponent } from '@coreui/angular';
 import { TenantHeaderComponent } from './tenant/tenant-header/tenant-header.component';
 import { LandloadHeaderComponent } from './landload/landload-header/landload-header.component';
+import { CustomerSidebarComponent } from './admin/customer-sidebar/customer-sidebar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user-home', pathMatch: 'full'},
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    component: SidebarComponent,
+    component: CustomerSidebarComponent,
     loadChildren: () =>
       import('./admin/admin.module').then((m) =>m.AdminModule)
   }

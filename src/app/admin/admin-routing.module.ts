@@ -10,7 +10,8 @@ const routes: Routes = [
     component: SidebarComponent,
     children: [
       { path: 'admin-dashboard', component: AdminDashboardComponent },
-      { path: 'available-house', component: AvailableHouseComponent }
+      { path: 'available-house', component: AvailableHouseComponent },
+      { path: '', redirectTo: 'admin-dashboard', pathMatch: 'full' }
     ]
   }
 ];

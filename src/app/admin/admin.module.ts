@@ -17,7 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { SidebarAgainComponent } from './sidebar-again/sidebar-again.component';
+import { CustomerSidebarComponent } from './customer-sidebar/customer-sidebar.component';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { SidebarAgainComponent } from './sidebar-again/sidebar-again.component';
     AdminDashboardComponent,
     AvailableHouseComponent,
     SidebarComponent,
-    SidebarAgainComponent
+    CustomerSidebarComponent
   ],
   imports: [
     CommonModule,
