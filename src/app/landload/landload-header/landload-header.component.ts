@@ -37,7 +37,7 @@ export class LandloadHeaderComponent {
           });
     }
 
-    openProfile(): void {
+    ViewTheProfile(): void {
       this.dialog.open(LandloadProfileComponent, {
         width: '400px',
         disableClose: false,
