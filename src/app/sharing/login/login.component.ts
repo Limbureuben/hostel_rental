@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit{
           this.toastr.success('Login successful', 'Success', {positionClass: 'toast-top-right'});
           // localStorage.setItem('token', response.token)
           localStorage.setItem('token', response.token);
-          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('userId', response.user.id);
           localStorage.setItem('role', response.role);
 
           if (response.user.isStaff) {
