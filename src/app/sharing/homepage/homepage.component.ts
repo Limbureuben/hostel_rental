@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-homepage',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class HomepageComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   toggleMenu() {
@@ -29,7 +31,9 @@ export class HomepageComponent {
     this.router.navigate(['/login'])
   }
 
-  logout() {
-    
+  logout(): void {
+    localStorage.clear()
+    this.router.navigate(['/login']);
+    this.toastr.success('Logout success', 'Success');
   }
 }
