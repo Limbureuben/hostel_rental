@@ -3,6 +3,7 @@ import { HouseFormComponent } from '../house-form/house-form.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
+import { LandloadProfileComponent } from '../landload-profile/landload-profile.component';
 
 @Component({
   selector: 'app-landload-header',
@@ -36,4 +37,10 @@ export class LandloadHeaderComponent {
           });
     }
 
+    openProfile(): void {
+      this.dialog.open(LandloadProfileComponent, {
+        width: '400px',
+        disableClose: false,
+      });
+   }
 }
