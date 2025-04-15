@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HouseFormComponent } from '../house-form/house-form.component';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-landload-dashboard',
@@ -15,7 +16,8 @@ export class LandloadDashboardComponent {
 
   constructor(
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   onUploadRoom() {
@@ -51,4 +53,9 @@ export class LandloadDashboardComponent {
     this.router.navigate(['/homepage']);
   }
 
+  logout(): void {
+    localStorage.clear()
+    this.router.navigate(['/login']);
+    this.toastr.success('Logout success', 'Success');
+  }
 }
