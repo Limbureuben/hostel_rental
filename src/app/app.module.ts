@@ -11,7 +11,7 @@ import { AdminModule } from './admin/admin.module';
 import { LandloadModule } from './landload/landload.module';
 import { SharingModule } from './sharing/sharing.module';
 import { TenantModule } from './tenant/tenant.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -26,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { AuthInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { MatTableModule } from '@angular/material/table';
     }),
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

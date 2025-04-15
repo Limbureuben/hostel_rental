@@ -60,10 +60,12 @@ export class LoginComponent implements OnInit{
 
         if (response.success) {
           this.toastr.success('Login successful', 'Success', {positionClass: 'toast-top-right'});
-          // localStorage.setItem('token', response.token)
+
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId', response.user.id);
           localStorage.setItem('role', response.role);
+
+          console.log('Token stored:', response.token);
 
           if (response.user.isStaff) {
             this.router.navigate(['/admin/admin-dashboard']);
