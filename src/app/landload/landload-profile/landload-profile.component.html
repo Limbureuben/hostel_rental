@@ -3,7 +3,6 @@
   <div *ngIf="user" class="profile-info">
     <p><strong>Username:</strong> {{ user.username }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone:</strong> {{ user.phone || 'Not provided' }}</p>
     <p><strong>Date Joined:</strong> {{ user.date_joined | date:'medium' }}</p>
     <p><strong>Total Houses Uploaded:</strong> {{ houseCount }}</p>
   </div>
