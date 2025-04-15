@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-house-history',
@@ -32,26 +33,32 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ]
 })
 export class HouseHistoryComponent {
-  showHouseReport = true;
-
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    public dialogRef: MatDialogRef<HouseHistoryComponent>,
+    private tenantservice: TenantService,
+    private toastr: ToastrService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.loadHouse()
-}
+      this.loadhouse();
+  }
 
-loadHouse() {
-
-}
-
+  loadhouse() {
+    this.tenantservice.getAllHouse().subscribe({
+      next:(data) => {
+        this.dataSource.data = data;
+        this.dataSource.paginator = this.paginator;
+      },
+      error: (err) => {
+        this.toastr.error('Failed to fetch houses', 'Error');
+      }
+    })
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -62,10 +69,5 @@ loadHouse() {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  closeReportHouseDialog() {
-    this.dialogRef.close();
-  }
-
 }
 
