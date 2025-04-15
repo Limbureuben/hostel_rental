@@ -19,6 +19,7 @@ export class LandlordService {
   }
 
   getMyHouse() {
+    const userId = localStorage.getItem('userId');
     return this.http.get<any[]>(`${this.baseUrl}/api/houses/`);
   }
 }
