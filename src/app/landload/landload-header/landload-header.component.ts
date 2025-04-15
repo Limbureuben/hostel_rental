@@ -31,7 +31,6 @@ export class LandloadHeaderComponent {
       });
     }
 
-
     onViewRoomHistory() {
       this.dialog.open(HouseHistoryComponent, {
             width: '1200px',
@@ -46,10 +45,4 @@ export class LandloadHeaderComponent {
         disableClose: false,
       });
    }
-
-   NavigateToLogout(): void {
-    localStorage.clear();
-    this.router.navigate(['/login']);
-    this.toastr.success('Logout success', 'Success');
-  }
 }
