@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit{
           localStorage.setItem('role', response.role);
 
           if (response.user.isStaff) {
-            this.router.navigate(['/admin-dashboard']);
+            this.router.navigate(['/admin/admin-dashboard']);
           } else {
             this.router.navigate(['/homepage']);
           }
