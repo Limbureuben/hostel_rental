@@ -34,6 +34,7 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class HouseHistoryComponent {
+  displayedColumns: string[] = ['house_type', 'availability_date', 'price_per_month', 'location', 'actions'];
   dataSource = new MatTableDataSource<any>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -70,5 +71,16 @@ export class HouseHistoryComponent {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  onView(house: any) {
+    console.log('View clicked:', house);
+    // You can open a dialog or navigate to a detail page here
+  }
+
+  onDelete(house: any) {
+    console.log('Delete clicked:', house);
+    // You can trigger a delete API call and refresh the list here
+  }
+
 }
 
