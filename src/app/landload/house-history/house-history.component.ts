@@ -1,3 +1,4 @@
+import { LandlordService } from './../../services/landlord.service';
 import { Component, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -39,7 +40,7 @@ export class HouseHistoryComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private tenantservice: TenantService,
+    private landloadservice: LandlordService,
     private toastr: ToastrService,
     private dialog: MatDialog
   ) {}
@@ -49,7 +50,7 @@ export class HouseHistoryComponent {
   }
 
   loadhouse() {
-    this.tenantservice.getAllHouse().subscribe({
+    this.landloadservice.getMyHouse().subscribe({
       next:(data) => {
         this.dataSource.data = data;
         this.dataSource.paginator = this.paginator;
