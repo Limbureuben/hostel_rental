@@ -20,6 +20,7 @@ export class LandlordService {
 
   getMyHouse() {
     const userId = localStorage.getItem('userId');
+    console.log('User ID:', userId);  // Check if the userId is correct
     return this.http.get<any[]>(`${this.baseUrl}/api/houses/?user=${userId}`);
   }
 }
