@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class TenantHeaderComponent {
   constructor(
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   NavigateToTenant() {
