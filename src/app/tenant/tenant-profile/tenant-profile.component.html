@@ -1,0 +1,12 @@
+<div class="profile-dialog">
+  <h2>User Profile</h2>
+  <div *ngIf="user" class="profile-info">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Date Joined:</strong> {{ user.date_joined | date:'medium' }}</p>
+    <p><strong>Total Houses Uploaded:</strong> {{ houseCount }}</p>
+  </div>
+  <div class="dialog-actions">
+    <button mat-raised-button color="primary" (click)="closeDialog()">Close</button>
+  </div>
+</div>
