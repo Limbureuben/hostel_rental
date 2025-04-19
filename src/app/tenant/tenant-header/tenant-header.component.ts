@@ -16,4 +16,11 @@ export class TenantHeaderComponent {
     this.router.navigate(['/tenant-dashboard']);
   }
 
+  ViewTheProfile(): void {
+        this.dialog.open(LandloadProfileComponent, {
+          width: '400px',
+          disableClose: false,
+        });
+     }
+
 }
