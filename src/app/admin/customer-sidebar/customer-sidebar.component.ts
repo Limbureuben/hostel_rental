@@ -1,4 +1,6 @@
 import { Component, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 export type MenuItem = {
   icon: string;
@@ -21,11 +23,14 @@ export class CustomerSidebarComponent {
   ])
 
   constructor(
-
+    private router: Router,
+    private toastr: ToastrService
   ){}
 
   onLogout() {
-
+    localStorage.clear();
+    this.router.navigate(['/']);
+    this.toastr.success('Logout successful', 'Success');
   }
 
 }
