@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { TenantProfileComponent } from '../tenant-profile/tenant-profile.component';
 
 @Component({
   selector: 'app-tenant-header',
@@ -19,7 +20,7 @@ export class TenantHeaderComponent {
   }
 
   ViewTheProfile(): void {
-        this.dialog.open(LandloadProfileComponent, {
+        this.dialog.open(TenantProfileComponent, {
           width: '400px',
           disableClose: false,
         });
