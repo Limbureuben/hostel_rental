@@ -17,9 +17,8 @@ export class TenantService {
   }
 
   bookRoom(houseId: number): void {
-    this.http.post('/api/book/', { house_id: houseId }).subscribe((res: any) => {
-      window.open(res.pdf_url, '_blank'); // opens the generated PDF
+    this.http.post(`${this.baseUrl}/api/book/`, { house_id: houseId }).subscribe((res: any) => {
+      window.open(res.pdf_url, '_blank'); // this opens the generated PDF
     });
   }
-
 }
