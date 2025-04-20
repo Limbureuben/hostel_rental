@@ -15,4 +15,11 @@ export class TenantService {
   getAllHouse() {
     return this.http.get<any[]>(`${this.baseUrl}/api/houses/`);
   }
+
+  bookRoom(houseId: number): void {
+    this.http.post('/api/book/', { house_id: houseId }).subscribe((res: any) => {
+      window.open(res.pdf_url, '_blank'); // opens the generated PDF
+    });
+  }
+
 }
