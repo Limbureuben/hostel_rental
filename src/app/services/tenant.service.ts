@@ -33,6 +33,6 @@ export class TenantService {
   }
 
   uploadAgreement(formData: FormData) {
-    return this.http.post<any>(`${this.baseUrl}/api/tenant/upload/`, formData);
+    return this.http.post<any>(`${this.baseUrl}/api/upload-signed-agreement/`, formData);
   }
 }
