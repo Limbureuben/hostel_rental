@@ -9,8 +9,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="NavigateToTenant()">Dashboard</button>
       <button mat-menu-item routerLink="/register">Services</button>
-      <button mat-menu-item routerLink="/map">Upload Room</button>
-      <button mat-menu-item routerLink="/map">History</button>
+      <button mat-menu-item (click)="NavigateToUpload()">Upload Aggrement</button>
       <button mat-menu-item (click)="ViewTheProfile()">Profile</button>
       <button mat-menu-item routerLink="/map">Logout</button>
     </mat-menu>

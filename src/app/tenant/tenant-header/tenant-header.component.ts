@@ -26,4 +26,8 @@ export class TenantHeaderComponent {
         });
      }
 
+     NavigateToUpload() {
+        this.router.navigate(['/tenant-upload']);
+     }
+
 }
