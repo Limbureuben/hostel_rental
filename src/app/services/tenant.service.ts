@@ -17,8 +17,14 @@ export class TenantService {
   }
 
   bookRoom(houseId: number): void {
-    this.http.post(`${this.baseUrl}/api/book/`, { house_id: houseId }).subscribe((res: any) => {
-      window.open(res.pdf_url, '_blank'); // this opens the generated PDF
+    this.http.post(`${this.baseUrl}/api/book/`, { house_id: houseId }, { responseType: 'blob' }).subscribe((blob: Blob) => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'rental_agreement.pdf';
+      a.click();
+      window.URL.revokeObjectURL(url); // Clean up
     });
   }
+
 }
