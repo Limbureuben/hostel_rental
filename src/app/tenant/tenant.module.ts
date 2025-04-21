@@ -20,6 +20,7 @@ import { TenantListComponent } from './tenant-list/tenant-list.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TenantOrderComponent } from './tenant-order/tenant-order.component';
 import { TenantProfileComponent } from './tenant-profile/tenant-profile.component';
+import { TenantUploadComponent } from './tenant-upload/tenant-upload.component';
 
 
 
@@ -29,7 +30,8 @@ import { TenantProfileComponent } from './tenant-profile/tenant-profile.componen
     TenantHeaderComponent,
     TenantListComponent,
     TenantOrderComponent,
-    TenantProfileComponent
+    TenantProfileComponent,
+    TenantUploadComponent
   ],
   imports: [
     CommonModule,
