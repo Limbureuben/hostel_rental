@@ -1,1 +1,32 @@
-<p>tenant-upload works!</p>
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" class="upload-form mat-elevation-z4">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phone_number" required>
+  </mat-form-field>
+
+  <div class="file-input">
+    <label for="file">Signed Agreement (PDF):</label>
+    <input type="file" id="file" (change)="onFileChange($event)" accept=".pdf" required>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="uploadForm.invalid">
+    Upload Agreement
+  </button>
+
+</form>
+
+<mat-card *ngIf="matchedHouse" class="mt-4">
+  <mat-card-title>Matched House Details</mat-card-title>
+  <mat-card-content>
+    <p><strong>Location:</strong> {{ matchedHouse.location }}</p>
+    <p><strong>Type:</strong> {{ matchedHouse.house_type }}</p>
+    <p><strong>Price:</strong> {{ matchedHouse.price }}</p>
+    <p><strong>Contact:</strong> {{ matchedHouse.contact }}</p>
+  </mat-card-content>
+</mat-card>
