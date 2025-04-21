@@ -32,7 +32,7 @@ export class TenantUploadComponent {
     }
   }
 
-  onsubmit(): void {
+  onSubmit(): void {
     if (!this.uploadForm.valid || !this.selectedFile) {
       this.snackBar.open('Please complete the form and select a file.', 'Close', {
         duration: 3000
