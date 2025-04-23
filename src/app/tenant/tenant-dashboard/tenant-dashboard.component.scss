@@ -115,3 +115,10 @@ button {
   font-weight: bold;  /* Make the icon bold */
   color: #333;  /* Set a color to the icon */
 }
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
