@@ -24,4 +24,16 @@ mat-card {
   position: relative; /* Ensure it's stackable */
 }
 
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+  color: #3A7D44;
+  border-color: #3A7D44;
+}
 
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #3A7D44;
+  stroke: #3A7D44;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: #3A7D44 !important;
+}
