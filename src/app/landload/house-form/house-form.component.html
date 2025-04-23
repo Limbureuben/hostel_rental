@@ -52,16 +52,17 @@
         </mat-form-field>
       </div>
 
-      <div class="form-row">
+      <!-- Last Row: File Upload + Submit Button -->
+      <div class="form-row last-row">
         <!-- Image Upload -->
-        <div class="half-width">
+        <div class="image-wrapper">
           <label for="image" class="image-label">House Image</label>
           <input type="file" id="image" (change)="onImageSelected($event)" class="image-input" required>
           <p *ngIf="selectedImage">{{ selectedImage.name }}</p>
         </div>
 
         <!-- Submit Button -->
-        <div class="half-width submit-wrapper">
+        <div class="submit-wrapper">
           <button mat-raised-button color="primary" type="submit">Submit</button>
         </div>
       </div>

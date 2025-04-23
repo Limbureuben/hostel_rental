@@ -34,7 +34,7 @@ export class LandloadDashboardComponent {
   onViewRoomHistory() {
     this.dialog.open(HouseHistoryComponent, {
       width: '1200px',
-      height: '500px',
+      height: '513px',
       disableClose: false
     });
   }
