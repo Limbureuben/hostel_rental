@@ -24,12 +24,12 @@ mat-card {
   position: relative; /* Ensure it's stackable */
 }
 
-/* Change outline stroke on focus */
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  stroke: #3A7D44;
+/* Floating label color on focus */
+.mat-form-field-appearance-outline.mat-form-field-can-float.mat-focused .mat-form-field-label {
+  color: #3A7D44 !important;
 }
 
-/* Change floating label color on focus */
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
-  color: #3A7D44 !important;
+/* Outline border color on focus */
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  stroke: #3A7D44 !important;
 }

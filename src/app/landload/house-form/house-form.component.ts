@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   standalone: false,
   templateUrl: './house-form.component.html',
   styleUrl: './house-form.component.scss',
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('formAnimation', [
       state('void', style({ opacity: 0, transform: 'scale(0.8)' })),
