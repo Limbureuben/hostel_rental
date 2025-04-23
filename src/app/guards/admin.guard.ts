@@ -14,13 +14,13 @@ export class AdminGuard implements CanActivate {
       const token = localStorage.getItem('token');
       const role = localStorage.getItem('role');
 
-      // If the user is already an admin and has a valid token, redirect to the admin dashboard
+      // If the user is logged in and is an admin, redirect to the admin dashboard (not allow them to access login page)
       if (token && role === 'admin') {
-        this.router.navigate(['/admin']);
-        return false;  // Don't proceed to the current route (login or other routes)
+        this.router.navigate(['/admin/admin-dashboard']); // Redirect to the admin dashboard
+        return false;  // Prevent access to the current route (like login)
       }
     }
 
-    return true;  // Allow access to the route (if the user is not an admin)
+    return true;  // Allow access to the route (only if not an admin or no token)
   }
 }
