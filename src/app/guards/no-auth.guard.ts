@@ -1,11 +1,11 @@
-// admin.guard.ts
+// no-auth.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class NoAuthGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
@@ -14,13 +14,17 @@ export class AdminGuard implements CanActivate {
       const token = localStorage.getItem('token');
       const role = localStorage.getItem('role');
 
-      // If the user is already an admin and has a valid token, redirect to the admin dashboard
       if (token && role === 'admin') {
-        this.router.navigate(['/admin']);
-        return false;  // Don't proceed to the current route (login or other routes)
+        this.router.navigate(['/admin/admin-dashboard']);
+        return false;
+      }
+
+      if (token && role !== 'admin') {
+        this.router.navigate(['/homepage']);
+        return false;
       }
     }
 
-    return true;  // Allow access to the route (if the user is not an admin)
+    return true; // allow access to login if not logged in
   }
 }

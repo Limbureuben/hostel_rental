@@ -5,6 +5,7 @@ import { AvailableHouseComponent } from './available-house/available-house.compo
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AdminGuard } from '../guards/admin.guard';
 
+
 const routes: Routes = [
   {
     path: 'admin',
