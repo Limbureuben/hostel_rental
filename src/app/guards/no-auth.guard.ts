@@ -9,8 +9,10 @@ export const loginRedirectGuard: CanActivateFn = () => {
   const role = localStorage.getItem('role');
 
   if (token && role === 'staff') {
-    console.log('🚫 Admin is already logged in. Redirecting to dashboard.');
     router.navigate(['/admin']);
+    return false;
+  } else if(role === 'user'){
+    router.navigate(['/homepage']);
     return false;
   }
 }
