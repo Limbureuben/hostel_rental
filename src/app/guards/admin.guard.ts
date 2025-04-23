@@ -10,11 +10,18 @@ export class AdminGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    const isStaff = localStorage.getItem('role') === 'admin' || localStorage.getItem('isStaff') === 'true';
-    if (isStaff) {
-      return true;
+    // Prevent SSR crash: Check if this is running in the browser
+    if (typeof window !== 'undefined') {
+      const role = localStorage.getItem('role');
+      const isStaff = localStorage.getItem('isStaff') === 'true';
+
+      if (role === 'admin' || isStaff) {
+        return true;
+      }
     }
-    this.router.navigate(['/homepage']);
+
+    // Redirect if not authorized
+    this.router.navigate(['/']);
     return false;
   }
 }
