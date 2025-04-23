@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TenantService } from '../../services/tenant.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tenant-list',
@@ -22,9 +23,40 @@ export class TenantListComponent {
     this.dialogRef.close();
   }
 
+  // bookHouse(houseId: number): void {
+  //   this.tenantService.bookRoom(houseId);
+  //   this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
+  // }
+
   bookHouse(houseId: number): void {
-    this.tenantService.bookRoom(houseId);
-    this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You are about to book this house.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, book it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call the booking service
+        this.tenantService.bookRoom(houseId);
+
+        // Optionally close the dialog (if you want)
+        this.dialogRef.close();
+
+        // Show confirmation alert
+        Swal.fire({
+          title: "Booked!",
+          text: "You have successfully booked the house.",
+          icon: "success"
+        });
+
+        // Snackbar confirmation
+        this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
+      }
+    });
   }
+
 
 }
