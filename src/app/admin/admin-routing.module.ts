@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'admin',
     component: SidebarComponent, canActivate: [AdminGuard],
     children: [
-      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard] },
       { path: 'available-house', component: AvailableHouseComponent },
       { path: '', redirectTo: 'admin-dashboard', pathMatch: 'full' }
     ]
