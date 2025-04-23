@@ -54,6 +54,12 @@ export class TenantDashboardComponent implements OnInit{
     });
   }
 
+  setPagedHouses() {
+    const startIndex = (this.currentPage - 1) * this.housesPerPage;
+    const endIndex = startIndex + this.housesPerPage;
+    this.pagedHouses = this.houses.slice(startIndex, endIndex);
+  }
+
   goBack() {
     this.router.navigate(['/homepage']);
   }
