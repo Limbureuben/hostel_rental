@@ -67,6 +67,14 @@ export class TenantDashboardComponent implements OnInit{
     }
   }
 
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.setPagedHouses();
+    }
+  }
+
+
   goBack() {
     this.router.navigate(['/homepage']);
   }
