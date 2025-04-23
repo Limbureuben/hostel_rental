@@ -3,15 +3,14 @@ import { inject } from '@angular/core';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const token = localStorage.getItem('success_token');
-  const isStaff = localStorage.getItem('is_staff') === 'true';
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
 
   console.log('AdminGuard check:');
   console.log('Token:', token);
-  console.log('is_staff:', localStorage.getItem('is_staff'), '=>', isStaff);
+  console.log('Role:', role);
 
-  if (token && isStaff) {
-    console.log('✅ Admin access granted');
+  if (token && role === 'admin') {
     return true;
   }
 
