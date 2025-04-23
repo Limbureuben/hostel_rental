@@ -15,6 +15,7 @@ import { TenantListComponent } from '../tenant-list/tenant-list.component';
 })
 export class TenantDashboardComponent implements OnInit{
   houses: any[] = [];
+  pagedHouses: any[] = [];
   currentPage: number = 1;
   housesPerPage: number = 8;
 
