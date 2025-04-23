@@ -108,7 +108,7 @@ export class HouseFormComponent implements OnInit{
       next: () => {
         // Display SweetAlert upon successful submission
         Swal.fire({
-          title: 'Good job!',
+          title: 'House Details uploaded!',
           text: 'You clicked the button!',
           icon: 'success',
           confirmButtonText: 'OK'
