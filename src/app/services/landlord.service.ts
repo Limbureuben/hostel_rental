@@ -41,18 +41,21 @@ export class LandlordService {
 
   // Add a new house (sending form data)
   AddHouse(formData: FormData): Observable<any> {
-    return this.http.post(this.apiUrl, formData); // Token will automatically be added via the interceptor
+    return this.http.post(this.apiUrl, formData);
   }
 
-  // Fetch houses posted by the logged-in user
+
   getMyHouse(): Observable<any[]> {
     const userId = localStorage.getItem('userId');
-    console.log('User ID:', userId); // Check if the userId is correct
-    return this.http.get<any[]>(`${this.apiUrl}?user=${userId}`); // Token will automatically be added via the interceptor
+    console.log('User ID:', userId);
+    return this.http.get<any[]>(`${this.apiUrl}?user=${userId}`);
   }
 
   getProfile(): Observable<any> {
     return this.http.get('http://localhost:8000/api/profile/');
   }
 
+  deleteHouse(houseId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}${houseId}/`);
+  }
 }
