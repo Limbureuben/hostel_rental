@@ -19,6 +19,9 @@ export class TenantListComponent {
     private snackBar: MatSnackBar
   ) {}
 
+  close(): void {
+    this.dialogRef.close();
+  }
 
   // bookHouse(houseId: number): void {
   //   this.tenantService.bookRoom(houseId);
