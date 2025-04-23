@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit{
           console.log('Token stored:', response.token);
 
           if (response.user.isStaff) {
-            this.router.navigate(['/admin/admin-dashboard']);
+            this.router.navigate(['/admin']);
           } else {
             this.router.navigate(['/homepage']);
           }
