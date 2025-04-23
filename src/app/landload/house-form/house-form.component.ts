@@ -109,11 +109,10 @@ export class HouseFormComponent implements OnInit{
         // Display SweetAlert upon successful submission
         Swal.fire({
           title: 'House Details uploaded!',
-          text: 'You clicked the button!',
+          text: 'Successfully!!',
           icon: 'success',
           confirmButtonText: 'OK'
         }).then(() => {
-          this.toast.success('House details sent successfully!', 'Success');
           this.HouseData.reset();
           this.selectedImage = null;
           this.dialogRef?.close();
