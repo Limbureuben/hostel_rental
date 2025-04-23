@@ -37,7 +37,7 @@
             <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
             <td mat-cell *matCellDef="let house">
               <button mat-button color="primary" (click)="onView(house)">View</button>
-              <button mat-button color="warn" (click)="onDelete(house)">Delete</button>
+              <button mat-button color="warn" (click)="onDelete(house.id)">Delete</button>
             </td>
           </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
