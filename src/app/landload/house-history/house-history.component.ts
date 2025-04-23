@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-house-history',
@@ -42,7 +43,7 @@ export class HouseHistoryComponent {
   constructor(
     private landloadservice: LandlordService,
     private toastr: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -76,9 +77,30 @@ export class HouseHistoryComponent {
     // You can open a dialog or navigate to a detail page here
   }
 
-  onDelete(house: any) {
-    console.log('Delete clicked:', house);
-    // You can trigger a delete API call and refresh the list here
+
+  onDelete(houseId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This will permanently delete the house!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.landloadservice.deleteHouse(houseId).subscribe({
+          next: () => {
+            Swal.fire('Deleted!', 'House has been deleted.', 'success');
+            this.loadhouse(); // Re-fetch list after deletion
+          },
+          error: (err) => {
+            console.error('Delete error:', err);
+            Swal.fire('Error', 'Failed to delete the house.', 'error');
+          }
+        });
+      }
+    });
   }
 
 }
