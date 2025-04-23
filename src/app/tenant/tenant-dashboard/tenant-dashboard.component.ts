@@ -31,15 +31,27 @@ export class TenantDashboardComponent implements OnInit{
 
   }
 
+  // loadhouse() {
+  //   this.tenantservice.getAllHouse().subscribe({
+  //     next:(data) => {
+  //       this.houses = data;
+  //     },
+  //     error: (err) => {
+  //       this.toastr.error('Failed to fetch houses', 'Error');
+  //     }
+  //   })
+  // }
+
   loadhouse() {
     this.tenantservice.getAllHouse().subscribe({
-      next:(data) => {
+      next: (data) => {
         this.houses = data;
+        this.setPagedHouses();
       },
       error: (err) => {
         this.toastr.error('Failed to fetch houses', 'Error');
       }
-    })
+    });
   }
 
   goBack() {
