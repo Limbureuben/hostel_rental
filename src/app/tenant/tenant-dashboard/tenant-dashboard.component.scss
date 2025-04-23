@@ -122,3 +122,12 @@ button {
   gap: 10px;
   margin-bottom: 20px;
 }
+
+
+.house-section {
+  margin-top: 30px;
+  min-height: 80vh; /* Helps keep paginator at bottom even if few houses */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
