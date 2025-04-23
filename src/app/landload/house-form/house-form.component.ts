@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
   standalone: false,
   templateUrl: './house-form.component.html',
   styleUrl: './house-form.component.scss',
-  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('formAnimation', [
       state('void', style({ opacity: 0, transform: 'scale(0.8)' })),

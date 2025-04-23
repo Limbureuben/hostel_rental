@@ -23,13 +23,3 @@ mat-card {
   z-index: 10000 !important;
   position: relative; /* Ensure it's stackable */
 }
-
-/* Floating label color on focus */
-.mat-form-field-appearance-outline.mat-form-field-can-float.mat-focused .mat-form-field-label {
-  color: #3A7D44 !important;
-}
-
-/* Outline border color on focus */
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  stroke: #3A7D44 !important;
-}
