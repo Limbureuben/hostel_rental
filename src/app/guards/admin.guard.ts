@@ -10,7 +10,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   console.log('Token:', token);
   console.log('Role:', role);
 
-  if (token && role === 'admin') {
+  if (token && role === 'staff') {
     return true;
   }
 
