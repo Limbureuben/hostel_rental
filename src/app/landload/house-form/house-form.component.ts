@@ -79,18 +79,22 @@ export class HouseFormComponent implements OnInit{
     // Make the API request
     this.landhouseservice.AddHouse(formData).subscribe({
       next: () => {
-        // Display SweetAlert upon successful submission
-        Swal.fire({
-          title: 'House Details uploaded!',
-          text: 'Successfully!!',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          // Reset the form and close the dialog after the alert
-          this.HouseData.reset();
-          this.selectedImage = null;
-          this.dialogRef?.close();
-        });
+        // Close the dialog first
+        this.dialogRef?.close();
+
+        // Use setTimeout to show SweetAlert after the dialog is closed
+        setTimeout(() => {
+          Swal.fire({
+            title: 'House Details uploaded!',
+            text: 'Successfully!!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            // Reset the form after the alert
+            this.HouseData.reset();
+            this.selectedImage = null;
+          });
+        }, 200);  // Delay in ms to ensure the dialog is closed first
       },
       error: (err) => {
         // Handle any errors during the submission
@@ -103,43 +107,7 @@ export class HouseFormComponent implements OnInit{
       }
     });
   }
-
-  // Submit() {
-  //   if (this.HouseData.invalid || !this.selectedImage) {
-  //     this.toast.warning('Please fill all fields and select an image', 'Validation Warning');
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-
-  //   const rawDate = this.HouseData.get('availability_date')?.value;
-  //   const formattedDate = this.formatDate(rawDate);
-
-  //   formData.append('house_type', this.HouseData.get('house_type')?.value);
-  //   formData.append('number_of_rooms', this.HouseData.get('number_of_rooms')?.value);
-  //   formData.append('price_per_month', this.HouseData.get('price_per_month')?.value);
-  //   formData.append('location', this.HouseData.get('location')?.value);
-  //   formData.append('availability_date', formattedDate); // <-- formatted
-  //   formData.append('contact', this.HouseData.get('contact')?.value);
-  //   formData.append('image', this.selectedImage!);
-
-  //   this.landhouseservice.AddHouse(formData).subscribe({
-  //     next:() => {
-  //       this.toast.success('House details sent successfully!', 'Success');
-  //       this.HouseData.reset();
-  //       this.selectedImage = null;
-  //       this.dialogRef?.close();
-  //     },
-  //     error: (err) => {
-  //       console.error('Submission failed', err);
-  //       this.toast.error('Failed to submit house', 'Error');
-  //     }
-  //   })
-  // }
-
-
-
-
+  
   private formatDate(date: any): string {
     const d = new Date(date);
     const year = d.getFullYear();
