@@ -16,7 +16,6 @@ export const loginRedirectGuard: CanActivateFn = () => {
     return false;
   }
 }
-
   return true;
 };
 

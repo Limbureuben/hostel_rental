@@ -1,26 +1,21 @@
-// user.guard.ts
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class UserGuard implements CanActivate {
+export const UserGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
 
-  constructor(private router: Router) {}
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
 
-  canActivate(): boolean {
-    // Prevent SSR crash: Check if running in browser
-    if (typeof window !== 'undefined') {
-      const isStaff = localStorage.getItem('isStaff') === 'true';
+  console.log('Token:', token);
+  console.log('Role:', role);
 
-      if (!isStaff) {
-        return true;
-      }
-    }
-
-    // Redirect staff users to admin dashboard
-    this.router.navigate(['/admin/admin-dashboard']);
-    return false;
+  if (token && role === 'user') {
+    return true;
   }
 }
+
+  router.navigate(['/']);
+  return false;
+};
