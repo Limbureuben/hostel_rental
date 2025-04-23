@@ -1,6 +1,7 @@
 <app-tenant-header></app-tenant-header>
+
 <c-card-group class="mb-4 card-group-custom">
-  <c-card *ngFor="let house of houses" class="custom-card">
+  <c-card *ngFor="let house of pagedHouses" class="custom-card">
     <c-card-body>
       <h5 cCardTitle>{{ house.house_type | titlecase }}</h5>
       <p cCardText><strong>Available:</strong> {{ house.availability_date | date }}</p>
@@ -12,7 +13,13 @@
     </c-card-body>
   </c-card>
 </c-card-group>
+
+<div class="pagination-controls">
+  <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }}</span>
+  <button mat-raised-button (click)="nextPage()" [disabled]="currentPage * housesPerPage >= houses.length">Next</button>
+</div>
+
 <button mat-fab color="accent" class="back-button" (click)="goBack()">
   <mat-icon>arrow_back</mat-icon>
 </button>
-
