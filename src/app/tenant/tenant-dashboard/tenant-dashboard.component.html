@@ -9,7 +9,9 @@
         <p cCardText><strong>Price:</strong> TZS {{ house.price_per_month }}</p>
         <p cCardText><strong>Location:</strong> {{ house.location }}</p>
         <div class="button-group">
-          <button mat-raised-button color="primary" (click)="openDialog(house)">View</button>
+          <button mat-raised-button style="background-color: #4CAF50; color: white;" (click)="openDialog(house)">
+            View
+          </button>
         </div>
       </c-card-body>
     </c-card>
