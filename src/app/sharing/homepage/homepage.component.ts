@@ -28,7 +28,7 @@ export class HomepageComponent {
   }
 
   goBack() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/homepage'])
   }
 
   logout(): void {
