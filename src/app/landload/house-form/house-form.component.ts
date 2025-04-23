@@ -28,6 +28,7 @@ import Swal from 'sweetalert2';
 export class HouseFormComponent implements OnInit{
   HouseData!: FormGroup;
   selectedImage!: File | null;
+  isSubmitting: boolean = false;
 
   constructor(
     @Optional() public dialogRef: MatDialogRef<HouseFormComponent>,
@@ -50,6 +51,57 @@ export class HouseFormComponent implements OnInit{
 
   onImageSelected(event: any) {
     this.selectedImage = event.target.files[0];
+  }
+
+  Submit() {
+    // Check for invalid form or missing image
+    if (this.HouseData.invalid || !this.selectedImage) {
+      this.toast.warning('Please fill all fields and select an image', 'Validation Warning');
+      return;
+    }
+
+    // Disable the button to prevent double submission
+    this.isSubmitting = true;
+
+    const formData = new FormData();
+
+    const rawDate = this.HouseData.get('availability_date')?.value;
+    const formattedDate = this.formatDate(rawDate);
+
+    formData.append('house_type', this.HouseData.get('house_type')?.value);
+    formData.append('number_of_rooms', this.HouseData.get('number_of_rooms')?.value);
+    formData.append('price_per_month', this.HouseData.get('price_per_month')?.value);
+    formData.append('location', this.HouseData.get('location')?.value);
+    formData.append('availability_date', formattedDate); // <-- formatted
+    formData.append('contact', this.HouseData.get('contact')?.value);
+    formData.append('image', this.selectedImage!);
+
+    // Make the API request
+    this.landhouseservice.AddHouse(formData).subscribe({
+      next: () => {
+        // Display SweetAlert upon successful submission
+        Swal.fire({
+          title: 'House Details uploaded!',
+          text: 'Successfully!!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          // Reset the form and close the dialog after the alert
+          this.HouseData.reset();
+          this.selectedImage = null;
+          this.dialogRef?.close();
+        });
+      },
+      error: (err) => {
+        // Handle any errors during the submission
+        console.error('Submission failed', err);
+        this.toast.error('Failed to submit house', 'Error');
+      },
+      complete: () => {
+        // Re-enable the button after submission completes
+        this.isSubmitting = false;
+      }
+    });
   }
 
   // Submit() {
@@ -85,45 +137,7 @@ export class HouseFormComponent implements OnInit{
   //   })
   // }
 
-  Submit() {
-    if (this.HouseData.invalid || !this.selectedImage) {
-      this.toast.warning('Please fill all fields and select an image', 'Validation Warning');
-      return;
-    }
 
-    const formData = new FormData();
-
-    const rawDate = this.HouseData.get('availability_date')?.value;
-    const formattedDate = this.formatDate(rawDate);
-
-    formData.append('house_type', this.HouseData.get('house_type')?.value);
-    formData.append('number_of_rooms', this.HouseData.get('number_of_rooms')?.value);
-    formData.append('price_per_month', this.HouseData.get('price_per_month')?.value);
-    formData.append('location', this.HouseData.get('location')?.value);
-    formData.append('availability_date', formattedDate); // <-- formatted
-    formData.append('contact', this.HouseData.get('contact')?.value);
-    formData.append('image', this.selectedImage!);
-
-    this.landhouseservice.AddHouse(formData).subscribe({
-      next: () => {
-        // Display SweetAlert upon successful submission
-        Swal.fire({
-          title: 'House Details uploaded!',
-          text: 'Successfully!!',
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          this.HouseData.reset();
-          this.selectedImage = null;
-          this.dialogRef?.close();
-        });
-      },
-      error: (err) => {
-        console.error('Submission failed', err);
-        this.toast.error('Failed to submit house', 'Error');
-      }
-    });
-  }
 
 
   private formatDate(date: any): string {
