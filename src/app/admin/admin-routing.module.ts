@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AvailableHouseComponent } from './available-house/available-house.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { AdminGuard } from '../guards/admin.guard';
+import { adminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
   {
     path: 'admin',
-    component: SidebarComponent, canActivate: [AdminGuard],
+    component: SidebarComponent, canActivate: [adminGuard],
     children: [
-      { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard] },
+      { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [adminGuard] },
       { path: 'available-house', component: AvailableHouseComponent },
       { path: '', redirectTo: 'admin-dashboard', pathMatch: 'full' }
     ]
