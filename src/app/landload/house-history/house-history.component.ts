@@ -44,6 +44,7 @@ export class HouseHistoryComponent {
     private landloadservice: LandlordService,
     private toastr: ToastrService,
     private dialog: MatDialog,
+    private dialogRef: MatDialogRef<HouseHistoryComponent>
   ) {}
 
   ngOnInit(): void {
@@ -76,8 +77,13 @@ export class HouseHistoryComponent {
     console.log('View clicked:', house);
   }
 
+  close(): void {
+    this.dialogRef.close();
+  }
+
 
   onDelete(houseId: number): void {
+    this.dialogRef.close();
     Swal.fire({
       title: 'Are you sure?',
       text: 'This will permanently delete the house!',
