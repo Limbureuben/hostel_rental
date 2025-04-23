@@ -74,7 +74,6 @@ export class HouseHistoryComponent {
 
   onView(house: any) {
     console.log('View clicked:', house);
-    // You can open a dialog or navigate to a detail page here
   }
 
 
