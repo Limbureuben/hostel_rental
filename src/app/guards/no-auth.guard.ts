@@ -3,6 +3,8 @@ import { inject } from '@angular/core';
 
 export const loginRedirectGuard: CanActivateFn = () => {
   const router = inject(Router);
+
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
 
@@ -11,6 +13,7 @@ export const loginRedirectGuard: CanActivateFn = () => {
     router.navigate(['/admin']);
     return false;
   }
+}
 
   return true;
 };

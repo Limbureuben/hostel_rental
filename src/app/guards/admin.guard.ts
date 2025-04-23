@@ -3,6 +3,8 @@ import { inject } from '@angular/core';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
+
+  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
 
@@ -13,6 +15,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   if (token && role === 'staff') {
     return true;
   }
+}
 
   console.log('⛔ Access denied, redirecting to login');
   router.navigate(['/']);
