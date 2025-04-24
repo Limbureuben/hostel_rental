@@ -41,4 +41,8 @@ export class LandloadProfileComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+  resetPassword() {
+    
+  }
 }
