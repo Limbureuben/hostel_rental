@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TenantProfileComponent } from '../tenant-profile/tenant-profile.component';
+import { TenantUploadComponent } from '../tenant-upload/tenant-upload.component';
 
 @Component({
   selector: 'app-tenant-header',
@@ -26,8 +27,10 @@ export class TenantHeaderComponent {
         });
      }
 
-     NavigateToUpload() {
-        this.router.navigate(['/tenant-upload']);
+     NavigateToUpload(): void {
+        this.dialog.open(TenantUploadComponent, {
+          disableClose: false,
+        });
      }
 
 }

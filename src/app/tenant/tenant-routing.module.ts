@@ -8,7 +8,7 @@ import { UserGuard } from '../guards/user.guard';
 const routes: Routes = [
   { path: 'tenant-dashboard', component: TenantDashboardComponent, canActivate: [UserGuard] },
   { path: 'tenant-order', component: TenantOrderComponent, canActivate: [UserGuard] },
-  { path: 'tenant-upload', component: TenantUploadComponent, canActivate: [UserGuard] }
+  { path: 'tenant-upload', component: TenantUploadComponent }
 ];
 
 @NgModule({
