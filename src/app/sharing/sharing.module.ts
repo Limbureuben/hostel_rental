@@ -22,6 +22,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MapComponent } from './map/map.component';
 import { MapDisplayComponent } from './map-display/map-display.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { HomepageComponent } from './homepage/homepage.component';
     FooterComponent,
     MapComponent,
     MapDisplayComponent,
-    HomepageComponent
+    HomepageComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
