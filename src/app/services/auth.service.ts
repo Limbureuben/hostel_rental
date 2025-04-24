@@ -46,4 +46,8 @@ export class AuthService {
     })
   }
 
+  forgotPassword() {
+    
+  }
+
 }
