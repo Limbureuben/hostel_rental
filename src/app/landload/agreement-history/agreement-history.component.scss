@@ -1,22 +1,57 @@
-.table {
-  width: 100%;
-  margin: 20px 0;
-  border-collapse: collapse;
-}
-
-.table th, .table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.table th {
-  background-color: #f2f2f2;
-}
-
-.table td {
+.dialog-title {
   text-align: center;
+  font-weight: bold;
+  color: #3f51b5;
 }
 
-button {
-  margin-top: 5px;
+.dialog-content {
+  max-height: 90vh;
+  overflow: auto;
+  padding: 0 1rem;
 }
+
+.table-container {
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.search-field {
+  width: 300px;
+}
+
+.table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.custom-table {
+  width: 100%;
+  border-radius: 8px;
+  background: white;
+}
+
+mat-header-cell, mat-cell {
+  padding: 12px;
+  font-size: 14px;
+}
+
+mat-header-row {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* SweetAlert2 - Force to appear above Angular Material dialogs */
+.swal2-container {
+  z-index: 2000 !important; /* Higher than Angular Material Dialog default (1000-1500) */
+  position: fixed !important; /* Ensure it's on the screen, not relative */
+}
+
