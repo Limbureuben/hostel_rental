@@ -45,4 +45,8 @@ export class LandloadHeaderComponent {
         disableClose: false,
       });
    }
+
+   onViewBooking(): void {
+    this.router.navigate(['/agreement-history']);
+   }
 }
