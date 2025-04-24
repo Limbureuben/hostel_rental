@@ -29,6 +29,8 @@ export class TenantHeaderComponent {
 
      NavigateToUpload(): void {
         this.dialog.open(TenantUploadComponent, {
+          width: '500px',
+          maxHeight: '90vh',
           disableClose: false,
         });
      }
