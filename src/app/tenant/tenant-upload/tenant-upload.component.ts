@@ -55,11 +55,11 @@ export class TenantUploadComponent {
 
     this.tenantUploadService.uploadAgreement(formData).subscribe({
       next: (res) => {
-        console.log('Upload success:', res);
+        this.toastr.success('Agreement uploaded successfully!', 'Success');
         this.dialogRef.close();
       },
       error: (err) => {
-        console.error('Upload failed:', err);
+        this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
       }
     });
   }
