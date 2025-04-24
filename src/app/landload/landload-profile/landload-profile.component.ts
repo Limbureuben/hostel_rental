@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { LandlordService } from '../../services/landlord.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landload-profile',
@@ -15,7 +16,8 @@ export class LandloadProfileComponent {
   constructor(
     private userService: LandlordService,
     private dialogRef: MatDialogRef<LandloadProfileComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,6 @@ export class LandloadProfileComponent {
   }
 
   resetPassword() {
-    
+
   }
 }

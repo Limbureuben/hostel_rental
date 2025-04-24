@@ -7,12 +7,16 @@ import { MapComponent } from './map/map.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { UserGuard } from '../guards/user.guard';
 import { loginRedirectGuard } from '../guards/no-auth.guard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: 'user-home', component: UserHomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [loginRedirectGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'homepage', component: HomepageComponent, canActivate: [UserGuard] }
+  { path: 'homepage', component: HomepageComponent, canActivate: [UserGuard] },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent }
   // { path: 'map', component: MapComponent }
 ];
 
