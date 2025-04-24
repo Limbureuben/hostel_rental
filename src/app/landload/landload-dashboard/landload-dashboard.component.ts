@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HouseFormComponent } from '../house-form/house-form.component';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
 import { ToastrService } from 'ngx-toastr';
+import { AgreementHistoryComponent } from '../agreement-history/agreement-history.component';
 
 @Component({
   selector: 'app-landload-dashboard',
@@ -44,10 +45,13 @@ export class LandloadDashboardComponent {
     this.router.navigate(['/view-services']);
   }
 
-  onManagePayments() {
-    // Navigate to manage payments page
-    this.router.navigate(['/manage-payments']);
-  }
+  onManageBooking(): void {
+    this.dialog.open(AgreementHistoryComponent, {
+          width: '1200px',
+          height: '500px',
+          disableClose: false
+        });
+     }
 
   goBack() {
     this.router.navigate(['/homepage']);
