@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ForgotPasswordComponent {
 
+  constructor() {}
+
+  submitEmail() {
+    
+  }
 
 }
