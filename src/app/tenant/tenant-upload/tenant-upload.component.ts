@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TenantService } from '../../services/tenant.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tenant-upload',
@@ -19,6 +20,7 @@ export class TenantUploadComponent {
   constructor(
     private fb: FormBuilder,
     private tenantUploadService: TenantService,
+    private toastr: ToastrService,
     public dialogRef: MatDialogRef<TenantUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -44,12 +46,12 @@ export class TenantUploadComponent {
 
     this.tenantUploadService.uploadAgreement(formData).subscribe({
       next: () => {
-        alert('Agreement uploaded successfully!');
+        this.toastr.success('Agreement uploaded successfully!', 'Success');
         this.dialogRef.close();
       },
       error: (err) => {
         console.error('Upload failed:', err);
-        alert('Failed to upload agreement.');
+        this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
       }
     });
   }
