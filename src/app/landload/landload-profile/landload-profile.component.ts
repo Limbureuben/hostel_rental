@@ -45,6 +45,7 @@ export class LandloadProfileComponent {
   }
 
   resetPassword() {
+    this.dialogRef.close();
     this.router.navigate(['/forgot-password']);
   }
 }
