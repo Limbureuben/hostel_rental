@@ -15,6 +15,8 @@ import { HttpClient } from '@angular/common/http';
 export class AgreementHistoryComponent {
   displayedColumns: string[] = ['from_user', 'sender_phone', 'uploaded_at', 'file', 'actions'];
   dataSource = new MatTableDataSource<any>();
+  private baseUrl = 'http://127.0.0.1:8000';
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -37,11 +39,14 @@ export class AgreementHistoryComponent {
   }
 
   downloadFile(fileUrl: string) {
-    this.http.get(fileUrl, { responseType: 'blob' }).subscribe((blob) => {
+    const filename = fileUrl.split('/').pop();  // Get filename from full URL
+    const downloadUrl = `${this.baseUrl}/api/agreement/download/${filename}`;
+
+    this.http.get(downloadUrl, { responseType: 'blob' }).subscribe(blob => {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = fileUrl.split('/').pop() || 'agreement.pdf';
+      a.download = filename || 'agreement.pdf';
       a.click();
       URL.revokeObjectURL(objectUrl);
     });
