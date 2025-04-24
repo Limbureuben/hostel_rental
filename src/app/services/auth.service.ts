@@ -55,10 +55,8 @@ export class AuthService {
   }
 
   resetPassword(uidb64: string, token: string, password: string) {
-    const url = `${this.apiUrl}password-reset-confirm/${uidb64}/${token}/`;
+    const url = `http://localhost:8000/api/password-reset-confirm/${uidb64}/${token}/`;
     return this.http.post(url, { password });
   }
-
-
 
 }
