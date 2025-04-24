@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class TenantService {
 
   private baseUrl = 'http://127.0.0.1:8000';
+  private apiUrl = 'http://localhost:8000/api/upload-signed-agreement/';
 
   constructor(
     private http: HttpClient
@@ -32,7 +33,9 @@ export class TenantService {
       });
   }
 
-  uploadAgreement(formData: FormData) {
-    return this.http.post<any>(`${this.baseUrl}/api/upload-signed-agreement/`, formData);
+
+
+  uploadAgreement(data: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 }

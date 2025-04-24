@@ -12,12 +12,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './tenant-upload.component.scss'
 })
 export class TenantUploadComponent {
+  senderPhone = '';
+  receiverUsername = '';
   selectedFile: File | null = null;
-
-  agreementForm = {
-    phone: '',
-    toUsername: ''
-  };
 
   constructor(
     private fb: FormBuilder,
@@ -28,36 +25,33 @@ export class TenantUploadComponent {
 
   }
 
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+  onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFile = fileInput.files[0];
+    }
   }
 
-  // onSubmit(): void {
-  //   if (!this.uploadForm.valid || !this.selectedFile) {
-  //     this.snackBar.open('Please complete the form and select a file.', 'Close', {
-  //       duration: 3000
-  //     });
-  //     return;
-  //   }
+  onSubmit(): void {
+    if (!this.senderPhone || !this.receiverUsername || !this.selectedFile) {
+      return;
+    }
 
-  //   const formData = new FormData();
-  //   formData.append('username', this.uploadForm.get('username')?.value);
-  //   formData.append('phone_number', this.uploadForm.get('phone_number')?.value);
-  //   formData.append('file', this.selectedFile);
+    const formData = new FormData();
+    formData.append('sender_phone', this.senderPhone);
+    formData.append('to_username', this.receiverUsername);
+    formData.append('file', this.selectedFile);
 
-  //   this.tenantUploadService.uploadAgreement(formData).subscribe({
-  //     next: (res) => {
-  //       this.snackBar.open('Uploaded successfully!', 'Close', { duration: 3000 });
-  //       this.matchedHouse = res.house || null;
-  //     },
-  //     error: () => {
-  //       this.snackBar.open('Upload failed. Please try again.', 'Close', { duration: 3000 });
-  //     }
-  //   });
-  // }
-
-  onSubmit() {
-    console.log('Form submitted');
+    this.tenantUploadService.uploadAgreement(formData).subscribe({
+      next: () => {
+        alert('Agreement uploaded successfully!');
+        this.dialogRef.close();
+      },
+      error: (err) => {
+        console.error('Upload failed:', err);
+        alert('Failed to upload agreement.');
+      }
+    });
   }
 
   closeDialog(): void {
@@ -65,3 +59,4 @@ export class TenantUploadComponent {
   }
 
 }
+
