@@ -77,11 +77,6 @@ export class HouseHistoryComponent {
     console.log('View clicked:', house);
   }
 
-  close(): void {
-    this.dialogRef.close();
-  }
-
-
   onDelete(houseId: number): void {
     this.dialogRef.close();
     Swal.fire({
