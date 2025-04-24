@@ -21,18 +21,39 @@ export class ForgotPasswordComponent {
     private snackBar: MatSnackBar,
   ) {}
 
+  // submitEmail(): void {
+  //   if (this.emailControl.valid) {
+  //     this.authService.forgotPassword(this.emailControl.value!).subscribe({
+  //       next: (response) => {
+  //         this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
+  //       },
+  //       error: (error) => {
+  //         this.snackBar.open('Failed to send reset link. Please try again.', 'Close', { duration: 3000 });
+  //       }
+  //     })
+  //   }
+  // }
+
   submitEmail(): void {
-    if (this.emailControl.valid) {
-      this.authService.forgotPassword(this.emailControl.value!).subscribe({
+    const email = this.emailControl.value;
+    console.log('Submitting email:', email); // Check if this runs
+
+    if (this.emailControl.valid && email) {
+      this.authService.forgotPassword(email).subscribe({
         next: (response) => {
+          console.log('Email sent:', response);
           this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
         },
         error: (error) => {
+          console.error('Error sending email:', error);
           this.snackBar.open('Failed to send reset link. Please try again.', 'Close', { duration: 3000 });
         }
-      })
+      });
+    } else {
+      console.warn('Email invalid or empty');
     }
   }
+
 
   goBack() {
     this.location.back()
