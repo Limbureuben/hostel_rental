@@ -21,7 +21,7 @@ export interface LoginData {
 
 export class AuthService {
 
-  private apiUrl = 'http://localhost:8000/api/password-reset/';
+  private apiUrl = 'http://localhost:8000';
 
   constructor(
     private apollo: Apollo,
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    return this.http.post(this.apiUrl, { email });
+    return this.http.post(`${this.apiUrl}/api/password-reset/`, { email });
   }
 
 }

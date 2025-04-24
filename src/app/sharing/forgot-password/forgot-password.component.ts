@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit{
     console.log('Form valid?', this.emailForm.valid);
 
     if (this.emailForm.valid) {
-      this.authService.forgotPassword(this.emailForm.value).subscribe({
+      this.authService.forgotPassword(this.emailForm.get('email')?.value).subscribe({
         next: (response) => {
           this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
         },
