@@ -83,6 +83,7 @@ export class HouseHistoryComponent {
 
 
   onDelete(houseId: number): void {
+    this.dialogRef.close();
     Swal.fire({
       title: 'Are you sure?',
       backdrop: true,
@@ -93,7 +94,6 @@ export class HouseHistoryComponent {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-      this.dialogRef.close();
       if (result.isConfirmed) {
         this.landloadservice.deleteHouse(houseId).subscribe({
           next: () => {
