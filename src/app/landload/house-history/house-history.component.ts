@@ -83,7 +83,6 @@ export class HouseHistoryComponent {
 
 
   onDelete(houseId: number): void {
-    this.dialogRef.close();
     Swal.fire({
       title: 'Are you sure?',
       text: 'This will permanently delete the house!',
@@ -97,7 +96,7 @@ export class HouseHistoryComponent {
         this.landloadservice.deleteHouse(houseId).subscribe({
           next: () => {
             Swal.fire('Deleted!', 'House has been deleted.', 'success');
-            this.loadhouse(); // Re-fetch list after deletion
+            this.loadhouse();
           },
           error: (err) => {
             console.error('Delete error:', err);
@@ -107,6 +106,7 @@ export class HouseHistoryComponent {
       }
     });
   }
+
 
 }
 
