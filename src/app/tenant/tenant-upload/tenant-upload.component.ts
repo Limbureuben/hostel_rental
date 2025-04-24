@@ -13,8 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './tenant-upload.component.scss'
 })
 export class TenantUploadComponent {
-  senderPhone = '';
-  receiverUsername = '';
+  uploadForm: FormGroup;
   selectedFile: File | null = null;
 
   constructor(
@@ -24,7 +23,10 @@ export class TenantUploadComponent {
     public dialogRef: MatDialogRef<TenantUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
+    this.uploadForm = this.fb.group({
+      senderPhone: ['', Validators.required],
+      receiverUsername: ['', Validators.required]
+    });
   }
 
   onFileSelected(event: Event): void {
@@ -35,30 +37,31 @@ export class TenantUploadComponent {
   }
 
   onSubmit(): void {
-    if (!this.senderPhone || !this.receiverUsername || !this.selectedFile) {
+    if (this.uploadForm.invalid || !this.selectedFile) {
+      console.warn('Form is invalid or file not selected');
       return;
     }
 
     const formData = new FormData();
-    formData.append('sender_phone', this.senderPhone);
-    formData.append('to_username', this.receiverUsername);
+    formData.append('phone', this.uploadForm.get('senderPhone')?.value);
+    formData.append('to_username', this.uploadForm.get('receiverUsername')?.value);
     formData.append('file', this.selectedFile);
 
+    console.log('Submitting agreement with:', {
+      phone: this.uploadForm.get('senderPhone')?.value,
+      to: this.uploadForm.get('receiverUsername')?.value,
+      file: this.selectedFile.name
+    });
+
     this.tenantUploadService.uploadAgreement(formData).subscribe({
-      next: () => {
-        this.toastr.success('Agreement uploaded successfully!', 'Success');
+      next: (res) => {
+        console.log('Upload success:', res);
         this.dialogRef.close();
       },
       error: (err) => {
         console.error('Upload failed:', err);
-        this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
       }
     });
   }
-
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
 }
 
