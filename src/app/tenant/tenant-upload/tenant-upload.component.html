@@ -1,25 +1,31 @@
-<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-  <h2>Upload Agreement</h2>
-
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Sender Phone Number</mat-label>
-    <input matInput placeholder="e.g., 0712345678" formControlName="senderPhone" required>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>To (Receiver Username)</mat-label>
-    <input matInput placeholder="e.g., Reuben" formControlName="receiverUsername" required>
-  </mat-form-field>
-
-  <div class="file-upload">
-    <label for="file-upload" class="file-label">
-      <span *ngIf="!selectedFile">Choose Agreement File</span>
-      <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
-      <input id="file-upload" type="file" (change)="onFileSelected($event)" required>
-    </label>
-  </div>
-
-  <button mat-raised-button color="primary" class="upload-button" type="submit">
-    Upload
+<div mat-dialog-content class="upload-container">
+  <button mat-icon-button class="close-button" (click)="dialogRef.close()" aria-label="Close dialog">
+    <mat-icon>close</mat-icon>
   </button>
-</form>
+
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <h2>Upload Agreement</h2>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Sender Phone Number</mat-label>
+      <input matInput placeholder="e.g., 0712345678" formControlName="senderPhone" required name="phone">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>To (Receiver Username)</mat-label>
+      <input matInput placeholder="e.g., Reuben" formControlName="receiverUsername" required name="toUsername">
+    </mat-form-field>
+
+    <div class="file-upload">
+      <label for="file-upload" class="file-label">
+        <span *ngIf="!selectedFile">Choose Agreement File</span>
+        <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)" required>
+      </label>
+    </div>
+
+    <button mat-raised-button color="primary" class="upload-button" type="submit">
+      Upload
+    </button>
+  </form>
+</div>
