@@ -85,6 +85,7 @@ export class HouseHistoryComponent {
   onDelete(houseId: number): void {
     Swal.fire({
       title: 'Are you sure?',
+      backdrop: true,
       text: 'This will permanently delete the house!',
       icon: 'warning',
       showCancelButton: true,
