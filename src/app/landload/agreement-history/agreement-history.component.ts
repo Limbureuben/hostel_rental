@@ -4,6 +4,7 @@ import { TenantService } from '../../services/tenant.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-agreement-history',
@@ -21,7 +22,8 @@ export class AgreementHistoryComponent {
 
   constructor(
     private tenantService: TenantService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -35,12 +37,16 @@ export class AgreementHistoryComponent {
   }
 
   downloadFile(fileUrl: string) {
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = '';
-    link.target = '_blank';
-    link.click();
+    this.http.get(fileUrl, { responseType: 'blob' }).subscribe((blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = fileUrl.split('/').pop() || 'agreement.pdf';
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
+
 
 
   closeDialog() {
