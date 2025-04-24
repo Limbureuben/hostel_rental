@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { LOGIN_USER, REGISTER_USER } from '../graphql';
+import { HttpClient } from '@angular/common/http';
 
 export interface RegisterData {
   username: string,
@@ -20,8 +21,11 @@ export interface LoginData {
 
 export class AuthService {
 
+  private apiUrl = 'http://localhost:8000/api/password-reset/';
+
   constructor(
-    private apollo: Apollo
+    private apollo: Apollo,
+    private http: HttpClient
   ) { }
 
   registerUser(userData: RegisterData): Observable<any> {
@@ -46,8 +50,8 @@ export class AuthService {
     })
   }
 
-  forgotPassword() {
-    
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post(this.apiUrl, { email });
   }
 
 }

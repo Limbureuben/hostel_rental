@@ -23,7 +23,7 @@ export class ForgotPasswordComponent {
 
   submitEmail(): void {
     if (this.emailControl.valid) {
-      this.authService.forgotPassword(this.emailControl.value).subscribe({
+      this.authService.forgotPassword(this.emailControl.value!).subscribe({
         next: (response) => {
           this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
         },
