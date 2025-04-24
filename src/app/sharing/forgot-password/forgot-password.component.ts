@@ -11,6 +11,10 @@ export class ForgotPasswordComponent {
   constructor() {}
 
   submitEmail() {
+
+  }
+
+  goBack() {
     
   }
 
