@@ -36,7 +36,7 @@ export class TenantService {
   uploadAgreement(data: FormData): Observable<any> {
     const token = localStorage.getItem('access_token'); // or wherever you're storing the token
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(`${this.baseUrl}/api/upload-signed-agreement/`, data, { headers });
+    return this.http.post(`${this.baseUrl}/api/agreement/`, data, { headers });
   }
 
 }

@@ -23,12 +23,14 @@ export class TenantUploadComponent {
     public dialogRef: MatDialogRef<TenantUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    // Initialize form with correct field names
     this.uploadForm = this.fb.group({
-      senderPhone: ['', Validators.required],
-      receiverUsername: ['', Validators.required]
+      senderPhone: ['', Validators.required],  // Match with backend field 'sender_phone'
+      receiverUsername: ['', Validators.required]  // Match with backend field 'to_user'
     });
   }
 
+  // Handle file selection
   onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
@@ -36,6 +38,7 @@ export class TenantUploadComponent {
     }
   }
 
+  // Handle form submission
   onSubmit(): void {
     if (this.uploadForm.invalid || !this.selectedFile) {
       console.warn('Form is invalid or file not selected');
@@ -43,8 +46,9 @@ export class TenantUploadComponent {
     }
 
     const formData = new FormData();
-    formData.append('phone', this.uploadForm.get('senderPhone')?.value);
-    formData.append('to_username', this.uploadForm.get('receiverUsername')?.value);
+    // Correct field names as per backend expectations
+    formData.append('sender_phone', this.uploadForm.get('senderPhone')?.value);  // 'sender_phone' expected
+    formData.append('to_user', this.uploadForm.get('receiverUsername')?.value);  // 'to_user' expected
     formData.append('file', this.selectedFile);
 
     console.log('Submitting agreement with:', {
@@ -59,9 +63,9 @@ export class TenantUploadComponent {
         this.dialogRef.close();
       },
       error: (err) => {
+        console.error('Upload error:', err);  // Log the error for debugging
         this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
       }
     });
   }
 }
-
