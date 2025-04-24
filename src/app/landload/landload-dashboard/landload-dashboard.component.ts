@@ -35,7 +35,7 @@ export class LandloadDashboardComponent {
     this.dialog.open(HouseHistoryComponent, {
       width: '1200px',
       height: '513px',
-      disableClose: false
+      disableClose: true,
     });
   }
 
