@@ -35,7 +35,7 @@ export class TenantService {
   }
 
   uploadAgreement(data: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/upload-signed-agreement/`, data);
+    return this.http.post(`${this.baseUrl}/api/upload-agreement/`, data);
   }
 
 }
