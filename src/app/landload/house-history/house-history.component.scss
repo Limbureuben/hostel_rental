@@ -47,3 +47,8 @@ mat-header-row {
   background-color: #f5f5f5;
   font-weight: bold;
 }
+
+// styles.scss or global styles
+.swal2-container {
+  z-index: 10000 !important;
+}
