@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LandloadProfileComponent } from './landload-profile/landload-profile.component';
+import { SharingModule } from '../sharing/sharing.module';
 
 
 
@@ -63,6 +64,7 @@ import { LandloadProfileComponent } from './landload-profile/landload-profile.co
       positionClass: 'toast-top-right',
       timeOut: 3000
     }),
+    SharingModule
   ]
 })
 export class LandloadModule { }
