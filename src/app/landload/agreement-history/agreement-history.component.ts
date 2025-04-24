@@ -34,12 +34,14 @@ export class AgreementHistoryComponent {
     });
   }
 
-  downloadFile(url: string) {
+  downloadFile(fileUrl: string) {
     const link = document.createElement('a');
-    link.href = url;
-    link.download = url.split('/').pop() ?? 'agreement.pdf'; // Extract filename or use default
+    link.href = fileUrl;
+    link.download = '';
+    link.target = '_blank';
     link.click();
   }
+
 
   closeDialog() {
     this.closeDialog();

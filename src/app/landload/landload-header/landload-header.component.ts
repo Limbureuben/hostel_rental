@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HouseHistoryComponent } from '../house-history/house-history.component';
 import { LandloadProfileComponent } from '../landload-profile/landload-profile.component';
 import { ToastrService } from 'ngx-toastr';
+import { AgreementHistoryComponent } from '../agreement-history/agreement-history.component';
 
 
 @Component({
@@ -47,6 +48,10 @@ export class LandloadHeaderComponent {
    }
 
    onViewBooking(): void {
-    this.router.navigate(['/agreement-history']);
+    this.dialog.open(AgreementHistoryComponent, {
+      width: '1200px',
+      height: '500px',
+      disableClose: false
+    });
    }
 }
