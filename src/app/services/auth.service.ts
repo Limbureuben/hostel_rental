@@ -55,8 +55,14 @@ export class AuthService {
   }
 
   resetPassword(uid: string, token: string, password: string) {
-    const url = `${this.apiUrl}/password-reset-confirm/${uid}/${token}/`;
+    // Encode the UID to base64
+    const encodedUid = btoa(uid);
+
+    // Construct the URL with the base64-encoded UID and token
+    const url = `${this.apiUrl}password-reset-confirm/${encodedUid}/${token}/`;
     console.log('Reset Password URL:', url);
+
+    // Make the HTTP POST request to the backend with the new password
     return this.http.post(url, { password });
   }
 
