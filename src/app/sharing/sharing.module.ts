@@ -58,7 +58,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
       positionClass: 'toast-top-right',
       timeOut: 3000
     }),
-
+  ],
+  exports: [
+    ResetPasswordComponent,
+    ForgotPasswordComponent
   ]
 })
 export class SharingModule { }
