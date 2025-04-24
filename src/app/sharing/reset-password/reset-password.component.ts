@@ -24,7 +24,8 @@ export class ResetPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.uid = this.route.snapshot.paramMap.get('uid')!;
+    // Correct param name: 'uidb64' instead of 'uid'
+    this.uid = this.route.snapshot.paramMap.get('uidb64')!;
     this.token = this.route.snapshot.paramMap.get('token')!;
 
     this.resetForm = this.fb.group({
@@ -42,10 +43,8 @@ export class ResetPasswordComponent implements OnInit {
         return;
       }
 
-      // Encode UID to base64 before sending to the backend
-      const encodedUid = btoa(this.uid);  // Encode the UID
-
-      this.authService.resetPassword(encodedUid, this.token, password).subscribe({
+      // Send uidb64 directly (already encoded from email link)
+      this.authService.resetPassword(this.uid, this.token, password).subscribe({
         next: () => {
           Swal.fire({
             icon: 'success',
@@ -64,6 +63,9 @@ export class ResetPasswordComponent implements OnInit {
           });
         }
       });
+    } else {
+      Swal.fire('Form Invalid', 'Please fill in all fields correctly.', 'warning');
     }
   }
+
 }
