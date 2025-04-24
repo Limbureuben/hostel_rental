@@ -22,19 +22,6 @@ export class ForgotPasswordComponent implements OnInit{
     private fb: FormBuilder
   ) {}
 
-  // submitEmail(): void {
-  //   if (this.emailControl.valid) {
-  //     this.authService.forgotPassword(this.emailControl.value!).subscribe({
-  //       next: (response) => {
-  //         this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
-  //       },
-  //       error: (error) => {
-  //         this.snackBar.open('Failed to send reset link. Please try again.', 'Close', { duration: 3000 });
-  //       }
-  //     })
-  //   }
-  // }
-
   ngOnInit(): void {
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
