@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Received Agreements</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Sender</th>
+        <th>Phone</th>
+        <th>File</th>
+        <th>Uploaded At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agreement of agreements">
+        <td>{{ agreement.from_user }}</td>
+        <td>{{ agreement.sender_phone }}</td>
+        <td><a [href]="agreement.file" target="_blank">View</a></td>
+        <td>{{ agreement.uploaded_at | date:'short' }}</td>
+        <td>
+          <button (click)="downloadFile(agreement.file)" class="btn btn-primary">Download</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

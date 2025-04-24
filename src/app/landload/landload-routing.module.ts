@@ -5,12 +5,14 @@ import { HouseFormComponent } from './house-form/house-form.component';
 import { HouseHistoryComponent } from './house-history/house-history.component';
 import { LandloadProfileComponent } from './landload-profile/landload-profile.component';
 import { UserGuard } from '../guards/user.guard';
+import { AgreementHistoryComponent } from './agreement-history/agreement-history.component';
 
 const routes: Routes = [
   { path: 'landload-dashboard', component: LandloadDashboardComponent, canActivate: [UserGuard] },
   { path: 'house-form', component: HouseFormComponent, canActivate: [UserGuard] },
   { path: 'house-history', component: HouseHistoryComponent, canActivate: [UserGuard] },
-  { path: 'landload-profile', component: LandloadProfileComponent, canActivate: [UserGuard] }
+  { path: 'landload-profile', component: LandloadProfileComponent, canActivate: [UserGuard] },
+  { path: 'agreement-history', component: AgreementHistoryComponent }
 ];
 
 @NgModule({

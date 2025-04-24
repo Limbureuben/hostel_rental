@@ -39,4 +39,8 @@ export class TenantService {
     return this.http.post(`${this.baseUrl}/api/agreement/`, data, { headers });
   }
 
+  getReceivedAgreements(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/api/received-agreements/`);
+  }
+
 }

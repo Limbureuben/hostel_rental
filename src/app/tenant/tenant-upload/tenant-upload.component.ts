@@ -23,7 +23,8 @@ export class TenantUploadComponent {
     public dialogRef: MatDialogRef<TenantUploadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    // Initialize form with correct field names
+
+    
     this.uploadForm = this.fb.group({
       senderPhone: ['', Validators.required],
       receiverUsername: [data?.receiverUsername || '', Validators.required] // prefill with username if available
