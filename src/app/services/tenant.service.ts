@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 export class TenantService {
 
   private baseUrl = 'http://127.0.0.1:8000';
-  private apiUrl = 'http://localhost:8000/api/upload-signed-agreement/';
 
   constructor(
     private http: HttpClient
@@ -35,7 +34,9 @@ export class TenantService {
   }
 
   uploadAgreement(data: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/upload-agreement/`, data);
+    const token = localStorage.getItem('access_token'); // or wherever you're storing the token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.baseUrl}/api/upload-signed-agreement/`, data, { headers });
   }
 
 }
