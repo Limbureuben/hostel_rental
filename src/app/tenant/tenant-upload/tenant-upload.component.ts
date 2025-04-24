@@ -25,8 +25,8 @@ export class TenantUploadComponent {
   ) {
     // Initialize form with correct field names
     this.uploadForm = this.fb.group({
-      senderPhone: ['', Validators.required],  // Match with backend field 'sender_phone'
-      receiverUsername: ['', Validators.required]  // Match with backend field 'to_user'
+      senderPhone: ['', Validators.required],
+      receiverUsername: [data?.receiverUsername || '', Validators.required] // prefill with username if available
     });
   }
 
@@ -46,9 +46,8 @@ export class TenantUploadComponent {
     }
 
     const formData = new FormData();
-    // Correct field names as per backend expectations
-    formData.append('sender_phone', this.uploadForm.get('senderPhone')?.value);  // 'sender_phone' expected
-    formData.append('to_user', this.uploadForm.get('receiverUsername')?.value);  // 'to_user' expected
+    formData.append('sender_phone', this.uploadForm.get('senderPhone')?.value);
+    formData.append('to_user', this.uploadForm.get('receiverUsername')?.value); // pass actual username
     formData.append('file', this.selectedFile);
 
     console.log('Submitting agreement with:', {
@@ -63,7 +62,7 @@ export class TenantUploadComponent {
         this.dialogRef.close();
       },
       error: (err) => {
-        console.error('Upload error:', err);  // Log the error for debugging
+        console.error('Upload error:', err); // Log the error for debugging
         this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
       }
     });
