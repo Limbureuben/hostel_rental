@@ -56,6 +56,7 @@ export class AuthService {
 
   resetPassword(uid: string, token: string, password: string) {
     const url = `${this.apiUrl}/password-reset-confirm/${uid}/${token}/`;
+    console.log('Reset Password URL:', url);
     return this.http.post(url, { password });
   }
 

@@ -24,11 +24,9 @@ export class ResetPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Extract route parameters for UID and token
-    this.uid = this.route.snapshot.paramMap.get('uidb64')!;
+    this.uid = this.route.snapshot.paramMap.get('uid')!;
     this.token = this.route.snapshot.paramMap.get('token')!;
 
-    // Initialize form with validation
     this.resetForm = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -39,14 +37,15 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetForm.valid) {
       const { password, confirmPassword } = this.resetForm.value;
 
-      // Check if passwords match
       if (password !== confirmPassword) {
         Swal.fire('Oops!', 'Passwords do not match.', 'error');
         return;
       }
 
-      // Call API to reset password
-      this.authService.resetPassword(this.uid, this.token, password).subscribe({
+      // Encode UID to base64 before sending to the backend
+      const encodedUid = btoa(this.uid);  // Encode the UID
+
+      this.authService.resetPassword(encodedUid, this.token, password).subscribe({
         next: () => {
           Swal.fire({
             icon: 'success',
@@ -65,10 +64,6 @@ export class ResetPasswordComponent implements OnInit {
           });
         }
       });
-
-    } else {
-      Swal.fire('Form Invalid', 'Please fill in all fields correctly.', 'warning');
     }
   }
-
 }
