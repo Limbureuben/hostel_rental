@@ -16,7 +16,11 @@
 
   .dialog-actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Align buttons on opposite sides */
     margin-top: 20px;
+  }
+
+  .dialog-actions button {
+    margin-left: 10px; /* Add spacing between buttons */
   }
 }
