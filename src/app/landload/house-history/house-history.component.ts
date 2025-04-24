@@ -78,7 +78,6 @@ export class HouseHistoryComponent {
   }
 
   onDelete(houseId: number): void {
-    this.dialogRef.close();
     Swal.fire({
       title: 'Are you sure?',
       backdrop: true,
