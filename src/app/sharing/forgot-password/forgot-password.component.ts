@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { response } from 'express';
 import { error } from 'console';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-forgot-password',
@@ -33,18 +35,29 @@ export class ForgotPasswordComponent implements OnInit{
     console.log('Form valid?', this.emailForm.valid);
 
     if (this.emailForm.valid) {
-      this.authService.forgotPassword(this.emailForm.get('email')?.value).subscribe({
+      const email = this.emailForm.get('email')?.value;
+
+      this.authService.forgotPassword(email).subscribe({
         next: (response) => {
-          this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Reset link sent to your email',
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          this.emailForm.reset();
         },
         error: (error) => {
           this.snackBar.open('Failed to send reset link. Please try again.', 'Close', { duration: 3000 });
         }
-      })
+      });
     } else {
       this.snackBar.open('Please enter a valid email address', 'Close', { duration: 3000 });
     }
   }
+
 
 
   goBack() {
