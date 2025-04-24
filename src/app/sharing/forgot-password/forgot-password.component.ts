@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { response } from 'express';
@@ -12,13 +12,14 @@ import { error } from 'console';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent {
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
+export class ForgotPasswordComponent implements OnInit{
+  emailForm!: FormGroup;
 
   constructor(
     private location: Location,
     private authService: AuthService,
     private snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {}
 
   // submitEmail(): void {
@@ -34,23 +35,24 @@ export class ForgotPasswordComponent {
   //   }
   // }
 
-  submitEmail(): void {
-    const email = this.emailControl.value;
-    console.log('Submitting email:', email); // Check if this runs
+  ngOnInit(): void {
+    this.emailForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]]
+    })
+  }
 
-    if (this.emailControl.valid && email) {
-      this.authService.forgotPassword(email).subscribe({
+  submitEmail(): void {
+    if (this.emailForm.valid) {
+      this.authService.forgotPassword(this.emailForm.value).subscribe({
         next: (response) => {
-          console.log('Email sent:', response);
           this.snackBar.open('Reset link sent to your email', 'Close', { duration: 3000 });
         },
         error: (error) => {
-          console.error('Error sending email:', error);
           this.snackBar.open('Failed to send reset link. Please try again.', 'Close', { duration: 3000 });
         }
-      });
+      })
     } else {
-      console.warn('Email invalid or empty');
+      this.snackBar.open('Please enter a valid email address', 'Close', { duration: 3000 });
     }
   }
 
