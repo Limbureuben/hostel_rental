@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent, canActivate: [UserGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password/:uidb64/:token', component: ResetPasswordComponent }
+  { path: 'reset-password/:uidb64/:token', component: ResetPasswordComponent },
+  { path: 'map', component: MapComponent }
   // { path: 'map', component: MapComponent }
 ];
 
