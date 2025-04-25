@@ -1,15 +1,3 @@
-
-
-
-<!-- map.component.html -->
-<div class="map-container">
-  <input id="search-box" type="text" placeholder="Search for a location..." />
-  <ul *ngIf="suggestions.length > 0" class="suggestions-list">
-    <li *ngFor="let suggestion of suggestions" (click)="searchAndRoute(suggestion)">
-      {{ suggestion }}
-    </li>
-  </ul>
-  <div id="map" style="height: 650px; width: 100%;"></div>
+<div class="map-wrap">
+  <div class="map" #map></div>
 </div>
-
-
