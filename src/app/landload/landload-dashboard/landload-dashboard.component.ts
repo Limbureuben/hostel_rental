@@ -40,11 +40,6 @@ export class LandloadDashboardComponent {
     });
   }
 
-  onViewServices() {
-    // Navigate to view services page
-    this.router.navigate(['/view-services']);
-  }
-
   onManageBooking(): void {
     this.dialog.open(AgreementHistoryComponent, {
           width: '1200px',
@@ -61,5 +56,9 @@ export class LandloadDashboardComponent {
     localStorage.clear()
     this.router.navigate(['/login']);
     this.toastr.success('Logout success', 'Success');
+  }
+
+  onViewServices() {
+    this.router.navigate(['/map'])
   }
 }
