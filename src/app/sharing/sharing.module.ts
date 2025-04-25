@@ -24,7 +24,7 @@ import { MapDisplayComponent } from './map-display/map-display.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ReactiveFormsModule,
     MatIconModule,
     MatMenuModule,
+    FormsModule,
     MatOptionModule,
     MatSelectModule,
     ToastrModule.forRoot({

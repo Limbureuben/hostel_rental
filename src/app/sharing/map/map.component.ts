@@ -2,6 +2,7 @@ import { Component,OnInit,ViewChild,ElementRef,AfterViewInit,OnDestroy,Inject,PL
 import { isPlatformBrowser } from '@angular/common';
 import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-map',
@@ -42,11 +43,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeMap();
-
-      // Add event listener to close form button
-      document.getElementById('closeFormBtn')?.addEventListener('click', () => {
-        this.closeForm();
-      });
+    ;
     }
   }
 
@@ -59,85 +56,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  addMarkersToMap(): void {
-    this.openSpaces.forEach(space => {
-      const markerElement = document.createElement('img');
-      markerElement.src = 'assets/images/location.png';
-      markerElement.style.width = '25px';
-      markerElement.style.height = '25px';
-      markerElement.style.cursor = 'pointer'; // Ensure cursor is set
-
-      const marker = new Marker({ element: markerElement })
-        .setLngLat([space.longitude, space.latitude])
-        .addTo(this.map as Map);
-
-      // Create popup with a report button
-      const popupContent = document.createElement('div');
-      popupContent.classList.add('popup-content');
-      popupContent.innerHTML = `
-        <h3>${space.name}</h3>
-        <p>Location: (${space.latitude}, ${space.longitude})</p>
-        <button class="report-problem-btn">Report Problem</button>
-      `;
-
-
-
-      // Open form when button inside popup is clicked
-      popupContent.querySelector('.report-problem-btn')?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        console.log('Report button clicked for:', space.name);
-        this.openReportForm(space);
-      });
-
-      // Open form when marker is clicked
-      marker.getElement().addEventListener('click', () => {
-        console.log('Marker clicked for:', space.name);
-        this.openReportForm(space);
-      });
-    });
-  }
-
 
   ngOnDestroy() {
     this.map?.remove();
-  }
-
-  openReportForm(space: any) {
-    this.selectedSpace = space;
-    const formContainer = document.getElementById('detailsForm') as HTMLElement;
-    const locationName = document.getElementById('location-name') as HTMLElement;
-
-    if (locationName) {
-      locationName.textContent = space.name; // Bind location name
-    } else {
-      console.error('Location or region element not found');
-    }
-
-    if (formContainer) {
-      console.log('Opening form for:', space.name);
-      formContainer.style.display = 'flex';
-
-      // Small delay before adding "open" for smooth pop-up animation
-      setTimeout(() => {
-        formContainer.classList.add('open');
-      }, 20);
-    } else {
-      console.error('Form container not found');
-    }
-  }
-
-  closeForm() {
-    const formContainer = document.getElementById('detailsForm') as HTMLElement;
-
-    if (formContainer) {
-      formContainer.classList.add('closing');
-
-      // Wait for animation to complete before hiding
-      setTimeout(() => {
-        formContainer.classList.remove('open', 'closing');
-        formContainer.style.display = 'none';
-      }, 300); // Matches CSS transition duration
-    }
   }
 
 triggerFileInput() {
@@ -180,18 +101,6 @@ triggerFileInput() {
     this.searchQuery = suggestion.name;
     this.map?.flyTo({ center: suggestion.center, zoom: 14 });
     this.suggestions = [];
-  }
-
-
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
-      this.selectedFileName = file.name;
-    } else {
-      this.selectedFile = null;
-      this.selectedFileName = '';
-    }
   }
 
 }
