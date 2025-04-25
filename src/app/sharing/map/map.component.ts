@@ -103,4 +103,14 @@ triggerFileInput() {
     this.suggestions = [];
   }
 
+  goBack() {
+    window.history.back();
+  }
+
+  changeMapStyle(styleName: string) {
+    const styleUrl = `https://api.maptiler.com/maps/${styleName}/style.json?key=9rtSKNwbDOYAoeEEeW9B`;
+    this.map?.setStyle(styleUrl);
+  }
+
+
 }
