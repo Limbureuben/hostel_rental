@@ -61,7 +61,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   exports: [
     ResetPasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    MapComponent
   ]
 })
 export class SharingModule { }
