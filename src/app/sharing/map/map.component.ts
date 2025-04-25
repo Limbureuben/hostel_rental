@@ -11,42 +11,187 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   map: Map | undefined;
-  isBrowser: boolean;
+  searchQuery: string = '';
+  suggestions: any[] = [];
+  locationName: string = '';
+  selectedSpace: any = null;
+  openSpaces: any[] = [];
+  emailWarning: boolean = false;
+  showConfirmationModal = false;
 
-  @ViewChild('map', { static: false })
-  private mapContainer!: ElementRef<HTMLElement>;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  message: string = '';
+  selectedFile: File | null = null;
+  selectedFileName: string = '';
+  submitting = false;
+  success = false;
+  errorMessage = '';
+  reportId: string = '';
+
+  @ViewChild('map') private mapContainer!: ElementRef<HTMLElement>;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+) {}
+
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-      config.apiKey = '9rtSKNwbDOYAoeEEeW9B';
+    config.apiKey = '9rtSKNwbDOYAoeEEeW9B';
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeMap();
+
+      // Add event listener to close form button
+      document.getElementById('closeFormBtn')?.addEventListener('click', () => {
+        this.closeForm();
+      });
     }
   }
 
-  ngAfterViewInit(): void {
-    if (this.isBrowser) {
-      const initialState = { lng: 139.753, lat: 35.6844, zoom: 14 };
+  initializeMap(): void {
+    this.map = new Map({
+      container: this.mapContainer.nativeElement,
+      style: 'https://api.maptiler.com/maps/streets/style.json?key=9rtSKNwbDOYAoeEEeW9B',
+      center: [39.230099, -6.774133],
+      zoom: 14
+    });
+  }
 
-      this.map = new Map({
-        container: this.mapContainer.nativeElement,
-        style: MapStyle.STREETS,
-        center: [initialState.lng, initialState.lat],
-        zoom: initialState.zoom
+  addMarkersToMap(): void {
+    this.openSpaces.forEach(space => {
+      const markerElement = document.createElement('img');
+      markerElement.src = 'assets/images/location.png';
+      markerElement.style.width = '25px';
+      markerElement.style.height = '25px';
+      markerElement.style.cursor = 'pointer'; // Ensure cursor is set
+
+      const marker = new Marker({ element: markerElement })
+        .setLngLat([space.longitude, space.latitude])
+        .addTo(this.map as Map);
+
+      // Create popup with a report button
+      const popupContent = document.createElement('div');
+      popupContent.classList.add('popup-content');
+      popupContent.innerHTML = `
+        <h3>${space.name}</h3>
+        <p>Location: (${space.latitude}, ${space.longitude})</p>
+        <button class="report-problem-btn">Report Problem</button>
+      `;
+
+
+
+      // Open form when button inside popup is clicked
+      popupContent.querySelector('.report-problem-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        console.log('Report button clicked for:', space.name);
+        this.openReportForm(space);
       });
 
-      new Marker({ color: '#FF0000' })
-        .setLngLat([139.7525, 35.6846])
-        .addTo(this.map);
+      // Open form when marker is clicked
+      marker.getElement().addEventListener('click', () => {
+        console.log('Marker clicked for:', space.name);
+        this.openReportForm(space);
+      });
+    });
+  }
+
+
+  ngOnDestroy() {
+    this.map?.remove();
+  }
+
+  openReportForm(space: any) {
+    this.selectedSpace = space;
+    const formContainer = document.getElementById('detailsForm') as HTMLElement;
+    const locationName = document.getElementById('location-name') as HTMLElement;
+
+    if (locationName) {
+      locationName.textContent = space.name; // Bind location name
+    } else {
+      console.error('Location or region element not found');
+    }
+
+    if (formContainer) {
+      console.log('Opening form for:', space.name);
+      formContainer.style.display = 'flex';
+
+      // Small delay before adding "open" for smooth pop-up animation
+      setTimeout(() => {
+        formContainer.classList.add('open');
+      }, 20);
+    } else {
+      console.error('Form container not found');
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.isBrowser) {
-      this.map?.remove();
+  closeForm() {
+    const formContainer = document.getElementById('detailsForm') as HTMLElement;
+
+    if (formContainer) {
+      formContainer.classList.add('closing');
+
+      // Wait for animation to complete before hiding
+      setTimeout(() => {
+        formContainer.classList.remove('open', 'closing');
+        formContainer.style.display = 'none';
+      }, 300); // Matches CSS transition duration
     }
   }
+
+triggerFileInput() {
+  document.getElementById('file-upload')?.click();
 }
 
+
+  fetchSuggestions() {
+    if (!this.searchQuery) {
+      this.suggestions = [];
+      return;
+    }
+
+    fetch(`https://api.maptiler.com/geocoding/${this.searchQuery}.json?key=9rtSKNwbDOYAoeEEeW9B&country=TZ`)
+      .then(res => res.json())
+      .then(data => {
+        this.suggestions = data.features.map((feature: any) => ({
+          name: feature.place_name,
+          center: feature.center
+        }));
+      })
+      .catch(err => console.error("Error fetching suggestions:", err));
+  }
+
+  searchLocation() {
+    if (!this.searchQuery) return;
+
+    fetch(`https://api.maptiler.com/geocoding/${this.searchQuery}.json?key=9rtSKNwbDOYAoeEEeW9B&country=TZ`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.features.length > 0) {
+          const { center } = data.features[0];
+          this.map?.flyTo({ center, zoom: 14 });
+        }
+      })
+      .catch(err => console.error("Error fetching location:", err));
+  }
+
+  selectSuggestion(suggestion: any) {
+    this.searchQuery = suggestion.name;
+    this.map?.flyTo({ center: suggestion.center, zoom: 14 });
+    this.suggestions = [];
+  }
+
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.selectedFileName = file.name;
+    } else {
+      this.selectedFile = null;
+      this.selectedFileName = '';
+    }
+  }
+
+}
