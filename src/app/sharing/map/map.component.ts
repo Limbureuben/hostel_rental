@@ -9,6 +9,29 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent {
+export class MapComponent implements OnInit, AfterViewInit, OnDestroy{
+  map: Map | undefined;
+
+  @ViewChild('map')
+  private mapContainer!: ElementRef<HTMLElement>;
+
+  ngOnInit(): void {
+    config.apiKey = 'YOUR_MAPTILER_API_KEY_HERE';
+  }
+
+  ngAfterViewInit() {
+    const initialState = { lng: 139.753, lat: 35.6844, zoom: 14 };
+
+    this.map = new Map({
+      container: this.mapContainer.nativeElement,
+      style: MapStyle.STREETS,
+      center: [initialState.lng, initialState.lat],
+      zoom: initialState.zoom
+    });
+  }
+
+  ngOnDestroy() {
+    this.map?.remove();
+  }
 
 }
