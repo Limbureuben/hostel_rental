@@ -25,6 +25,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
+import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     MapDisplayComponent,
     HomepageComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    OpenstreetmapComponent
   ],
   imports: [
     CommonModule,
