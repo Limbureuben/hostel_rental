@@ -1,0 +1,43 @@
+.map-wrapper {
+  position: relative;
+}
+
+.search-bar {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 250px;
+}
+
+.search-bar button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-bar button:hover {
+  background-color: #45a049;
+}
+
+#map {
+  height: 100vh;
+}
