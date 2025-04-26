@@ -126,10 +126,27 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    const url = `https://api.maptiler.com/navigation/directions/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?geometries=geojson&key=9rtSKNwbDOYAoeEEeW9B`;
+    const openRouteApiKey = '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5'; // Your OpenRouteService key
+
+    const url = 'https://api.openrouteservice.org/v2/directions/driving-car'; // No api_key in URL
+
+    const body = {
+      coordinates: [
+        this.userLocation, // Make sure userLocation is [longitude, latitude]
+        destination        // Same here [longitude, latitude]
+      ]
+    };
 
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': openRouteApiKey,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+
       const data = await response.json();
 
       if (!data.routes?.length) {
@@ -137,12 +154,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const route = data.routes[0].geometry;
+      const route = data.routes[0].geometry; // Correct path to geometry
       this.addRoute(route);
     } catch (error) {
       console.error('Error drawing route:', error);
     }
   }
+
+
 
   private addRoute(route: any): void {
     if (!this.map) return;
