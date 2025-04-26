@@ -151,7 +151,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       coordinates: [
         [this.userLocation[1], this.userLocation[0]], // Swap to [longitude, latitude]
         [destination[1], destination[0]]              // Swap to [longitude, latitude]
-      ]
+      ],
+      radiuses: [null, null]
     };
 
     console.log('User Location:', this.userLocation);
