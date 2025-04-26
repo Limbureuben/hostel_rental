@@ -92,9 +92,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       .then(res => res.json())
       .then(data => {
         if (data.features.length) {
-          const destination = data.features[0].center;
+          const feature = data.features[0];
+          const destination = feature.center as [number, number];
+
           this.flyToLocation(destination);
-          this.drawRoute(destination);
+
+          if (this.userLocation) {
+            this.drawRoute(destination);
+          } else {
+            console.error('User location not available, cannot draw route.');
+          }
+        } else {
+          console.error('No location found for search.');
         }
       })
       .catch(err => console.error('Error fetching location:', err));
@@ -102,8 +111,16 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   selectSuggestion(suggestion: { name: string; center: [number, number] }): void {
     this.searchQuery = suggestion.name;
-    this.flyToLocation(suggestion.center);
-    this.drawRoute(suggestion.center);
+    const destination = suggestion.center;
+
+    this.flyToLocation(destination);
+
+    if (this.userLocation) {
+      this.drawRoute(destination);
+    } else {
+      console.error('User location not available, cannot draw route.');
+    }
+
     this.suggestions = [];
   }
 
@@ -132,11 +149,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const body = {
       coordinates: [
-        this.userLocation,
-        destination
+        this.userLocation,  // User location
+        destination         // Destination location
       ],
-      geometry_format: 'geojson' // <- Important! Ask for usable GeoJSON
+      geometry_format: 'geojson'
     };
+
+    // Log the coordinates being passed to OpenRouteService
+    console.log('User Location:', this.userLocation);
+    console.log('Destination:', destination);
 
     try {
       const response = await fetch(url, {
@@ -150,25 +171,31 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const data = await response.json();
 
-      if (!data.routes?.length) {
-        console.error('No routes found.');
+      // Log the response from OpenRouteService
+      console.log('OpenRouteService Response:', data);
+
+      // Check if routes exist in the response
+      if (!data.routes || data.routes.length === 0) {
+        console.error('No routes found. Please try different locations.');
         return;
       }
 
+      // Process the route geometry
       const geojsonRoute = {
         type: 'FeatureCollection',
         features: [
           {
             type: 'Feature',
-            geometry: data.routes[0].geometry, // directly usable GeoJSON
+            geometry: data.routes[0].geometry,
             properties: {}
           }
         ]
       };
 
       this.addRoute(geojsonRoute);
+
     } catch (error) {
-      console.error('Error drawing route:', error);
+      console.error('Error fetching route from OpenRouteService:', error);
     }
   }
 
@@ -184,7 +211,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.map.addSource(this.routeLayerId, {
       type: 'geojson',
-      data: routeData // full FeatureCollection
+      data: routeData
     });
 
     this.map.addLayer({
