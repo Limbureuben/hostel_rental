@@ -121,7 +121,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    const url = `https://api.maptiler.com/directions/v2/routes/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=YOUR_MAPTILER_KEY&geometries=geojson`;
+    const url = `https://api.maptiler.com/directions/v2/routes/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=9rtSKNwbDOYAoeEEeW9B&geometries=geojson`;
 
     try {
       const response = await fetch(url);
