@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-openstreetmap',
@@ -6,64 +7,124 @@ import { Component, AfterViewInit } from '@angular/core';
   templateUrl: './openstreetmap.component.html',
   styleUrl: './openstreetmap.component.scss'
 })
-export class OpenstreetmapComponent implements AfterViewInit{
+export class OpenstreetmapComponent implements AfterViewInit {
+  @ViewChild('map') mapContainer!: ElementRef;
+  map: any;
+  L: any;
 
-  private map: any;
+  userLocation: [number, number] = [39.2083, -6.7924]; // Dar-es-Salaam (lng, lat)
+  destination: [number, number] = [39.2800, -6.7500]; // Example destination (lng, lat)
 
-  private userLocation: [number, number] = [39.2331264, -6.8190208]; // Dar
-  private destination: [number, number] = [39.2193239, -6.7693830];  // Destination
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   async ngAfterViewInit(): Promise<void> {
-    const L = await import('leaflet');  // <--- only import after browser is ready
+    // Only run on the client side (browser)
+    if (isPlatformBrowser(this.platformId)) {
+      this.L = await import('leaflet');
+      const Geocoder = await import('leaflet-control-geocoder');
 
-    this.map = L.map('map', {
-      center: [this.userLocation[1], this.userLocation[0]],
-      zoom: 13
-    });
+      // Initialize map
+      this.map = this.L.map(this.mapContainer.nativeElement, {
+        center: [this.userLocation[1], this.userLocation[0]],
+        zoom: 13
+      });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(this.map);
+      // Define base tile layers
+      const streetMap = this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Street &copy; OpenStreetMap contributors'
+      });
 
-    // Markers
-    L.marker([this.userLocation[1], this.userLocation[0]]).addTo(this.map)
-      .bindPopup('You are here')
-      .openPopup();
+      const topoMap = this.L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: 'Topo &copy; OpenTopoMap contributors'
+      });
 
-    L.marker([this.destination[1], this.destination[0]]).addTo(this.map)
-      .bindPopup('Destination');
+      const satelliteMap = this.L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Satellite &copy; ESRI'
+      });
 
-    // Draw Route
-    await this.drawRoute(L);
+      streetMap.addTo(this.map);
+
+      // Layer control
+      const baseMaps = {
+        "Street": streetMap,
+        "Topography": topoMap,
+        "Satellite": satelliteMap
+      };
+      this.L.control.layers(baseMaps).addTo(this.map);
+
+      // Add search bar (geocoder)
+      const geocoderControl = (this.L.Control as any).geocoder({
+        defaultMarkGeocode: true
+      })
+      .on('markgeocode', (e: any) => {
+        const center = e.geocode.center;
+
+        // Move the map to the searched location
+        this.map.setView(center, 14);
+
+        // Set destination to new location (optional)
+        this.destination = [center.lng, center.lat];
+
+        // Clear existing markers and route
+        this.map.eachLayer((layer: any) => {
+          if (layer instanceof this.L.Marker || layer instanceof this.L.Polyline) {
+            this.map.removeLayer(layer);
+          }
+        });
+
+        // Re-add base layers
+        streetMap.addTo(this.map);
+
+        // Re-add layer control
+        this.L.control.layers(baseMaps).addTo(this.map);
+
+        // Add markers
+        this.L.marker([this.userLocation[1], this.userLocation[0]]).addTo(this.map).bindPopup('You are here');
+        this.L.marker([this.destination[1], this.destination[0]]).addTo(this.map).bindPopup('Destination');
+
+        // Redraw route
+        this.drawRoute();
+      })
+      .addTo(this.map);
+
+      // Add initial markers
+      this.L.marker([this.userLocation[1], this.userLocation[0]]).addTo(this.map).bindPopup('You are here').openPopup();
+      this.L.marker([this.destination[1], this.destination[0]]).addTo(this.map).bindPopup('Destination');
+
+      // Draw initial route
+      await this.drawRoute();
+    }
   }
 
-  private async drawRoute(L: any): Promise<void> {
-    const apiUrl = `https://api.openrouteservice.org/v2/directions/driving-car/geojson`;
+  async drawRoute(): Promise<void> {
+    try {
+      const response = await fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+        method: 'POST',
+        headers: {
+          'Authorization': '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          coordinates: [
+            [this.userLocation[0], this.userLocation[1]],
+            [this.destination[0], this.destination[1]]
+          ]
+        })
+      });
 
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        coordinates: [
-          [this.userLocation[0], this.userLocation[1]],
-          [this.destination[0], this.destination[1]]
-        ]
-      })
-    });
+      if (!response.ok) {
+        console.error('Failed to get route');
+        return;
+      }
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data && data.features && data.features.length > 0) {
-      const coords = data.features[0].geometry.coordinates;
-      const latlngs = coords.map((c: [number, number]) => [c[1], c[0]]);
+      const routeCoords = data.features[0].geometry.coordinates.map((c: any) => [c[1], c[0]]);
 
-      const polyline = L.polyline(latlngs, { color: 'blue', weight: 5 }).addTo(this.map);
-      this.map.fitBounds(polyline.getBounds());
-    } else {
-      console.error('No route found!');
+      this.L.polyline(routeCoords, { color: 'blue', weight: 5 }).addTo(this.map);
+
+    } catch (error) {
+      console.error('Error drawing route:', error);
     }
   }
 }
