@@ -143,24 +143,32 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private addRoute(route: any): void {
+    if (!this.map) return;
+
     // Remove existing route if it exists
-    if (this.map?.getLayer(this.routeLayerId)) {
+    if (this.map.getLayer(this.routeLayerId)) {
       this.map.removeLayer(this.routeLayerId);
     }
-    if (this.map?.getSource(this.routeLayerId)) {
+    if (this.map.getSource(this.routeLayerId)) {
       this.map.removeSource(this.routeLayerId);
     }
 
-    this.map?.addSource(this.routeLayerId, {
+    // Correct: Wrap route into a FeatureCollection
+    this.map.addSource(this.routeLayerId, {
       type: 'geojson',
       data: {
-        type: 'Feature',
-        geometry: route,
-        properties: {} // Important: properties must be there
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: route,
+            properties: {}
+          }
+        ]
       }
     });
 
-    this.map?.addLayer({
+    this.map.addLayer({
       id: this.routeLayerId,
       type: 'line',
       source: this.routeLayerId,
@@ -174,4 +182,5 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
   }
+
 }
