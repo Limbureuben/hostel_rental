@@ -12,17 +12,17 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('map') private mapContainer!: ElementRef<HTMLElement>;
 
-  map: Map | undefined;
+  map?: Map;
   searchQuery: string = '';
-  suggestions: any[] = [];
-  locationName: string = '';
+  suggestions: { name: string; center: [number, number] }[] = [];
   userLocation: [number, number] | null = null;
-  routeLayerId = 'route-layer';
+  private readonly apiKey = '9rtSKNwbDOYAoeEEeW9B';
+  private readonly routeLayerId = 'route-layer';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    config.apiKey = '9rtSKNwbDOYAoeEEeW9B';
+    config.apiKey = this.apiKey;
   }
 
   ngAfterViewInit(): void {
@@ -31,45 +31,48 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  initializeMap(): void {
+  ngOnDestroy(): void {
+    this.map?.remove();
+  }
+
+  private initializeMap(): void {
     this.map = new Map({
       container: this.mapContainer.nativeElement,
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=9rtSKNwbDOYAoeEEeW9B',
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${this.apiKey}`,
       center: [39.230099, -6.774133],
       zoom: 14
     });
 
-    // Get user's location
+    this.getUserLocation();
+  }
+
+  private getUserLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.userLocation = [position.coords.longitude, position.coords.latitude];
-          if (this.map && this.userLocation) {
+        ({ coords }) => {
+          this.userLocation = [coords.longitude, coords.latitude];
+          if (this.map) {
             new Marker({ color: 'blue' })
               .setLngLat(this.userLocation)
               .addTo(this.map);
           }
         },
-        (error) => {
-          console.error('Error getting user location:', error);
-        }
+        (error) => console.error('Error getting user location:', error)
       );
     } else {
       console.error('Geolocation not supported.');
     }
   }
 
-  ngOnDestroy(): void {
-    this.map?.remove();
-  }
-
   fetchSuggestions(): void {
-    if (!this.searchQuery) {
+    if (!this.searchQuery.trim()) {
       this.suggestions = [];
       return;
     }
 
-    fetch(`https://api.maptiler.com/geocoding/${this.searchQuery}.json?key=9rtSKNwbDOYAoeEEeW9B&country=TZ`)
+    const url = `https://api.maptiler.com/geocoding/${encodeURIComponent(this.searchQuery)}.json?key=${this.apiKey}&country=TZ`;
+
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         this.suggestions = data.features.map((feature: any) => ({
@@ -77,32 +80,34 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           center: feature.center
         }));
       })
-      .catch(err => console.error("Error fetching suggestions:", err));
+      .catch(err => console.error('Error fetching suggestions:', err));
   }
 
   searchLocation(): void {
-    if (!this.searchQuery) return;
+    if (!this.searchQuery.trim()) return;
 
-    fetch(`https://api.maptiler.com/geocoding/${this.searchQuery}.json?key=9rtSKNwbDOYAoeEEeW9B&country=TZ`)
+    const url = `https://api.maptiler.com/geocoding/${encodeURIComponent(this.searchQuery)}.json?key=${this.apiKey}&country=TZ`;
+
+    fetch(url)
       .then(res => res.json())
       .then(data => {
-        if (data.features.length > 0) {
+        if (data.features.length) {
           const destination = data.features[0].center;
           this.flyToLocation(destination);
           this.drawRoute(destination);
         }
       })
-      .catch(err => console.error("Error fetching location:", err));
+      .catch(err => console.error('Error fetching location:', err));
   }
 
-  selectSuggestion(suggestion: any): void {
+  selectSuggestion(suggestion: { name: string; center: [number, number] }): void {
     this.searchQuery = suggestion.name;
     this.flyToLocation(suggestion.center);
     this.drawRoute(suggestion.center);
     this.suggestions = [];
   }
 
-  flyToLocation(center: [number, number]): void {
+  private flyToLocation(center: [number, number]): void {
     this.map?.flyTo({ center, zoom: 14 });
   }
 
@@ -111,84 +116,38 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   changeMapStyle(styleName: string): void {
-    const styleUrl = `https://api.maptiler.com/maps/${styleName}/style.json?key=9rtSKNwbDOYAoeEEeW9B`;
+    const styleUrl = `https://api.maptiler.com/maps/${styleName}/style.json?key=${this.apiKey}`;
     this.map?.setStyle(styleUrl);
   }
 
-  async drawRoute(destination: [number, number]) {
+  private async drawRoute(destination: [number, number]): Promise<void> {
     if (!this.userLocation) {
       console.error('User location not available.');
       return;
     }
 
-    const url = `https://api.maptiler.com/directions/v2/routes/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=9rtSKNwbDOYAoeEEeW9B&geometries=geojson`;
+    const url = `https://api.maptiler.com/directions/v2/routes/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=${this.apiKey}&geometries=geojson`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
 
-      console.log('Full route data:', data);
-
-      if (!data.routes || data.routes.length === 0) {
+      if (!data.routes?.length) {
         console.error('No routes found.');
         return;
       }
 
       const route = data.routes[0].geometry;
-
-      if (!route) {
-        console.error('Route geometry missing.');
-        return;
-      }
-
-      if (this.map) {
-        // Remove old route
-        if (this.map.getLayer(this.routeLayerId)) {
-          this.map.removeLayer(this.routeLayerId);
-        }
-        if (this.map.getSource(this.routeLayerId)) {
-          this.map.removeSource(this.routeLayerId);
-        }
-
-        // Correct way to add the route as FeatureCollection
-        this.map.addSource(this.routeLayerId, {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [
-              {
-                type: 'Feature',
-                geometry: route,
-                properties: {}
-              }
-            ]
-          }
-        });
-
-        this.map.addLayer({
-          id: this.routeLayerId,
-          type: 'line',
-          source: this.routeLayerId,
-          layout: {
-            'line-join': 'round',
-            'line-cap': 'round'
-          },
-          paint: {
-            'line-color': '#3b82f6',  // blue color
-            'line-width': 5
-          }
-        });
-      }
+      this.addRoute(route);
     } catch (error) {
       console.error('Error drawing route:', error);
     }
   }
 
-
   private addRoute(route: any): void {
     if (!this.map) return;
 
-    // Remove existing route if it exists
+    // Remove existing route layer/source if they exist
     if (this.map.getLayer(this.routeLayerId)) {
       this.map.removeLayer(this.routeLayerId);
     }
@@ -196,7 +155,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.map.removeSource(this.routeLayerId);
     }
 
-    // Correct: Wrap route into a FeatureCollection
     this.map.addSource(this.routeLayerId, {
       type: 'geojson',
       data: {
@@ -225,5 +183,4 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
   }
-
 }
