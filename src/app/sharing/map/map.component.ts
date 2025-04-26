@@ -145,17 +145,15 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const openRouteApiKey = '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5'; // OpenRouteService API key
 
-    const url = 'https://api.openrouteservice.org/v2/directions/driving-car';
+    const url = 'https://api.openrouteservice.org/v2/directions/driving-car?geometry_format=geojson';
 
     const body = {
       coordinates: [
         [this.userLocation[1], this.userLocation[0]], // Swap to [longitude, latitude]
         [destination[1], destination[0]]              // Swap to [longitude, latitude]
-      ],
-      geometry_format: 'geojson'
+      ]
     };
 
-    // Log the coordinates being passed to OpenRouteService
     console.log('User Location:', this.userLocation);
     console.log('Destination:', destination);
 
@@ -171,16 +169,13 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
       const data = await response.json();
 
-      // Log the response from OpenRouteService
       console.log('OpenRouteService Response:', data);
 
-      // Check if routes exist in the response
       if (!data.routes || data.routes.length === 0) {
         console.error('No routes found. Please try different locations.');
         return;
       }
 
-      // Process the route geometry
       const geojsonRoute = {
         type: 'FeatureCollection',
         features: [
@@ -198,6 +193,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       console.error('Error fetching route from OpenRouteService:', error);
     }
   }
+
 
   private addRoute(routeData: any): void {
     if (!this.map) return;
