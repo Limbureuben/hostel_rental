@@ -67,6 +67,9 @@ import { AgreementHistoryComponent } from './agreement-history/agreement-history
       timeOut: 3000
     }),
     SharingModule
+  ],
+  exports: [
+    LandloadHeaderComponent
   ]
 })
 export class LandloadModule { }
