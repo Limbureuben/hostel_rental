@@ -149,8 +149,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const body = {
       coordinates: [
-        this.userLocation,  // User location
-        destination         // Destination location
+        [this.userLocation[1], this.userLocation[0]], // Swap to [longitude, latitude]
+        [destination[1], destination[0]]              // Swap to [longitude, latitude]
       ],
       geometry_format: 'geojson'
     };
