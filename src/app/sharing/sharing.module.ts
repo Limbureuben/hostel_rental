@@ -25,7 +25,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
-import { LandloadModule } from '../landload/landload.module';
 
 @NgModule({
   declarations: [
