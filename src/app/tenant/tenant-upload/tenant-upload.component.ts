@@ -84,17 +84,29 @@ export class TenantUploadComponent {
     formData.append('to_user', this.uploadForm.get('receiverUsername')?.value);
     formData.append('file', this.selectedFile);
 
-    this.isUploading = true; // Start uploading
+    this.isUploading = true;
+    this.uploadProgress = 0; // Reset progress
 
     this.tenantUploadService.uploadAgreement(formData).subscribe({
       next: (event) => {
         if (event.type === HttpEventType.UploadProgress) {
           if (event.total) {
-            this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+            const targetProgress = Math.round((100 * event.loaded) / event.total);
+
+            const interval = setInterval(() => {
+              if (this.uploadProgress < targetProgress) {
+                this.uploadProgress += 1; // increase slowly
+              } else {
+                clearInterval(interval);
+              }
+            }, 30); // smaller = faster, larger = slower (try 20-50ms)
           }
         } else if (event.type === HttpEventType.Response) {
-          this.toastr.success('Agreement uploaded successfully!', 'Success');
-          this.dialogRef.close();
+          this.uploadProgress = 100; // force it to 100% when done
+          setTimeout(() => {
+            this.toastr.success('Agreement uploaded successfully!', 'Success');
+            this.dialogRef.close();
+          }, 500); // little delay to let user feel upload finished
         }
       },
       error: (err) => {
@@ -107,4 +119,5 @@ export class TenantUploadComponent {
       }
     });
   }
+
 }

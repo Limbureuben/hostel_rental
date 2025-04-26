@@ -21,6 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TenantOrderComponent } from './tenant-order/tenant-order.component';
 import { TenantProfileComponent } from './tenant-profile/tenant-profile.component';
 import { TenantUploadComponent } from './tenant-upload/tenant-upload.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 
 
@@ -49,6 +51,7 @@ import { TenantUploadComponent } from './tenant-upload/tenant-upload.component';
     MatOptionModule,
     MatSelectModule,
     MatDialogModule,
+    MatProgressBarModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000

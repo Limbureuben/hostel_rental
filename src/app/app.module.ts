@@ -27,6 +27,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { AuthInterceptor } from './auth.interceptor';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import { AuthInterceptor } from './auth.interceptor';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatProgressBarModule,
     MatMenuModule,
     MatOptionModule,
     MatSelectModule,
