@@ -23,6 +23,10 @@
         <input id="file-upload" type="file" (change)="onFileSelected($event)" required>
       </label>
     </div>
+    <div *ngIf="isUploading" class="progress-container">
+      <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+      <p>{{ uploadProgress }}% uploaded</p>
+    </div>
 
     <button mat-raised-button color="primary" class="upload-button" type="submit">
       Upload
