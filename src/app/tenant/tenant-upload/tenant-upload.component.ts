@@ -85,28 +85,30 @@ export class TenantUploadComponent {
     formData.append('file', this.selectedFile);
 
     this.isUploading = true;
-    this.uploadProgress = 0; // Reset progress
+    this.uploadProgress = 0;
 
     this.tenantUploadService.uploadAgreement(formData).subscribe({
       next: (event) => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if (event.total) {
-            const targetProgress = Math.round((100 * event.loaded) / event.total);
+        if (event.type === HttpEventType.UploadProgress && event.total) {
+          const realProgress = Math.round((100 * event.loaded) / event.total);
 
-            const interval = setInterval(() => {
-              if (this.uploadProgress < targetProgress) {
-                this.uploadProgress += 1; // increase slowly
-              } else {
-                clearInterval(interval);
-              }
-            }, 30); // smaller = faster, larger = slower (try 20-50ms)
-          }
+          // Animate only up to 90%
+          const target = realProgress > 90 ? 90 : realProgress;
+
+          const interval = setInterval(() => {
+            if (this.uploadProgress < target) {
+              this.uploadProgress += 1;
+            } else {
+              clearInterval(interval);
+            }
+          }, 30);
         } else if (event.type === HttpEventType.Response) {
-          this.uploadProgress = 100; // force it to 100% when done
+          // When upload is done, force 100%
+          this.uploadProgress = 100;
           setTimeout(() => {
             this.toastr.success('Agreement uploaded successfully!', 'Success');
             this.dialogRef.close();
-          }, 500); // little delay to let user feel upload finished
+          }, 500);
         }
       },
       error: (err) => {
@@ -119,5 +121,6 @@ export class TenantUploadComponent {
       }
     });
   }
+
 
 }
