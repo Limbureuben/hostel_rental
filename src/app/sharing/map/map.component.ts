@@ -115,32 +115,75 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map?.setStyle(styleUrl);
   }
 
-  async drawRoute(destination: [number, number]): Promise<void> {
+  async drawRoute(destination: [number, number]) {
     if (!this.userLocation) {
       console.error('User location not available.');
       return;
     }
 
-    const url = `https://api.maptiler.com/directions/v2/route/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=9rtSKNwbDOYAoeEEeW9B&geometries=geojson`;
+    const url = `https://api.maptiler.com/directions/v2/routes/driving/${this.userLocation[0]},${this.userLocation[1]};${destination[0]},${destination[1]}?key=YOUR_MAPTILER_KEY&geometries=geojson`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log('Route data:', data);
+
+      console.log('Full route data:', data);
+
+      if (!data.routes || data.routes.length === 0) {
+        console.error('No routes found.');
+        return;
+      }
 
       const route = data.routes[0].geometry;
 
-      if (this.map && this.map.isStyleLoaded()) {
-        this.addRoute(route);
-      } else {
-        this.map?.on('load', () => {
-          this.addRoute(route);
+      if (!route) {
+        console.error('Route geometry missing.');
+        return;
+      }
+
+      if (this.map) {
+        // Remove old route
+        if (this.map.getLayer(this.routeLayerId)) {
+          this.map.removeLayer(this.routeLayerId);
+        }
+        if (this.map.getSource(this.routeLayerId)) {
+          this.map.removeSource(this.routeLayerId);
+        }
+
+        // Correct way to add the route as FeatureCollection
+        this.map.addSource(this.routeLayerId, {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [
+              {
+                type: 'Feature',
+                geometry: route,
+                properties: {}
+              }
+            ]
+          }
+        });
+
+        this.map.addLayer({
+          id: this.routeLayerId,
+          type: 'line',
+          source: this.routeLayerId,
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#3b82f6',  // blue color
+            'line-width': 5
+          }
         });
       }
     } catch (error) {
       console.error('Error drawing route:', error);
     }
   }
+
 
   private addRoute(route: any): void {
     if (!this.map) return;
