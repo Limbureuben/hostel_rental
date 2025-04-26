@@ -126,15 +126,16 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
 
-    const openRouteApiKey = '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5'; // Your OpenRouteService key
+    const openRouteApiKey = '5b3ce3597851110001cf6248e536cc2e38174bc0b11de4674f25c7e5'; // OpenRouteService API key
 
-    const url = 'https://api.openrouteservice.org/v2/directions/driving-car'; // No api_key in URL
+    const url = 'https://api.openrouteservice.org/v2/directions/driving-car';
 
     const body = {
       coordinates: [
-        this.userLocation, // Make sure userLocation is [longitude, latitude]
-        destination        // Same here [longitude, latitude]
-      ]
+        this.userLocation,
+        destination
+      ],
+      geometry_format: 'geojson' // <- Important! Ask for usable GeoJSON
     };
 
     try {
@@ -154,19 +155,26 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
 
-      const route = data.routes[0].geometry; // Correct path to geometry
-      this.addRoute(route);
+      const geojsonRoute = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: data.routes[0].geometry, // directly usable GeoJSON
+            properties: {}
+          }
+        ]
+      };
+
+      this.addRoute(geojsonRoute);
     } catch (error) {
       console.error('Error drawing route:', error);
     }
   }
 
-
-
-  private addRoute(route: any): void {
+  private addRoute(routeData: any): void {
     if (!this.map) return;
 
-    // Remove existing route layer/source if they exist
     if (this.map.getLayer(this.routeLayerId)) {
       this.map.removeLayer(this.routeLayerId);
     }
@@ -176,16 +184,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.map.addSource(this.routeLayerId, {
       type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            geometry: route,
-            properties: {}
-          }
-        ]
-      }
+      data: routeData // full FeatureCollection
     });
 
     this.map.addLayer({
