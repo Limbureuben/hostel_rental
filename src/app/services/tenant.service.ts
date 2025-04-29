@@ -53,4 +53,8 @@ export class TenantService {
     return this.http.get<{ total_users: number }>(`${this.baseUrl}/api/user-count/`);
   }
 
+  getHouseTotal() {
+    return this.http.get<{ total_houses: number }>(`${this.baseUrl}/api/house-count`)
+  }
+
 }

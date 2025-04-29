@@ -23,16 +23,10 @@ export class TenantListComponent {
     this.dialogRef.close();
   }
 
-  // bookHouse(houseId: number): void {
-  //   this.tenantService.bookRoom(houseId);
-  //   this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
-  // }
-
   bookHouse(houseId: number): void {
     // Close the dialog first
     this.dialogRef.close();
 
-    // Wait for dialog to actually close before showing SweetAlert
     setTimeout(() => {
       Swal.fire({
         title: "Are you sure?",
@@ -58,9 +52,7 @@ export class TenantListComponent {
           this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
         }
       });
-    }, 300); // Delay to ensure dialog is fully closed (adjust if needed)
+    }, 300);
   }
-
-
 
 }

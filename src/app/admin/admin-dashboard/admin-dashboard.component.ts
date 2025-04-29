@@ -25,6 +25,7 @@ import { error } from 'console';
 })
 export class AdminDashboardComponent implements OnInit {
   totalUsers: number = 0;
+  totalHouses: number = 0;
 
   constructor(
     private tenantservice: TenantService,
@@ -33,6 +34,11 @@ export class AdminDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getUsers();
+    this.getHousesTotal();
+  }
+
+  getUsers() {
     this.tenantservice.getTotalUsers().subscribe({
       next: (response) => {
         this.totalUsers = response.total_users;
@@ -41,6 +47,19 @@ export class AdminDashboardComponent implements OnInit {
       error: (error) => {
         console.error('Error fetching total users:', error);
         this.toastr.error('Failed to fetch total users');
+      }
+    });
+  }
+
+  getHousesTotal() {
+    this.tenantservice.getHouseTotal().subscribe({
+      next: (data) => {
+        this.totalHouses = data.total_houses;
+        console.log('Total houses:', this.totalHouses);
+      },
+      error: (error) => {
+        console.error('Error fetching total houses:', error);
+        this.toastr.error('Failed to fetch total houses');
       }
     })
   }
