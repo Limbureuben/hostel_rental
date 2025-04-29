@@ -33,12 +33,6 @@ export class TenantService {
       });
   }
 
-  // uploadAgreement(data: FormData): Observable<any> {
-  //   const token = localStorage.getItem('access_token'); // or wherever you're storing the token
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  //   return this.http.post(`${this.baseUrl}/api/agreement/`, data, { headers });
-  // }
-
   uploadAgreement(data: FormData): Observable<any> {
     const token = localStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
@@ -53,6 +47,10 @@ export class TenantService {
 
   getReceivedAgreements(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/api/received-agreements/`);
+  }
+
+  getTotalUsers() {
+    return this.http.get<{ total_users: number }>('/api/user-count/');
   }
 
 }
