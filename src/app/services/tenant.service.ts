@@ -50,7 +50,7 @@ export class TenantService {
   }
 
   getTotalUsers() {
-    return this.http.get<{ total_users: number }>('/api/user-count/');
+    return this.http.get<{ total_users: number }>(`${this.baseUrl}/api/user-count/`);
   }
 
 }
