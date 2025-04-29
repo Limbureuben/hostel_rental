@@ -87,34 +87,43 @@ export class TenantUploadComponent {
     this.isUploading = true;
     this.uploadProgress = 0;
 
+    let interval: any; // Store interval globally
+
     this.tenantUploadService.uploadAgreement(formData).subscribe({
       next: (event) => {
         if (event.type === HttpEventType.UploadProgress && event.total) {
           const realProgress = Math.round((100 * event.loaded) / event.total);
+          const target = realProgress > 95 ? 95 : realProgress; // Animate up to 95%
 
-          // Animate only up to 90%
-          const target = realProgress > 90 ? 90 : realProgress;
-
-          const interval = setInterval(() => {
+          if (interval) clearInterval(interval);
+          interval = setInterval(() => {
             if (this.uploadProgress < target) {
               this.uploadProgress += 1;
             } else {
               clearInterval(interval);
             }
-          }, 30);
+          }, 60); // smaller = faster animation
         } else if (event.type === HttpEventType.Response) {
-          // When upload is done, force 100%
-          this.uploadProgress = 100;
-          setTimeout(() => {
-            this.toastr.success('Agreement uploaded successfully!', 'Success');
-            this.dialogRef.close();
-          }, 500);
+          // Server says upload complete
+          if (interval) clearInterval(interval);
+
+          interval = setInterval(() => {
+            if (this.uploadProgress < 100) {
+              this.uploadProgress += 1;
+            } else {
+              clearInterval(interval);
+              // Only after full 100%:
+              this.toastr.success('Agreement uploaded successfully!', 'Success');
+              this.dialogRef.close();
+            }
+          }, 15); // speed up final 95 -> 100
         }
       },
       error: (err) => {
         console.error('Upload error:', err);
         this.toastr.error('Failed to upload agreement. Please try again.', 'Error');
         this.isUploading = false;
+        if (interval) clearInterval(interval);
       },
       complete: () => {
         this.isUploading = false;
