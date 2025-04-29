@@ -83,10 +83,10 @@ export class TenantDashboardComponent implements OnInit{
       data: house
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(result => {
       if (result === 'booked') {
-        // Remove the booked house
-        this.houses = this.houses.filter(h => h.id !== house.id);
+        console.log('House booked:', house.id);
+        this.houses = this.houses.filter(h => +h.id !== +house.id);
         this.setPagedHouses();
       }
     });
