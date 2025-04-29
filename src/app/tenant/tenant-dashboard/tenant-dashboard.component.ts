@@ -71,25 +71,13 @@ export class TenantDashboardComponent implements OnInit{
   NavigateToLogin() {
   }
 
-  //   openDialog(house: any): void {
-  //     this.dialog.open(TenantListComponent, {
+    openDialog(house: any): void {
+      this.dialog.open(TenantListComponent, {
 
-  //       data: house
-  //     });
-  // }
-
-  openDialog(house: any): void {
-    const dialogRef = this.dialog.open(TenantListComponent, {
-      data: house
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'booked') {
-        console.log('House booked:', house.id);
-        this.houses = this.houses.filter(h => +h.id !== +house.id);
-        this.setPagedHouses();
-      }
-    });
+        data: house
+      });
   }
+
+
 
 }
