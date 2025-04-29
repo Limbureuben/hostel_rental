@@ -23,9 +23,40 @@ export class TenantListComponent {
     this.dialogRef.close();
   }
 
+  // bookHouse(houseId: number): void {
+  //   // Close the dialog first
+  //   this.dialogRef.close();
+
+  //   setTimeout(() => {
+  //     Swal.fire({
+  //       title: "Are you sure?",
+  //       text: "You are about to book this house.",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes, book it!"
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         // Call the booking service
+  //         this.tenantService.bookRoom(houseId);
+
+  //         // Show confirmation alert
+  //         Swal.fire({
+  //           title: "Booked!",
+  //           text: "You have successfully booked the house.",
+  //           icon: "success"
+  //         });
+
+  //         // Snackbar confirmation
+  //         this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
+  //       }
+  //     });
+  //   }, 300);
+  // }
+
   bookHouse(houseId: number): void {
-    // Close the dialog first
-    this.dialogRef.close();
+    this.dialogRef.close();  // Close early to avoid double-close issue
 
     setTimeout(() => {
       Swal.fire({
@@ -38,22 +69,24 @@ export class TenantListComponent {
         confirmButtonText: "Yes, book it!"
       }).then((result) => {
         if (result.isConfirmed) {
-          // Call the booking service
-          this.tenantService.bookRoom(houseId);
+          this.tenantService.bookRoom(houseId).subscribe({
+            next: () => {
+              Swal.fire("Booked!", "You have successfully booked the house.", "success");
+              this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
 
-          // Show confirmation alert
-          Swal.fire({
-            title: "Booked!",
-            text: "You have successfully booked the house.",
-            icon: "success"
+              // Optionally notify parent to refresh data
+              this.dialogRef.close('booked');
+            },
+            error: () => {
+              Swal.fire("Error", "Booking failed.", "error");
+            }
           });
-
-          // Snackbar confirmation
-          this.snackBar.open('Booking confirmed! PDF downloading...', 'Close', { duration: 4000 });
         }
       });
-    }, 300);
+    }, 300); // Slight delay ensures dialog closes before modal appears
   }
+
+
 
 
 }
