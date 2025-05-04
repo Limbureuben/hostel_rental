@@ -21,7 +21,7 @@
   }
 
   mat-card-header {
-    background: linear-gradient(90deg, #3A7D44, #6FBF73);
+    background: linear-gradient(90deg, rgb(100, 100, 177), rgb(162, 162, 228));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,11 +49,11 @@
     align-self: flex-start;
     font-weight: 500;
     text-transform: none;
-    background-color: #4CAF50;
+    background-color: rgb(100, 100, 177);
     color: white;
 
     &:hover {
-      background-color: #44a348;
+      background-color: rgb(100, 100, 177);
     }
   }
 }
