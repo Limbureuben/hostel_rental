@@ -2,6 +2,7 @@
 /* Global Box Sizing */
 * {
   box-sizing: border-box;
+
 }
 
 /* Card Group Container */
@@ -132,3 +133,33 @@ button {
   flex-direction: column;
   justify-content: space-between;
 }
+
+
+
+
+.tenant-dashboard-content-wrapper {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.tenant-dashboard-background {
+  position: relative;
+  z-index: 1;
+}
+
+.tenant-dashboard-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../../src/assets/images/backgroundrental.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(5px) brightness(0.6);
+  z-index: -1;
+}
+

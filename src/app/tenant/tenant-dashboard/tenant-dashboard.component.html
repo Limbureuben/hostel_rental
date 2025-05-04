@@ -1,29 +1,33 @@
 <app-tenant-header></app-tenant-header>
 
-<div class="house-section">
-  <c-card-group class="mb-4 card-group-custom">
-    <c-card *ngFor="let house of pagedHouses" class="custom-card">
-      <c-card-body>
-        <h5 cCardTitle>{{ house.house_type | titlecase }}</h5>
-        <p cCardText><strong>Available:</strong> {{ house.availability_date | date }}</p>
-        <p cCardText><strong>Price:</strong> TZS {{ house.price_per_month }}</p>
-        <p cCardText><strong>Location:</strong> {{ house.location }}</p>
-        <div class="button-group">
-          <button mat-raised-button style="background-color: rgb(100, 100, 177); color: white;" (click)="openDialog(house)">
-            View
-          </button>
-        </div>
-      </c-card-body>
-    </c-card>
-  </c-card-group>
+<div class="tenant-dashboard-content-wrapper">
+  <div class="tenant-dashboard-background">
+    <div class="house-section">
+      <c-card-group class="mb-4 card-group-custom">
+        <c-card *ngFor="let house of pagedHouses" class="custom-card">
+          <c-card-body>
+            <h5 cCardTitle>{{ house.house_type | titlecase }}</h5>
+            <p cCardText><strong>Available:</strong> {{ house.availability_date | date }}</p>
+            <p cCardText><strong>Price:</strong> TZS {{ house.price_per_month }}</p>
+            <p cCardText><strong>Location:</strong> {{ house.location }}</p>
+            <div class="button-group">
+              <button mat-raised-button style="background-color: rgb(100, 100, 177); color: white;" (click)="openDialog(house)">
+                View
+              </button>
+            </div>
+          </c-card-body>
+        </c-card>
+      </c-card-group>
 
-  <div class="pagination-controls">
-    <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-    <span>Page {{ currentPage }}</span>
-    <button mat-raised-button (click)="nextPage()" [disabled]="currentPage * housesPerPage >= houses.length">Next</button>
+      <div class="pagination-controls">
+        <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+        <span>Page {{ currentPage }}</span>
+        <button mat-raised-button (click)="nextPage()" [disabled]="currentPage * housesPerPage >= houses.length">Next</button>
+      </div>
+    </div>
+
+    <button mat-fab color="accent" class="back-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
   </div>
 </div>
-
-<button mat-fab color="accent" class="back-button" (click)="goBack()">
-  <mat-icon>arrow_back</mat-icon>
-</button>
