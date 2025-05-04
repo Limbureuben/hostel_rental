@@ -64,7 +64,7 @@
   font-weight: 500;
   width: 90%;
   padding: 12px;
-  background-color: #4CAF50; /* Green background */
+  background-color: rgb(100, 100, 177); /* Green background */
   color: #fff; /* White text */
   border: none; /* Remove border */
   border-radius: 4px; /* Rounded corners */
@@ -74,11 +74,11 @@
 
 /* Button Hover Effect */
 .dialog-book-btn button:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: rgb(100, 100, 177); /* Darker green on hover */
   transform: translateY(-2px); /* Subtle upward movement */
 }
 
 .dialog-book-btn button:active {
-  background-color: #388e3c; /* Even darker green when pressed */
+  background-color: rgb(138, 138, 215); /* Even darker green when pressed */
   transform: translateY(0); /* Reset movement on click */
 }
