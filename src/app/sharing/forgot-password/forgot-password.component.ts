@@ -7,7 +7,6 @@ import { response } from 'express';
 import { error } from 'console';
 import Swal from 'sweetalert2';
 
-
 @Component({
   selector: 'app-forgot-password',
   standalone: false,
