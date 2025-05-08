@@ -21,7 +21,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
         animate('500ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
       ])
     ]),
-
     // Animate row additions & deletions
     trigger('rowAnimation', [
       transition(':enter', [
