@@ -26,6 +26,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
 import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
+import { HellopageComponent } from './hellopage/hellopage.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component'
     HomepageComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    OpenstreetmapComponent
+    OpenstreetmapComponent,
+    HellopageComponent
   ],
   imports: [
     CommonModule,

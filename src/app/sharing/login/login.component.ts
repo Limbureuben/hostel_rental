@@ -11,18 +11,19 @@ import { response } from 'express';
   standalone: false,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  animations: [
-  trigger('slideBounce', [
-    transition(':enter', [
-      style({ transform: 'translateY(-100%)', opacity: 0 }),
-      animate('600ms cubic-bezier(0.68, -0.55, 0.27, 1.55)',
-        style({ transform: 'translateY(0)', opacity: 1 }))
-    ]),
-    transition(':leave', [
-      animate('300ms ease-in', style({ transform: 'translateY(-100%)', opacity: 0 }))
-    ])
-  ])
-]
+//   animations: [
+//   trigger('slideBounce', [
+//     transition(':enter', [
+//       style({ transform: 'translateY(-100%)', opacity: 0 }),
+//       animate('600ms cubic-bezier(0.68, -0.55, 0.27, 1.55)',
+//         style({ transform: 'translateY(0)', opacity: 1 }))
+//     ]),
+//     transition(':leave', [
+//       animate('300ms ease-in', style({ transform: 'translateY(-100%)', opacity: 0 }))
+//     ])
+//   ])
+// ]
+// slideBounce
 })
 export class LoginComponent implements OnInit{
   loginForm!: FormGroup;

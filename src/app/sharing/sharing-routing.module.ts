@@ -10,6 +10,7 @@ import { loginRedirectGuard } from '../guards/no-auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
+import { HellopageComponent } from './hellopage/hellopage.component';
 
 const routes: Routes = [
   { path: 'user-home', component: UserHomeComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [UserGuard] },
   { path: 'reset-password/:uidb64/:token', component: ResetPasswordComponent, canActivate: [UserGuard] },
   { path: 'map', component: MapComponent, canActivate: [UserGuard] },
-  { path: 'streetmap', component: OpenstreetmapComponent }
+  { path: 'streetmap', component: OpenstreetmapComponent },
+  { path: 'page', component: HellopageComponent }
   // { path: 'map', component: MapComponent }
 ];
 
