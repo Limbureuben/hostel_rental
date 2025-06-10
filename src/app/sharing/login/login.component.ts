@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit{
   }
 
   goBack(): void {
-    this.router.navigate(['/']);  // Replace '/' with the route you want to navigate to
+    this.router.navigate(['/']);
   }
 
 }
