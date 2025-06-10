@@ -1,24 +1,17 @@
-<div class="hero-section">
-  <div class="container mat-elevation-z4 py-5 rounded">
-    <div class="row align-items-center">
-      <div class="col-lg-6 order-lg-1 order-2" [ngClass]="{ 'fade-slide-in': animate }">
-        <h1 class="mat-display-2 text-center text-lg-start text-primary mb-4">
-          AIR BNB SYSTEM
-        </h1>
-        <p class="mat-subheading-2 mt-4 text-center text-lg-start text-muted">
-          A clean and simple interface to organize your favorite websites.
-          Open a new browser tab and see your sites load instantly. Try it for free.
-        </p>
-        <div class="d-flex justify-content-center justify-content-lg-start mt-5">
-          <button mat-raised-button color="accent" (click)="goToSignup()" class="custom-btn">
-            Get started
-          </button>
-        </div>
-      </div>
-      <div class="col-lg-6 order-lg-2 order-1 text-center">
-        <img src="assets/airbnb-hero.png" alt="AIR BNB System" class="img-fluid rounded shadow-lg">
-      </div>
+<div class="landing-wrapper">
+  <div class="overlay"></div>
+  <div class="content" [ngClass]="{ 'fade-slide-in': animate }">
+    <h1 class="title mat-display-1">🏠 House Rental System</h1>
+    <p class="subtitle mat-subheading-2">
+      Find, list, and manage your rental properties with ease.
+    </p>
+    <div class="button-group">
+      <button mat-raised-button color="primary" class="action-btn" (click)="goToGetStarted()">
+        Get Started
+      </button>
+      <button mat-stroked-button color="accent" class="action-btn" (click)="goToSignup()">
+        Sign Up
+      </button>
     </div>
   </div>
-    <div class="bg-image" [ngClass]="{ 'bg-fade-zoom-in': animate }"></div>
 </div>
