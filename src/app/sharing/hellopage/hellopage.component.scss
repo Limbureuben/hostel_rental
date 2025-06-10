@@ -1,7 +1,79 @@
+// .landing-wrapper {
+//   position: relative;
+//   height: 100vh;
+//   background-image: url('../../../../src/assets/images/backgroundrental.jpeg'); // optional external image
+//   background-size: cover;
+//   background-position: center;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   overflow: hidden;
+//   color: white;
+// }
+
+// .overlay {
+//   position: absolute;
+//   top: 0; left: 0;
+//   width: 100%; height: 100%;
+//   background: rgba(154, 117, 117, 0.5);
+//   z-index: 0;
+// }
+
+// .content {
+//   text-align: center;
+//   z-index: 1;
+//   max-width: 800px;
+//   padding: 2rem;
+// }
+
+// .title {
+//   font-weight: 700;
+//   font-size: 3rem;
+// }
+
+// .subtitle {
+//   margin-top: 1rem;
+//   font-size: 1.25rem;
+//   color: #ddd;
+// }
+
+// .button-group {
+//   margin-top: 2rem;
+//   display: flex;
+//   gap: 1rem;
+//   justify-content: center;
+//   flex-wrap: wrap;
+// }
+
+// .action-btn {
+//   padding: 0.75rem 2rem;
+//   font-weight: 600;
+//   font-size: 1rem;
+//   border-radius: 4px;
+// }
+
+// .fade-slide-in {
+//   animation: fadeIn 1s ease-out forwards;
+//   opacity: 0;
+// }
+
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(30px);
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+// }
+
+
+
 .landing-wrapper {
   position: relative;
   height: 100vh;
-  background-image: url('../../../../src/assets/images/backgroundrental.jpeg'); // optional external image
+  background-image: url('../../../../src/assets/images/backgroundrental.jpeg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -15,30 +87,56 @@
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(154, 117, 117, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 0;
 }
 
 .content {
   text-align: center;
   z-index: 1;
-  max-width: 800px;
+  max-width: 900px;
   padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+}
+
+.welcome-text {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
 }
 
 .title {
-  font-weight: 700;
-  font-size: 3rem;
+  font-weight: 800;
+  font-size: 3.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
 }
 
 .subtitle {
-  margin-top: 1rem;
   font-size: 1.25rem;
   color: #ddd;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 2rem 0;
+  color: #ccc;
+  text-align: left;
+
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
 }
 
 .button-group {
-  margin-top: 2rem;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -49,7 +147,7 @@
   padding: 0.75rem 2rem;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .fade-slide-in {
@@ -58,86 +156,12 @@
 }
 
 @keyframes fadeIn {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(30px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-
-
-
-//  .hero-section {
-//     position: relative;
-//     overflow: hidden;
-//     padding: 80px 0;
-//     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-//   }
-
-//   .container {
-//     background-color: rgba(255, 255, 255, 0.9);
-//     backdrop-filter: blur(10px);
-//   }
-
-//   .mat-display-2 {
-//     font-weight: 700;
-//     letter-spacing: -1px;
-//   }
-
-//   .custom-btn {
-//     font-size: 18px;
-//     padding: 12px 30px;
-//     text-transform: uppercase;
-//     letter-spacing: 1px;
-//     transition: all 0.3s ease;
-//   }
-
-//   .custom-btn:hover {
-//     transform: translateY(-3px);
-//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-//   }
-
-//   .bg-image {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     // background-image: url('assets/background-pattern.svg');
-//     opacity: 0.1;
-//     z-index: -1;
-//   }
-
-//   .fade-slide-in {
-//     animation: fadeSlideIn 1s ease-out;
-//   }
-
-//   .bg-fade-zoom-in {
-//     animation: fadeZoomIn 1.5s ease-out;
-//   }
-
-//   @keyframes fadeSlideIn {
-//     from {
-//       opacity: 0;
-//       transform: translateY(50px);
-//     }
-//     to {
-//       opacity: 1;
-//       transform: translateY(0);
-//     }
-//   }
-
-//   @keyframes fadeZoomIn {
-//     from {
-//       opacity: 0;
-//       transform: scale(1.1);
-//     }
-//     to {
-//       opacity: 0.1;
-//       transform: scale(1);
-//     }
-//   }

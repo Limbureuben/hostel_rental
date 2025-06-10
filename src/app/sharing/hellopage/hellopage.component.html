@@ -1,16 +1,29 @@
 <div class="landing-wrapper">
   <div class="overlay"></div>
+
   <div class="content" [ngClass]="{ 'fade-slide-in': animate }">
-    <h1 class="title mat-display-1">🏠 HOUSE RENTAL SYSTEM</h1>
+    <h2 class="welcome-text">👋 Welcome to</h2>
+
+    <h1 class="title mat-display-1">
+      🏠 House Rental System
+    </h1>
+
     <p class="subtitle mat-subheading-2">
-      Find, list, and manage your rental properties with ease.
+      Your one-stop platform to <strong>discover</strong>, <strong>list</strong>, and <strong>manage</strong> rental properties with ease and confidence.
     </p>
+
+    <ul class="feature-list">
+      <li>✅ Easily browse houses with full details and photos</li>
+      <li>✅ Post your house for rent in minutes</li>
+      <li>✅ Track bookings and tenant agreements securely</li>
+    </ul>
+
     <div class="button-group">
       <button mat-raised-button color="primary" class="action-btn" (click)="goToGetStarted()">
-        Get Started
+        🚀 Get Started
       </button>
       <button mat-stroked-button color="accent" class="action-btn" (click)="goToSignup()">
-        Sign Up
+        📝 Sign Up
       </button>
     </div>
   </div>
