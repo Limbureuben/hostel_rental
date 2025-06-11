@@ -1,8 +1,11 @@
-<iframe
-  width="100%"
-  height="650"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  [src]="mapUrl | safe"
-></iframe>
+<div class="map-container">
+  <iframe
+    [src]="mapUrl | safe"
+    width="100%"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
