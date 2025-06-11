@@ -55,6 +55,10 @@ export class LandloadHeaderComponent {
     });
    }
 
+   ViewServices() {
+    this.router.navigate(['/landload-map']);
+   }
+
      logout(): void {
       localStorage.clear()
       this.router.navigate(['/page']);
