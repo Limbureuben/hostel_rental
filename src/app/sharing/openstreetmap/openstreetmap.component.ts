@@ -12,6 +12,6 @@ export class OpenstreetmapComponent {
   location: any;
 
   goBack() {
-  this.location.back(); // navigates to the previous page
+  this.location.back();
 }
 }
