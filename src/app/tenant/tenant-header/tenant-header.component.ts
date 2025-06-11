@@ -43,4 +43,8 @@ export class TenantHeaderComponent {
       this.toastr.success('Logout success');
      }
 
+     NavigateToservices() {
+      this.router.navigate(['/tenant-map']);
+     }
+
 }

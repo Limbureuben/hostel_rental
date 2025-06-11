@@ -22,6 +22,7 @@ import { TenantOrderComponent } from './tenant-order/tenant-order.component';
 import { TenantProfileComponent } from './tenant-profile/tenant-profile.component';
 import { TenantUploadComponent } from './tenant-upload/tenant-upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TenantMapComponent } from './tenant-map/tenant-map.component';
 
 
 
@@ -33,7 +34,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     TenantListComponent,
     TenantOrderComponent,
     TenantProfileComponent,
-    TenantUploadComponent
+    TenantUploadComponent,
+    TenantMapComponent
   ],
   imports: [
     CommonModule,
