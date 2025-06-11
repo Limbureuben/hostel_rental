@@ -4,7 +4,6 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MapComponent } from './map/map.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { UserGuard } from '../guards/user.guard';
 import { loginRedirectGuard } from '../guards/no-auth.guard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -16,7 +15,6 @@ const routes: Routes = [
   { path: 'user-home', component: UserHomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [loginRedirectGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'homepage', component: HomepageComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [UserGuard] },
   { path: 'reset-password/:uidb64/:token', component: ResetPasswordComponent, canActivate: [UserGuard] },
   { path: 'map', component: MapComponent, canActivate: [UserGuard] },

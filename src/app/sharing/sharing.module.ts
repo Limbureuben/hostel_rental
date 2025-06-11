@@ -21,7 +21,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { MapComponent } from './map/map.component';
 import { MapDisplayComponent } from './map-display/map-display.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +37,6 @@ import { SafePipe } from '../pipes/safe.pipe'
     FooterComponent,
     MapComponent,
     MapDisplayComponent,
-    HomepageComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     OpenstreetmapComponent,
