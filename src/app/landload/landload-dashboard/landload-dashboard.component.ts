@@ -60,6 +60,6 @@ export class LandloadDashboardComponent {
   onViewServices() {
     // const url = 'https://www.google.com/maps/dir/?api=1&destination=27.7172,85.3240';
     // window.open(url, '_blank');
-    this.router.navigate(['/streetmap']);
+    this.router.navigate(['/landload-map']);
   }
 }

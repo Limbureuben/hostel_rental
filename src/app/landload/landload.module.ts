@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LandloadProfileComponent } from './landload-profile/landload-profile.component';
 import { SharingModule } from '../sharing/sharing.module';
 import { AgreementHistoryComponent } from './agreement-history/agreement-history.component';
+import { LandloadMapComponent } from './landload-map/landload-map.component';
 
 
 
@@ -39,7 +40,8 @@ import { AgreementHistoryComponent } from './agreement-history/agreement-history
     HouseFormComponent,
     HouseHistoryComponent,
     LandloadProfileComponent,
-    AgreementHistoryComponent
+    AgreementHistoryComponent,
+    LandloadMapComponent
   ],
   imports: [
     CommonModule,
