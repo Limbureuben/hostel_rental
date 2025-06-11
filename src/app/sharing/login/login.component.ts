@@ -68,15 +68,29 @@ export class LoginComponent implements OnInit{
 
           console.log('Token stored:', response.token);
 
-          if (response.user.isStaff) {
+          const selectedRole = localStorage.getItem('selectedRole');
+
+          if (selectedRole === 'landlord') {
+            this.router.navigate(['/landload-dashboard']);
+          } else if (selectedRole === 'tenant') {
+            this.router.navigate(['/tenant-dashboard']);
+          } else if(response.user.isStaff) {
             this.router.navigate(['/admin']);
           } else {
-            this.router.navigate(['/homepage']);
-          }
-        } else {
-          this.toastr.error(response.message || 'Login failed', 'Error', {
+            this.toastr.error(response.message || 'Login failed', 'Error', {
             positionClass: 'toast-top-right'
           });
+          }
+
+        //   if (response.user.isStaff) {
+        //     this.router.navigate(['/admin']);
+        //   } else {
+        //     this.router.navigate(['/homepage']);
+        //   }
+        // } else {
+        //   this.toastr.error(response.message || 'Login failed', 'Error', {
+        //     positionClass: 'toast-top-right'
+        //   });
         }
       },
       error: (err) => {
