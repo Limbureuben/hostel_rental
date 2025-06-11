@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-openstreetmap',

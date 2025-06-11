@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { Map, Marker, config } from '@maptiler/sdk';
-import '@maptiler/sdk/dist/maptiler-sdk.css';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-map',
