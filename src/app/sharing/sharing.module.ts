@@ -61,7 +61,6 @@ import { SafePipe } from '../pipes/safe.pipe'
     FormsModule,
     MatOptionModule,
     MatSelectModule,
-    SafePipe,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000
