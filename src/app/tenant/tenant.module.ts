@@ -1,3 +1,4 @@
+import { SharingModule } from './../sharing/sharing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -58,6 +59,7 @@ import { TenantMapComponent } from './tenant-map/tenant-map.component';
       positionClass: 'toast-top-right',
       timeOut: 3000
     }),
+    SharingModule
   ],
 })
 export class TenantModule { }
