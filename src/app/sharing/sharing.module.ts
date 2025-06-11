@@ -27,6 +27,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { FormsModule } from '@angular/forms';
 import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
 import { HellopageComponent } from './hellopage/hellopage.component';
+import { SafePipe } from '../pipes/safe.pipe'
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HellopageComponent } from './hellopage/hellopage.component';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     OpenstreetmapComponent,
-    HellopageComponent
+    HellopageComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -59,6 +61,7 @@ import { HellopageComponent } from './hellopage/hellopage.component';
     FormsModule,
     MatOptionModule,
     MatSelectModule,
+    SafePipe,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       timeOut: 3000
@@ -67,7 +70,8 @@ import { HellopageComponent } from './hellopage/hellopage.component';
   exports: [
     ResetPasswordComponent,
     ForgotPasswordComponent,
-    MapComponent
+    MapComponent,
+    SafePipe
   ]
 })
-export class SharingModule { }
+export class SharingModule {}
