@@ -25,4 +25,10 @@ export class HellopageComponent implements OnInit{
   goToGetStarted(): void {
     this.router.navigate(['/homepage']);
   }
+
+  selectRole(role: 'tenant' | 'landlord') {
+  localStorage.setItem('selectedRole', role);
+  this.router.navigate(['/login']);
+}
+
 }

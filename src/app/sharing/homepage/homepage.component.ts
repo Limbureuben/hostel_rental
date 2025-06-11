@@ -32,12 +32,12 @@ export class HomepageComponent {
   }
 
   goBack() {
-    this.router.navigate(['/homepage'])
+    this.router.navigate(['/page'])
   }
 
-  logout(): void {
-    localStorage.clear()
-    this.router.navigate(['/login']);
-    this.toastr.success('Logout success', 'Success');
-  }
+  // logout(): void {
+  //   localStorage.clear()
+  //   this.router.navigate(['/login']);
+  //   this.toastr.success('Logout success', 'Success');
+  // }
 }
