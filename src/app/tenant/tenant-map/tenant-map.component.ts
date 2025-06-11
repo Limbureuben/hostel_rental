@@ -7,11 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './tenant-map.component.scss'
 })
 export class TenantMapComponent {
-     mapUrl: string = 'https://www.google.com/maps?q=-6.752629,39.210418&output=embed';
-    location: any;
-
-    goBack() {
-    this.location.back();
-  }
 
 }
