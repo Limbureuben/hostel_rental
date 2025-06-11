@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TenantProfileComponent } from '../tenant-profile/tenant-profile.component';
 import { TenantUploadComponent } from '../tenant-upload/tenant-upload.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tenant-header',
@@ -13,7 +14,8 @@ import { TenantUploadComponent } from '../tenant-upload/tenant-upload.component'
 export class TenantHeaderComponent {
   constructor(
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   NavigateToTenant() {
@@ -33,6 +35,12 @@ export class TenantHeaderComponent {
           maxHeight: '90vh',
           disableClose: false,
         });
+     }
+
+     Logout() {
+      localStorage.clear()
+      this.router.navigate(['/page']);
+      this.toastr.success('Logout success');
      }
 
 }

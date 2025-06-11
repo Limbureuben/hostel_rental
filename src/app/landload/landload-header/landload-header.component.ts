@@ -54,4 +54,10 @@ export class LandloadHeaderComponent {
       disableClose: false
     });
    }
+
+     logout(): void {
+      localStorage.clear()
+      this.router.navigate(['/page']);
+      this.toastr.success('Logout success', 'Success');
+    }
 }
