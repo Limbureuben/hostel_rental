@@ -31,4 +31,14 @@ export class HellopageComponent implements OnInit{
   this.router.navigate(['/login']);
 }
 
+TenantNavigation() {
+  localStorage.setItem('selectedRole', 'tenant');
+  this.router.navigate(['/login']);
+}
+
+LandloadNavigation() {
+  localStorage.setItem('selectedRole', 'landlord');
+  this.router.navigate(['/login']);
+}
+
 }

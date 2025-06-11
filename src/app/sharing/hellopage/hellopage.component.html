@@ -19,14 +19,12 @@
     </ul>
 
     <div class="cards-wrapper">
-  <mat-card class="role-card" (click)="selectRole('tenant')">
-    <img src="assets/images/people.png" alt="Tenant" class="icon">
+  <mat-card class="role-card" (click)="TenantNavigation()">
     <mat-card-title>TENANT</mat-card-title>
     <mat-card-content>Browse, book and manage house rentals</mat-card-content>
   </mat-card>
 
-  <mat-card class="role-card" (click)="selectRole('landlord')">
-    <img src="assets/images/house.png" alt="Landlord" class="icon">
+  <mat-card class="role-card" (click)="LandloadNavigation()">
     <mat-card-title>LANDLORD</mat-card-title>
     <mat-card-content>List houses and manage tenants easily</mat-card-content>
   </mat-card>

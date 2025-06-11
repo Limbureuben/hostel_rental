@@ -43,7 +43,7 @@
 }
 
 .subtitle {
-  font-size: 1.25rem;
+  font-size: 17px;
   color: #ddd;
   margin-bottom: 1.5rem;
   line-height: 1.6;
@@ -117,6 +117,10 @@
 }
 
 
+
+
+
+
 .cards-wrapper {
   display: flex;
   justify-content: center;
@@ -132,7 +136,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 4px;
   color: white;
 }
 
@@ -142,6 +146,6 @@
 }
 
 .role-card img.icon {
-  width: 80px;
+  width: 50px;
   margin-bottom: 1rem;
 }

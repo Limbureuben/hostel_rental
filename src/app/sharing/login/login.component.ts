@@ -70,12 +70,12 @@ export class LoginComponent implements OnInit{
 
           const selectedRole = localStorage.getItem('selectedRole');
 
-          if (selectedRole === 'landlord') {
-            this.router.navigate(['/landload-dashboard']);
+          if (response.user.isStaff) {
+            this.router.navigate(['/admin']);
           } else if (selectedRole === 'tenant') {
             this.router.navigate(['/tenant-dashboard']);
-          } else if(response.user.isStaff) {
-            this.router.navigate(['/admin']);
+          } else if(selectedRole === 'landlord') {
+            this.router.navigate(['/landload-dashboard']);
           } else {
             this.toastr.error(response.message || 'Login failed', 'Error', {
             positionClass: 'toast-top-right'
