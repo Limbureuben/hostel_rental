@@ -49,12 +49,11 @@ export class LandloadDashboardComponent {
      }
 
   goBack() {
-    this.router.navigate(['/homepage']);
   }
 
   logout(): void {
     localStorage.clear()
-    this.router.navigate(['/login']);
+    this.router.navigate(['/page']);
     this.toastr.success('Logout success', 'Success');
   }
 

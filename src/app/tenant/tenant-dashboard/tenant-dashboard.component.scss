@@ -17,7 +17,7 @@
 /* Individual Card */
 .custom-card {
   flex: 0 0 calc(25% - 20px); /* 4 cards per row with gap accounted */
-  border-radius: 12px;
+  border-radius: 4px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   background-color: #ffffff;
@@ -102,19 +102,6 @@ button {
   .custom-card {
     flex: 0 0 100%; /* 1 per row */
   }
-}
-
-.back-button {
-  position: fixed;
-  bottom: 540px;  /* Adjust position to place the button at the bottom of the page */
-  left: 20px;    /* Adjust position to place it towards the left */
-  z-index: 999;  /* Ensure it stays above other elements */
-  background-color: transparent;  /* No background */
-  box-shadow: none;  /* No shadow */
-  border: none;  /* No border */
-  font-size: 34px;  /* Increase the font size for better visibility */
-  font-weight: bold;  /* Make the icon bold */
-  color: #333;  /* Set a color to the icon */
 }
 
 .pagination-controls {
