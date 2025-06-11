@@ -22,15 +22,6 @@ export class HellopageComponent implements OnInit{
     this.router.navigate(['/homepage']);
   }
 
-  goToGetStarted(): void {
-    this.router.navigate(['/homepage']);
-  }
-
-  selectRole(role: 'tenant' | 'landlord') {
-  localStorage.setItem('selectedRole', role);
-  this.router.navigate(['/login']);
-}
-
 TenantNavigation() {
   localStorage.setItem('selectedRole', 'tenant');
   this.router.navigate(['/login']);
