@@ -21,12 +21,14 @@ export class HomepageComponent {
 
   TenantNavigation() {
     localStorage.setItem('selectedRole', 'landlord');
-    this.router.navigate(['/landload-dashboard']);
+    this.router.navigate(['/login']);
+    // this.router.navigate(['/landload-dashboard']);
   }
 
   LandloadNavigation() {
     localStorage.setItem('selectedRole', 'tenant');
-    this.router.navigate(['/tenant-dashboard']);
+    this.router.navigate(['/login']);
+    // this.router.navigate(['/tenant-dashboard']);
   }
 
   goBack() {
