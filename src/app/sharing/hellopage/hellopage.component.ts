@@ -19,10 +19,10 @@ export class HellopageComponent implements OnInit{
   }
 
   goToSignup(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/homepage']);
   }
 
   goToGetStarted(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/homepage']);
   }
 }
