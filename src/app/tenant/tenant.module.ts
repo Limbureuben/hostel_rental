@@ -23,7 +23,6 @@ import { TenantProfileComponent } from './tenant-profile/tenant-profile.componen
 import { TenantUploadComponent } from './tenant-upload/tenant-upload.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TenantMapComponent } from './tenant-map/tenant-map.component';
-import { SafePipe } from '../pipes/safe.pipe'
 
 
 
@@ -37,7 +36,6 @@ import { SafePipe } from '../pipes/safe.pipe'
     TenantProfileComponent,
     TenantUploadComponent,
     TenantMapComponent,
-    SafePipe
   ],
   imports: [
     CommonModule,
@@ -61,8 +59,5 @@ import { SafePipe } from '../pipes/safe.pipe'
       timeOut: 3000
     }),
   ],
-  exports: [
-    SafePipe
-  ]
 })
 export class TenantModule { }
