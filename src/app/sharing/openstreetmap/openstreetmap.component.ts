@@ -9,4 +9,9 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class OpenstreetmapComponent {
   mapUrl: string = 'https://www.google.com/maps?q=-6.752629,39.210418&output=embed';
+  location: any;
+
+  goBack() {
+  this.location.back(); // navigates to the previous page
+}
 }
