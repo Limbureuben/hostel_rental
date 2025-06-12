@@ -73,10 +73,6 @@ export class HouseHistoryComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onView(house: any) {
-    console.log('View clicked:', house);
-  }
-
   onDelete(houseId: number): void {
     this.dialogRef.close();
     Swal.fire({

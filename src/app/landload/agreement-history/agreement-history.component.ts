@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './agreement-history.component.scss'
 })
 export class AgreementHistoryComponent {
-  displayedColumns: string[] = ['from_user', 'sender_phone', 'uploaded_at', 'file', 'actions'];
+  displayedColumns: string[] = ['from_user', 'sender_phone', 'uploaded_at', 'actions'];
   dataSource = new MatTableDataSource<any>();
   private baseUrl = 'http://127.0.0.1:8000';
 
