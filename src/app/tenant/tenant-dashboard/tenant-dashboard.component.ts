@@ -72,7 +72,4 @@ export class TenantDashboardComponent implements OnInit{
         data: house
       });
   }
-
-
-
 }
