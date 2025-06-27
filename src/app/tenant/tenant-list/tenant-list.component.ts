@@ -32,7 +32,7 @@ export class TenantListComponent {
         text: "You are about to book this house.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "rgb(100, 100, 177)",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, book it!"
       }).then((result) => {
