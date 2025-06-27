@@ -17,22 +17,6 @@ export class TenantService {
     return this.http.get<any[]>(`${this.baseUrl}/api/houses/`);
   }
 
-  // bookRoom(houseId: number): void {
-  //   this.http.post(`${this.baseUrl}/api/book/`, { house_id: houseId }, { responseType: 'blob' })
-  //     .subscribe((res: Blob) => {
-  //       const blob = new Blob([res], { type: 'application/pdf' });
-  //       const url = window.URL.createObjectURL(blob);
-
-  //       const a = document.createElement('a');
-  //       a.href = url;
-  //       a.download = 'rental_agreement.pdf';
-  //       document.body.appendChild(a);
-  //       a.click();
-  //       document.body.removeChild(a);
-  //       window.URL.revokeObjectURL(url);
-  //     });
-  // }
-
   bookRoom(houseId: number): Observable<void> {
     return this.http.post(`${this.baseUrl}/api/book/`, { house_id: houseId }, { responseType: 'blob' }).pipe(
       tap((res: Blob) => {
