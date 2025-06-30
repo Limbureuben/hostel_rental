@@ -1,35 +1,50 @@
 <div class="landing-wrapper">
   <div class="overlay"></div>
 
-  <div class="content" [ngClass]="{ 'fade-slide-in': animate }">
-    <h2 class="welcome-text">Welcome to</h2>
+  <div class="content" [@fadeSlideIn]="animate ? 'in' : 'out'">
+    <h2 class="welcome-text animate-typing">Welcome to</h2>
 
-    <h1 class="title mat-display-1">
+    <h1 class="title mat-display-1 animate-pop">
       HOUSE RENTAL & SOCIAL SERVICES
     </h1>
 
-    <p class="subtitle mat-subheading-2">
-      Your one-stop platform to <strong>discover</strong>, <strong>list</strong>, and <strong>manage</strong> rental properties with ease and confidence.
+    <p class="subtitle mat-subheading-2 animate-fade">
+      Your one-stop platform to <span class="highlight-text">discover</span>, <span class="highlight-text">list</span>, and <span class="highlight-text">manage</span> rental properties with ease and confidence.
     </p>
 
-    <ul class="feature-list">
-      <li>Easily browse houses with full details and photos</li>
-      <li>Post your house for rent in minutes</li>
-      <li>Track bookings and tenant agreements securely</li>
+    <ul class="feature-list animate-stagger">
+      <li class="feature-item">
+        <mat-icon class="feature-icon">search</mat-icon>
+        Easily browse houses with full details and photos
+      </li>
+      <li class="feature-item">
+        <mat-icon class="feature-icon">add_circle</mat-icon>
+        Post your house for rent in minutes
+      </li>
+      <li class="feature-item">
+        <mat-icon class="feature-icon">assignment_turned_in</mat-icon>
+        Track bookings and tenant agreements securely
+      </li>
     </ul>
 
-    <div class="cards-wrapper">
-  <mat-card class="role-card" (click)="TenantNavigation()">
-    <mat-card-title>TENANT</mat-card-title>
-    <mat-card-content>Browse, book and manage house rentals</mat-card-content>
-  </mat-card>
+    <div class="cards-wrapper animate-rise">
+      <mat-card class="role-card" (click)="TenantNavigation()" @hoverScale>
+        <div class="card-icon">
+          <mat-icon>person_search</mat-icon>
+        </div>
+        <mat-card-title>TENANT</mat-card-title>
+        <mat-card-content>Browse, book and manage house rentals</mat-card-content>
+        <div class="card-wave"></div>
+      </mat-card>
 
-  <mat-card class="role-card" (click)="LandloadNavigation()">
-    <mat-card-title>LANDLORD</mat-card-title>
-    <mat-card-content>List houses and manage tenants easily</mat-card-content>
-  </mat-card>
-</div>
-
-
+      <mat-card class="role-card" (click)="LandloadNavigation()" @hoverScale>
+        <div class="card-icon">
+          <mat-icon>home_work</mat-icon>
+        </div>
+        <mat-card-title>LANDLORD</mat-card-title>
+        <mat-card-content>List houses and manage tenants easily</mat-card-content>
+        <div class="card-wave"></div>
+      </mat-card>
+    </div>
   </div>
 </div>
